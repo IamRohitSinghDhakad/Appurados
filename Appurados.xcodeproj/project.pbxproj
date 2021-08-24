@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,36 @@
 		F95597AD26D4160A007390F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95597AB26D4160A007390F7 /* Main.storyboard */; };
 		F95597AF26D4160C007390F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F95597AE26D4160C007390F7 /* Assets.xcassets */; };
 		F95597B226D4160C007390F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95597B026D4160C007390F7 /* LaunchScreen.storyboard */; };
+		F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2126D4D155009FA173 /* HomeViewController.swift */; };
+		F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2326D4DBAE009FA173 /* MapViewController.swift */; };
+		F978DE2C26D4DD56009FA173 /* MessageConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2526D4DD56009FA173 /* MessageConstant.swift */; };
+		F978DE2D26D4DD56009FA173 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2626D4DD56009FA173 /* ValidationManager.swift */; };
+		F978DE2E26D4DD56009FA173 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2726D4DD56009FA173 /* Extensions.swift */; };
+		F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2826D4DD56009FA173 /* AlertViewController.swift */; };
+		F978DE3026D4DD56009FA173 /* CustomUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2A26D4DD56009FA173 /* CustomUIView.swift */; };
+		F978DE3126D4DD56009FA173 /* TableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2B26D4DD56009FA173 /* TableViewExtension.swift */; };
+		F978DE4A26D4DD80009FA173 /* RDTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3426D4DD80009FA173 /* RDTextView.swift */; };
+		F978DE4B26D4DD80009FA173 /* UIViewController+SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3A26D4DD80009FA173 /* UIViewController+SideMenu.swift */; };
+		F978DE4C26D4DD80009FA173 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3B26D4DD80009FA173 /* StatusBar.swift */; };
+		F978DE4D26D4DD80009FA173 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3C26D4DD80009FA173 /* Preferences.swift */; };
+		F978DE4E26D4DD80009FA173 /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3D26D4DD80009FA173 /* Delegate.swift */; };
+		F978DE4F26D4DD80009FA173 /* TransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3E26D4DD80009FA173 /* TransitionContext.swift */; };
+		F978DE5026D4DD80009FA173 /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE3F26D4DD80009FA173 /* UIViewController+Container.swift */; };
+		F978DE5126D4DD80009FA173 /* Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4026D4DD80009FA173 /* Segue.swift */; };
+		F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4126D4DD80009FA173 /* UIView+Container.swift */; };
+		F978DE5326D4DD80009FA173 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4226D4DD80009FA173 /* SideMenuController.swift */; };
+		F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4326D4DD80009FA173 /* BasicTransitionAnimator.swift */; };
+		F978DE5526D4DD80009FA173 /* RevealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4526D4DD80009FA173 /* RevealViewController.swift */; };
+		F978DE5626D4DD80009FA173 /* SWRevealViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4726D4DD80009FA173 /* SWRevealViewController+Extensions.swift */; };
+		F978DE5726D4DD80009FA173 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F978DE4826D4DD80009FA173 /* SWRevealViewController.m */; };
+		F978DE5C26D4DDA2009FA173 /* AppSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE5926D4DDA2009FA173 /* AppSideMenuViewController.swift */; };
+		F978DE5D26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE5B26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift */; };
+		F978DE6126D4E7FC009FA173 /* UserDefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE5F26D4E7FC009FA173 /* UserDefaultExtension.swift */; };
+		F978DE6226D4E7FC009FA173 /* AppSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE6026D4E7FC009FA173 /* AppSharedData.swift */; };
+		F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */; };
+		F9A7330426D4FBCB0006BE93 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */; };
+		F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330526D5002C0006BE93 /* LoginViewController.swift */; };
+		F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330726D505460006BE93 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +58,40 @@
 		F95597AE26D4160C007390F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F95597B126D4160C007390F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F95597B326D4160C007390F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F978DE2126D4D155009FA173 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F978DE2326D4DBAE009FA173 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F978DE2526D4DD56009FA173 /* MessageConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageConstant.swift; sourceTree = "<group>"; };
+		F978DE2626D4DD56009FA173 /* ValidationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
+		F978DE2726D4DD56009FA173 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F978DE2826D4DD56009FA173 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		F978DE2A26D4DD56009FA173 /* CustomUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomUIView.swift; sourceTree = "<group>"; };
+		F978DE2B26D4DD56009FA173 /* TableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewExtension.swift; sourceTree = "<group>"; };
+		F978DE3426D4DD80009FA173 /* RDTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDTextView.swift; sourceTree = "<group>"; };
+		F978DE3926D4DD80009FA173 /* SideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenu.h; sourceTree = "<group>"; };
+		F978DE3A26D4DD80009FA173 /* UIViewController+SideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SideMenu.swift"; sourceTree = "<group>"; };
+		F978DE3B26D4DD80009FA173 /* StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBar.swift; sourceTree = "<group>"; };
+		F978DE3C26D4DD80009FA173 /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		F978DE3D26D4DD80009FA173 /* Delegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
+		F978DE3E26D4DD80009FA173 /* TransitionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionContext.swift; sourceTree = "<group>"; };
+		F978DE3F26D4DD80009FA173 /* UIViewController+Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Container.swift"; sourceTree = "<group>"; };
+		F978DE4026D4DD80009FA173 /* Segue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segue.swift; sourceTree = "<group>"; };
+		F978DE4126D4DD80009FA173 /* UIView+Container.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Container.swift"; sourceTree = "<group>"; };
+		F978DE4226D4DD80009FA173 /* SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuController.swift; sourceTree = "<group>"; };
+		F978DE4326D4DD80009FA173 /* BasicTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTransitionAnimator.swift; sourceTree = "<group>"; };
+		F978DE4526D4DD80009FA173 /* RevealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RevealViewController.swift; sourceTree = "<group>"; };
+		F978DE4626D4DD80009FA173 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		F978DE4726D4DD80009FA173 /* SWRevealViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SWRevealViewController+Extensions.swift"; sourceTree = "<group>"; };
+		F978DE4826D4DD80009FA173 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		F978DE4926D4DD80009FA173 /* FillNow-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FillNow-Bridging-Header.h"; sourceTree = "<group>"; };
+		F978DE5926D4DDA2009FA173 /* AppSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSideMenuViewController.swift; sourceTree = "<group>"; };
+		F978DE5B26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		F978DE5F26D4E7FC009FA173 /* UserDefaultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultExtension.swift; sourceTree = "<group>"; };
+		F978DE6026D4E7FC009FA173 /* AppSharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSharedData.swift; sourceTree = "<group>"; };
+		F978DE6426D4E86A009FA173 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		F9A7330526D5002C0006BE93 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		F9A7330726D505460006BE93 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +112,6 @@
 				096AC128A4552D284DEBC743 /* Pods-Appurados.debug.xcconfig */,
 				8D52F48F7188B07A433E4C55 /* Pods-Appurados.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,6 +144,13 @@
 		F95597A426D4160A007390F7 /* Appurados */ = {
 			isa = PBXGroup;
 			children = (
+				F9A7330026D4EBD60006BE93 /* ModelsClasses */,
+				F978DE6326D4E853009FA173 /* BridgingHeader */,
+				F978DE3226D4DD70009FA173 /* Resorce */,
+				F978DE1B26D4D0CE009FA173 /* Extensions */,
+				F978DE1A26D4D0C6009FA173 /* Models */,
+				F978DE1926D4D0BE009FA173 /* Controllers */,
+				F978DE1826D4D0B6009FA173 /* Storyboards */,
 				F95597A526D4160A007390F7 /* AppDelegate.swift */,
 				F95597A726D4160A007390F7 /* SceneDelegate.swift */,
 				F95597A926D4160A007390F7 /* ViewController.swift */,
@@ -90,6 +160,185 @@
 				F95597B326D4160C007390F7 /* Info.plist */,
 			);
 			path = Appurados;
+			sourceTree = "<group>";
+		};
+		F978DE1826D4D0B6009FA173 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F978DE1926D4D0BE009FA173 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE5E26D4E7FC009FA173 /* AppSharedClass */,
+				F978DE5826D4DDA2009FA173 /* SideMenuController */,
+				F978DE2026D4D143009FA173 /* Home */,
+				F978DE1F26D4D13A009FA173 /* LoginSignup */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F978DE1A26D4D0C6009FA173 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F978DE1B26D4D0CE009FA173 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE2826D4DD56009FA173 /* AlertViewController.swift */,
+				F978DE2726D4DD56009FA173 /* Extensions.swift */,
+				F978DE2926D4DD56009FA173 /* IBDesignableClassesView */,
+				F978DE2526D4DD56009FA173 /* MessageConstant.swift */,
+				F978DE2B26D4DD56009FA173 /* TableViewExtension.swift */,
+				F978DE2626D4DD56009FA173 /* ValidationManager.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F978DE1F26D4D13A009FA173 /* LoginSignup */ = {
+			isa = PBXGroup;
+			children = (
+				F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */,
+				F9A7330526D5002C0006BE93 /* LoginViewController.swift */,
+				F9A7330726D505460006BE93 /* SignUpViewController.swift */,
+			);
+			path = LoginSignup;
+			sourceTree = "<group>";
+		};
+		F978DE2026D4D143009FA173 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE2126D4D155009FA173 /* HomeViewController.swift */,
+				F978DE2326D4DBAE009FA173 /* MapViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F978DE2926D4DD56009FA173 /* IBDesignableClassesView */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE2A26D4DD56009FA173 /* CustomUIView.swift */,
+			);
+			path = IBDesignableClassesView;
+			sourceTree = "<group>";
+		};
+		F978DE3226D4DD70009FA173 /* Resorce */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE3326D4DD80009FA173 /* RDTextView */,
+				F978DE3526D4DD80009FA173 /* SideMenuClasses */,
+			);
+			path = Resorce;
+			sourceTree = "<group>";
+		};
+		F978DE3326D4DD80009FA173 /* RDTextView */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE3426D4DD80009FA173 /* RDTextView.swift */,
+			);
+			path = RDTextView;
+			sourceTree = "<group>";
+		};
+		F978DE3526D4DD80009FA173 /* SideMenuClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE3626D4DD80009FA173 /* SideMenu */,
+				F978DE4426D4DD80009FA173 /* SWRevealController */,
+			);
+			path = SideMenuClasses;
+			sourceTree = "<group>";
+		};
+		F978DE3626D4DD80009FA173 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE3726D4DD80009FA173 /* Sources */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		F978DE3726D4DD80009FA173 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE3826D4DD80009FA173 /* SideMenu */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F978DE3826D4DD80009FA173 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE3926D4DD80009FA173 /* SideMenu.h */,
+				F978DE3A26D4DD80009FA173 /* UIViewController+SideMenu.swift */,
+				F978DE3B26D4DD80009FA173 /* StatusBar.swift */,
+				F978DE3C26D4DD80009FA173 /* Preferences.swift */,
+				F978DE3D26D4DD80009FA173 /* Delegate.swift */,
+				F978DE3E26D4DD80009FA173 /* TransitionContext.swift */,
+				F978DE3F26D4DD80009FA173 /* UIViewController+Container.swift */,
+				F978DE4026D4DD80009FA173 /* Segue.swift */,
+				F978DE4126D4DD80009FA173 /* UIView+Container.swift */,
+				F978DE4226D4DD80009FA173 /* SideMenuController.swift */,
+				F978DE4326D4DD80009FA173 /* BasicTransitionAnimator.swift */,
+			);
+			path = SideMenu;
+			sourceTree = "<group>";
+		};
+		F978DE4426D4DD80009FA173 /* SWRevealController */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE4526D4DD80009FA173 /* RevealViewController.swift */,
+				F978DE4626D4DD80009FA173 /* SWRevealViewController.h */,
+				F978DE4726D4DD80009FA173 /* SWRevealViewController+Extensions.swift */,
+				F978DE4826D4DD80009FA173 /* SWRevealViewController.m */,
+				F978DE4926D4DD80009FA173 /* FillNow-Bridging-Header.h */,
+			);
+			path = SWRevealController;
+			sourceTree = "<group>";
+		};
+		F978DE5826D4DDA2009FA173 /* SideMenuController */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE5926D4DDA2009FA173 /* AppSideMenuViewController.swift */,
+				F978DE5A26D4DDA2009FA173 /* Cell */,
+			);
+			path = SideMenuController;
+			sourceTree = "<group>";
+		};
+		F978DE5A26D4DDA2009FA173 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE5B26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		F978DE5E26D4E7FC009FA173 /* AppSharedClass */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE5F26D4E7FC009FA173 /* UserDefaultExtension.swift */,
+				F978DE6026D4E7FC009FA173 /* AppSharedData.swift */,
+			);
+			path = AppSharedClass;
+			sourceTree = "<group>";
+		};
+		F978DE6326D4E853009FA173 /* BridgingHeader */ = {
+			isa = PBXGroup;
+			children = (
+				F978DE6426D4E86A009FA173 /* BridgingHeader.h */,
+			);
+			path = BridgingHeader;
+			sourceTree = "<group>";
+		};
+		F9A7330026D4EBD60006BE93 /* ModelsClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */,
+			);
+			path = ModelsClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +352,7 @@
 				F955979E26D4160A007390F7 /* Sources */,
 				F955979F26D4160A007390F7 /* Frameworks */,
 				F95597A026D4160A007390F7 /* Resources */,
+				9ACF910A94861E7682CC83D4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,6 +431,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9ACF910A94861E7682CC83D4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Appurados/Pods-Appurados-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Appurados/Pods-Appurados-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Appurados/Pods-Appurados-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -188,9 +455,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */,
+				F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */,
+				F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */,
+				F978DE4F26D4DD80009FA173 /* TransitionContext.swift in Sources */,
+				F978DE4A26D4DD80009FA173 /* RDTextView.swift in Sources */,
+				F978DE6226D4E7FC009FA173 /* AppSharedData.swift in Sources */,
+				F978DE5326D4DD80009FA173 /* SideMenuController.swift in Sources */,
+				F978DE4D26D4DD80009FA173 /* Preferences.swift in Sources */,
+				F978DE5026D4DD80009FA173 /* UIViewController+Container.swift in Sources */,
+				F978DE3026D4DD56009FA173 /* CustomUIView.swift in Sources */,
+				F9A7330426D4FBCB0006BE93 /* WelcomeViewController.swift in Sources */,
+				F978DE4E26D4DD80009FA173 /* Delegate.swift in Sources */,
+				F978DE2C26D4DD56009FA173 /* MessageConstant.swift in Sources */,
+				F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */,
+				F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */,
+				F978DE2E26D4DD56009FA173 /* Extensions.swift in Sources */,
+				F978DE5C26D4DDA2009FA173 /* AppSideMenuViewController.swift in Sources */,
+				F978DE5726D4DD80009FA173 /* SWRevealViewController.m in Sources */,
+				F978DE6126D4E7FC009FA173 /* UserDefaultExtension.swift in Sources */,
+				F978DE5D26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift in Sources */,
+				F978DE3126D4DD56009FA173 /* TableViewExtension.swift in Sources */,
+				F978DE5626D4DD80009FA173 /* SWRevealViewController+Extensions.swift in Sources */,
+				F978DE4C26D4DD80009FA173 /* StatusBar.swift in Sources */,
+				F978DE4B26D4DD80009FA173 /* UIViewController+SideMenu.swift in Sources */,
+				F978DE5526D4DD80009FA173 /* RevealViewController.swift in Sources */,
+				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
 				F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */,
+				F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */,
 				F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */,
+				F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */,
+				F978DE5126D4DD80009FA173 /* Segue.swift in Sources */,
+				F978DE2D26D4DD56009FA173 /* ValidationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +564,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -322,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -341,14 +638,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7E7WKW772Q;
 				INFOPLIST_FILE = Appurados/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Appurados;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Appurados/Appurados/BridgingHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -361,14 +660,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7E7WKW772Q;
 				INFOPLIST_FILE = Appurados/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Appurados;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Appurados/Appurados/BridgingHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

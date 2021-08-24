@@ -6,5 +6,14 @@ target 'Appurados' do
   use_frameworks!
 
   # Pods for Appurados
+  pod 'Alamofire'
+  pod 'SVProgressHUD'
+  pod 'SDWebImage/MapKit'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Firebase/Messaging'
+  pod 'iOSDropDown'
 
+  
+  
+  
 end
