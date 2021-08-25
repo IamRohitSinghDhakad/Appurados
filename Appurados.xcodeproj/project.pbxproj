@@ -657,7 +657,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Appurados;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/paras/RohitWorkspace/Projects/Appurados/Appurados/BridgingHeader/BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Appurados/Appurados/BridgingHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -679,7 +679,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Appurados;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/paras/RohitWorkspace/Projects/Appurados/Appurados/BridgingHeader/BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Appurados/Appurados/BridgingHeader/BridgingHeader.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

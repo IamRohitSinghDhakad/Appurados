@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var cvSlider: UICollectionView!
     @IBOutlet weak var pageControllerSlider: UIPageControl!
     @IBOutlet weak var cvRecommendedProducts: UICollectionView!
+    @IBOutlet var cvFreeDelivery: UICollectionView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,9 @@ class HomeViewController: UIViewController {
         
         self.cvRecommendedProducts.delegate = self
         self.cvRecommendedProducts.dataSource = self
+        
+        self.cvFreeDelivery.delegate = self
+        self.cvFreeDelivery.dataSource = self
         
     }
     
@@ -55,6 +60,8 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             return 4
         case cvRecommendedProducts:
             return 10
+        case cvFreeDelivery:
+            return 8
         default:
             return 4
         }
@@ -90,6 +97,15 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             return cell
             
             
+        }else if collectionView == self.cvFreeDelivery{
+            
+            let cell = self.cvFreeDelivery.dequeueReusableCell(withReuseIdentifier: "HomeFreeDeliveryCollectionViewCell", for: indexPath)as! HomeFreeDeliveryCollectionViewCell
+            
+            
+            
+            return cell
+            
+            
         }else{
             return UICollectionViewCell()
         }
@@ -114,7 +130,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 
             let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
 
-            return CGSize(width: size, height: size)
+            return CGSize(width: size, height: size )
+            
         }else if collectionView == self.cvSlider{
             let noOfCellsInRow = 1
 
@@ -127,6 +144,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
             let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
 
             return CGSize(width: size, height: size)
+            
         }else if collectionView == self.cvRecommendedProducts{
             let noOfCellsInRow = 2.5
 
@@ -138,7 +156,19 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 
             let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
 
-            return CGSize(width: size, height: size + 50)
+            return CGSize(width: size, height: size + 10)
+        }else if collectionView == self.cvFreeDelivery{
+            let noOfCellsInRow = 2
+
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+            let totalSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+            return CGSize(width: size, height: size)
         }else{
             
             return CGSize(width: 200, height: 200)

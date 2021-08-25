@@ -42,7 +42,28 @@ class HomeRecommendedProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblPrice: UILabel!
     
     override func awakeFromNib() {
+     
+        self.imgVwTop.topCornersImgVw()
+    }
+}
+
+///===================== ###### Free Delivery Collection View Cell Class ###### =======================//
+
+class HomeFreeDeliveryCollectionViewCell: UICollectionViewCell {
+    
+
+    override func awakeFromNib() {
         
     }
 }
 
+
+
+extension UIImageView{
+    
+    func topCornersImgVw(){
+        self.layer.masksToBounds = true
+        self.cornerRadius = 10
+        self.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+    }
+}

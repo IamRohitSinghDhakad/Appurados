@@ -21,25 +21,35 @@ extension UIView {
           }
           set {
                if newValue == true {
-                    self.addShadow()
+                self.addShadow(cornerRadius: self.layer.cornerRadius, maskedCorners: [.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner], color: .darkGray, offset: CGSize(width: 1.0, height: 3.0), opacity: 0.4, shadowRadius: 1)
                }
           }
      }
+    
+    
+    func addShadow(cornerRadius: CGFloat, maskedCorners: CACornerMask, color: UIColor, offset: CGSize, opacity: Float, shadowRadius: CGFloat) {
+            self.layer.cornerRadius = cornerRadius
+            self.layer.maskedCorners = maskedCorners
+            self.layer.shadowColor = color.cgColor
+            self.layer.shadowOffset = offset
+            self.layer.shadowOpacity = opacity
+            self.layer.shadowRadius = shadowRadius
+        }
 
-     fileprivate func addShadow(shadowColor: CGColor = UIColor.black.cgColor, shadowOffset: CGSize = CGSize(width: 3.0, height: 3.0), shadowOpacity: Float = 0.35, shadowRadius: CGFloat = 5.0) {
-          let layer = self.layer
-          layer.masksToBounds = false
-
-          layer.shadowColor = shadowColor
-          layer.shadowOffset = shadowOffset
-          layer.shadowRadius = shadowRadius
-          layer.shadowOpacity = shadowOpacity
-          layer.shadowPath = UIBezierPath(roundedRect: layer.bounds, cornerRadius: layer.cornerRadius).cgPath
-
-          let backgroundColor = self.backgroundColor?.cgColor
-          self.backgroundColor = nil
-          layer.backgroundColor =  backgroundColor
-     }
+//     fileprivate func addShadow(shadowColor: CGColor = UIColor.black.cgColor, shadowOffset: CGSize = CGSize(width: 0.0, height: 3.0), shadowOpacity: Float = 0.35, shadowRadius: CGFloat = 2.0) {
+//          let layer = self.layer
+//          layer.masksToBounds = false
+//
+//        layer.shadowColor = UIColor.black.cgColor//shadowColor
+//        layer.shadowOffset = shadowOffset
+//        layer.shadowRadius = shadowRadius
+//        layer.shadowOpacity = shadowOpacity
+//        layer.shadowPath = UIBezierPath(roundedRect: layer.bounds, cornerRadius: layer.cornerRadius).cgPath
+//
+//          let backgroundColor = self.backgroundColor?.cgColor
+//          self.backgroundColor = nil
+//          layer.backgroundColor =  backgroundColor
+//     }
 
 
      // Corner radius
