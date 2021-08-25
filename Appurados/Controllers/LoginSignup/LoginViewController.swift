@@ -16,14 +16,17 @@ class LoginViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnLogin(_ sender: Any) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+        let navController = UINavigationController(rootViewController: vc)
+        navController.isNavigationBarHidden = true
+        appDelegate.window?.rootViewController = navController
     }
-    */
+    
+    @IBAction func btnGoToSignUp(_ sender: Any) {
+        pushVc(viewConterlerId: "SignUpViewController")
+    }
+    
 
 }

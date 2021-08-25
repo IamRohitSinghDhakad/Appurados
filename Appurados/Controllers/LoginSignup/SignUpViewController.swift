@@ -15,7 +15,13 @@ class SignUpViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func btnOnBackHeader(_ sender: Any) {
+        onBackPressed()
+    }
+    @IBAction func btnOnSubmit(_ sender: Any) {
+     onBackPressed()
+    }
+    
     /*
     // MARK: - Navigation
 
