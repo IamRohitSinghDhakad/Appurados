@@ -15,6 +15,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var pageControllerSlider: UIPageControl!
     @IBOutlet weak var cvRecommendedProducts: UICollectionView!
     @IBOutlet var cvFreeDelivery: UICollectionView!
+    @IBOutlet var cvPopularBrand: UICollectionView!
+    @IBOutlet var cvOtherOffer: UICollectionView!
+    
     
     
     override func viewDidLoad() {
@@ -39,10 +42,24 @@ class HomeViewController: UIViewController {
         self.cvFreeDelivery.delegate = self
         self.cvFreeDelivery.dataSource = self
         
+        self.cvPopularBrand.delegate = self
+        self.cvPopularBrand.dataSource = self
+        
+        self.cvOtherOffer.delegate = self
+        self.cvOtherOffer.dataSource = self
+        
     }
     
     @IBAction func openSideMenu(_ sender: Any) {
         self.sideMenuController?.revealMenu()
+    }
+    
+    @IBAction func btnOnSearch(_ sender: Any) {
+        
+    }
+    
+    @IBAction func btnOnViewAllRastaurants(_ sender: Any) {
+        pushVc(viewConterlerId: "FoodOrderViewController")
     }
     
   
@@ -61,6 +78,10 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         case cvRecommendedProducts:
             return 10
         case cvFreeDelivery:
+            return 8
+        case cvPopularBrand:
+            return 8
+        case cvOtherOffer:
             return 8
         default:
             return 4
@@ -82,6 +103,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             
             let cell =  self.cvSlider.dequeueReusableCell(withReuseIdentifier: "HomeSliderCollectionViewCell", for: indexPath)as! HomeSliderCollectionViewCell
             
+            cell.imgVwSlider.allCorners()
             
             
             return cell
@@ -100,6 +122,24 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         }else if collectionView == self.cvFreeDelivery{
             
             let cell = self.cvFreeDelivery.dequeueReusableCell(withReuseIdentifier: "HomeFreeDeliveryCollectionViewCell", for: indexPath)as! HomeFreeDeliveryCollectionViewCell
+            
+            
+            
+            return cell
+            
+            
+        }else if collectionView == self.cvPopularBrand{
+            
+            let cell = self.cvPopularBrand.dequeueReusableCell(withReuseIdentifier: "HomePopularBrandCollectionViewCell", for: indexPath)as! HomePopularBrandCollectionViewCell
+            
+            
+            
+            return cell
+            
+            
+        }else if collectionView == self.cvOtherOffer{
+            
+            let cell = self.cvOtherOffer.dequeueReusableCell(withReuseIdentifier: "HomeOtherOfferCollectionViewCell", for: indexPath)as! HomeOtherOfferCollectionViewCell
             
             
             
@@ -158,6 +198,31 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 
             return CGSize(width: size, height: size + 10)
         }else if collectionView == self.cvFreeDelivery{
+            let noOfCellsInRow = 2
+
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+            let totalSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+            return CGSize(width: size, height: size)
+        }else if collectionView == self.cvPopularBrand{
+            let noOfCellsInRow = 2.7
+
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+
+            let totalSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(noOfCellsInRow - 1))
+
+            let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
+
+            return CGSize(width: size, height: size)
+        }
+        else if collectionView == self.cvOtherOffer{
             let noOfCellsInRow = 2
 
             let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout

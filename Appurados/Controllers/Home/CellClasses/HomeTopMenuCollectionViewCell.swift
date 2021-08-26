@@ -25,8 +25,10 @@ class HomeSliderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgVwSlider: UIImageView!
     
     override func awakeFromNib() {
-        
+        self.imgVwSlider.allCorners()
     }
+    
+    
 }
 
 
@@ -51,9 +53,52 @@ class HomeRecommendedProductsCollectionViewCell: UICollectionViewCell {
 
 class HomeFreeDeliveryCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet var imgVwRastaurent: UIImageView!
+    @IBOutlet var imgVwDish: UIImageView!
+    @IBOutlet var lblOffPercentage: UILabel!
+    @IBOutlet var vwOffPercentange: UIView!
+    @IBOutlet var lblRasturentName: UILabel!
+    @IBOutlet var lblDistance: UILabel!
+    @IBOutlet var lblPrice: UILabel!
+    @IBOutlet var lblDishes: UILabel!
+    @IBOutlet var vwRating: UIView!
+    @IBOutlet var lblReviewCount: UILabel!
+    
+    override func awakeFromNib() {
+        self.imgVwDish.topCornersImgVw()
+    }
+}
+
+///===================== ######Popular Brand Collection View Cell Class ###### =======================//
+
+class HomePopularBrandCollectionViewCell: UICollectionViewCell {
+    @IBOutlet var imgVwRastaurent: UIImageView!
+    @IBOutlet var lblTime: UILabel!
+    @IBOutlet var lblName: UILabel!
+    
 
     override func awakeFromNib() {
-        
+        self.imgVwRastaurent.allCorners()
+    }
+}
+
+
+///===================== ######Other Offer Collection View Cell Class ###### =======================//
+
+class HomeOtherOfferCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet var imgVwRastaurent: UIImageView!
+    @IBOutlet var imgVwDish: UIImageView!
+    @IBOutlet var lblRasturentName: UILabel!
+    @IBOutlet var lblDistance: UILabel!
+    @IBOutlet var lblPrice: UILabel!
+    @IBOutlet var lblDishes: UILabel!
+    @IBOutlet var vwRating: UIView!
+    @IBOutlet var lblReviewCount: UILabel!
+    
+    
+    override func awakeFromNib() {
+        self.imgVwDish.topCornersImgVw()
     }
 }
 
@@ -65,5 +110,11 @@ extension UIImageView{
         self.layer.masksToBounds = true
         self.cornerRadius = 10
         self.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
+    }
+    
+    func allCorners(){
+      //  self.clipsToBounds = true
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
     }
 }
