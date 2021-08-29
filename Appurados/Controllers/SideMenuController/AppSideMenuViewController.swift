@@ -69,26 +69,55 @@ class AppSideMenuViewController: UIViewController {
     }
     
     private func controllerMenuSetup() {
+        
         sideMenuController?.cache(viewControllerGenerator: {
             self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
         }, with: "0")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "ProfileViewController")
         }, with: "1")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "MyCartViewController")
         }, with: "2")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "MyOrdersViewController")
         }, with: "3")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "HomeViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "SendPackageViewController")
         }, with: "4")
         
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyFavoritesViewController")
+        }, with: "5")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+        }, with: "6")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+        }, with: "7")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+        }, with: "8")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+        }, with: "9")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+        }, with: "10")
+        
+        sideMenuController?.cache(viewControllerGenerator: {
+            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+        }, with: "11")
+
     }
     
     private func configureView() {
@@ -167,7 +196,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         self.selectedIndexpath = row
         
-        if row == 6 {
+        if row == 11 {
             sideMenuController?.hideMenu()
             
 //            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {

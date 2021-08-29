@@ -21,7 +21,7 @@ extension UIView {
           }
           set {
                if newValue == true {
-                self.addShadow(cornerRadius: self.layer.cornerRadius, maskedCorners: [.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner], color: .darkGray, offset: CGSize(width: 1.0, height: 3.0), opacity: 0.4, shadowRadius: 1)
+                self.addShadow(cornerRadius: self.layer.cornerRadius, maskedCorners: [.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner], color: .darkGray, offset: CGSize(width: 0.0, height: 0.0), opacity: 0.6, shadowRadius: 2)
                }
           }
      }

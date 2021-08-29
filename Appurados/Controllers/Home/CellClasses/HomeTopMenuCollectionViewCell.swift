@@ -112,6 +112,12 @@ extension UIImageView{
         self.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
     }
     
+    func rightsideCornersOnly(){
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 10
+       // self.layer.maskedCorners = [.layerMinXMaxYCorner,.layerMinXMinYCorner]
+    }
+    
     func allCorners(){
       //  self.clipsToBounds = true
         self.layer.masksToBounds = true

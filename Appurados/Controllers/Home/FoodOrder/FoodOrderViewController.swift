@@ -51,7 +51,7 @@ class FoodOrderViewController: UIViewController {
     }
 }
 
-/// ============================== ##### UICollectionView Delegates And Datasources ##### ==================================//
+/// ============================== ##### UITableView Delegates And Datasources ##### ==================================//
 
 extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
@@ -89,8 +89,10 @@ extension FoodOrderViewController: UICollectionViewDelegate,UICollectionViewData
         
         
         return cell
-        
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.pushVc(viewConterlerId: "DishDetailViewController")
     }
 }
 

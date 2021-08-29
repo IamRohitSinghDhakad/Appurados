@@ -12,6 +12,7 @@ target 'Appurados' do
   pod 'IQKeyboardManagerSwift'
   pod 'Firebase/Messaging'
   pod 'iOSDropDown'
+  pod 'GoogleMaps
 
   
   

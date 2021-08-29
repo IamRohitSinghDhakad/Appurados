@@ -504,4 +504,40 @@ extension UIView {
 
         self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.layer.cornerRadius).cgPath
     }
+    
+    func round(with type: RoundType, radius: CGFloat = 3.0) {
+        var corners: UIRectCorner
+
+        switch type {
+        case .top:
+            corners = [.topLeft, .topRight]
+        case .none:
+            corners = []
+        case .bottom:
+            corners = [.bottomLeft, .bottomRight]
+        case .rightSide:
+            corners = [.topRight, .bottomRight]
+        case .leftSide:
+            corners = [.topLeft, .bottomLeft]
+        case .both:
+            corners = [.allCorners]
+        }
+
+        DispatchQueue.main.async {
+            let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+            let mask = CAShapeLayer()
+            mask.path = path.cgPath
+            self.layer.mask = mask
+        }
+    }
+    enum RoundType {
+        case top
+        case none
+        case bottom
+        case both
+        case rightSide
+        case leftSide
+    }
+
+   
 }
