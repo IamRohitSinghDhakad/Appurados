@@ -7176,7 +7176,7 @@
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="otherlogin" width="268.5" height="39"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="red" width="19.5" height="19.5"/>
+        <image name="red" width="30" height="43"/>
         <image name="sear-1" width="17" height="16.5"/>
         <image name="search" width="15.5" height="15.5"/>
         <image name="select" width="19" height="18.5"/>

@@ -222,9 +222,7 @@
 				F978DE6326D4E853009FA173 /* BridgingHeader */,
 				F978DE3226D4DD70009FA173 /* Resorce */,
 				F978DE1B26D4D0CE009FA173 /* Extensions */,
-				F978DE1A26D4D0C6009FA173 /* Models */,
 				F978DE1926D4D0BE009FA173 /* Controllers */,
-				F978DE1826D4D0B6009FA173 /* Storyboards */,
 				F95597A526D4160A007390F7 /* AppDelegate.swift */,
 				F95597A726D4160A007390F7 /* SceneDelegate.swift */,
 				F95597A926D4160A007390F7 /* ViewController.swift */,
@@ -234,13 +232,6 @@
 				F95597B326D4160C007390F7 /* Info.plist */,
 			);
 			path = Appurados;
-			sourceTree = "<group>";
-		};
-		F978DE1826D4D0B6009FA173 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		F978DE1926D4D0BE009FA173 /* Controllers */ = {
@@ -262,13 +253,6 @@
 				F978DE1F26D4D13A009FA173 /* LoginSignup */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		F978DE1A26D4D0C6009FA173 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		F978DE1B26D4D0CE009FA173 /* Extensions */ = {
