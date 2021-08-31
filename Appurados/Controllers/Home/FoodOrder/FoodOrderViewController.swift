@@ -66,7 +66,8 @@ extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.pushVc(viewConterlerId: "OrderDetailViewController")
+        self.pushVc(viewConterlerId: "FoodDetailViewController")
+       // self.pushVc(viewConterlerId: "OrderDetailViewController")
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

@@ -14,6 +14,9 @@
 		F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */; };
 		F92793D526DE7B0B002DA4EF /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */; };
 		F92793D726DE7C19002DA4EF /* VarientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */; };
+		F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */; };
+		F935B01A26DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01926DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift */; };
+		F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */; };
 		F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A526D4160A007390F7 /* AppDelegate.swift */; };
 		F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A726D4160A007390F7 /* SceneDelegate.swift */; };
 		F95597AA26D4160A007390F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A926D4160A007390F7 /* ViewController.swift */; };
@@ -82,6 +85,9 @@
 		F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VarientTableViewCell.swift; sourceTree = "<group>"; };
+		F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
+		F935B01926DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F95597A226D4160A007390F7 /* Appurados.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appurados.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95597A526D4160A007390F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F95597A726D4160A007390F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -536,6 +542,7 @@
 				F9F74AA326D82E7200E2822B /* FoodOrderViewController.swift */,
 				F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */,
 				F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */,
+				F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */,
 			);
 			path = FoodOrder;
 			sourceTree = "<group>";
@@ -546,6 +553,8 @@
 				F9F74AA526D82FE600E2822B /* DishesCollectionViewCell.swift */,
 				F9F74AA726D8301400E2822B /* FoodOrderTableViewCell.swift */,
 				F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */,
+				F935B01926DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift */,
+				F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -562,6 +571,7 @@
 				F955979F26D4160A007390F7 /* Frameworks */,
 				F95597A026D4160A007390F7 /* Resources */,
 				9ACF910A94861E7682CC83D4 /* [CP] Embed Pods Frameworks */,
+				607CCA4CC105B79413768A30 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -640,6 +650,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		607CCA4CC105B79413768A30 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Appurados/Pods-Appurados-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Appurados/Pods-Appurados-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Appurados/Pods-Appurados-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9ACF910A94861E7682CC83D4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -667,6 +694,7 @@
 				F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */,
 				F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */,
 				F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */,
+				F935B01A26DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift in Sources */,
 				F9F74AA826D8301400E2822B /* FoodOrderTableViewCell.swift in Sources */,
 				F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */,
 				F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */,
@@ -690,6 +718,7 @@
 				F92793D726DE7C19002DA4EF /* VarientTableViewCell.swift in Sources */,
 				F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */,
 				F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */,
+				F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */,
 				F978DE2E26D4DD56009FA173 /* Extensions.swift in Sources */,
 				F978DE5C26D4DDA2009FA173 /* AppSideMenuViewController.swift in Sources */,
 				F98787CE26DA62A600FA0DFF /* CompleteViewController.swift in Sources */,
@@ -720,6 +749,7 @@
 				F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */,
 				F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */,
 				F91C596026D9350200808697 /* ProfileViewController.swift in Sources */,
+				F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */,
 				F978DE5126D4DD80009FA173 /* Segue.swift in Sources */,
 				F978DE2D26D4DD56009FA173 /* ValidationManager.swift in Sources */,
 			);
