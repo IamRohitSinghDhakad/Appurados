@@ -43,6 +43,7 @@ class AppSideMenuViewController: UIViewController {
                                             SideMenuOptions(menuName: "Notification", menuImageName: "", menuSelectedImageName: ""),
                                             SideMenuOptions(menuName: "Refer and Earn", menuImageName: "", menuSelectedImageName: ""),
                                             SideMenuOptions(menuName: "About Us", menuImageName: "", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Support", menuImageName: "", menuSelectedImageName: ""),
                                             SideMenuOptions(menuName: "Logout", menuImageName: "", menuSelectedImageName: "")]
     
     
@@ -99,23 +100,19 @@ class AppSideMenuViewController: UIViewController {
         }, with: "6")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "MyOffersViewController")
         }, with: "7")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "NotificationViewController")
         }, with: "8")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
-        }, with: "9")
-        
-        sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "AboutUsViewController")
         }, with: "10")
         
         sideMenuController?.cache(viewControllerGenerator: {
-            self.storyboard?.instantiateViewController(withIdentifier: "MyRewardViewController")
+            self.storyboard?.instantiateViewController(withIdentifier: "SupportViewController")
         }, with: "11")
 
     }
@@ -196,8 +193,17 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         self.selectedIndexpath = row
         
-        if row == 11 {
+        if row == 12 || row == 9{
             sideMenuController?.hideMenu()
+            
+            let text = "This is the text.... Appurados App"
+            let image = UIImage(named: "Product")
+            let myWebsite = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
+            let shareAll = [text, myWebsite!] as [Any]
+            let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+            
             
 //            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {
 //                self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)

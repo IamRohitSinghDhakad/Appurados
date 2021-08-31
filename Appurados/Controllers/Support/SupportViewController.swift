@@ -15,7 +15,10 @@ class SupportViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func btnOnOpenSideMenu(_ sender: Any) {
+        self.sideMenuController?.revealMenu()
+    }
+    
     /*
     // MARK: - Navigation
 

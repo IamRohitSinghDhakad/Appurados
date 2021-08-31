@@ -16,6 +16,9 @@ class MyOffersViewController: UIViewController {
     }
     
 
+    @IBAction func btnOpenSidemenu(_ sender: Any) {
+        self.sideMenuController?.revealMenu()
+    }
     /*
     // MARK: - Navigation
 

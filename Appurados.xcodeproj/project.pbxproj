@@ -11,6 +11,9 @@
 		84228705DDE282F471586451 /* Pods_Appurados.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736A1F4F2FDC97A4254182CC /* Pods_Appurados.framework */; };
 		F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */; };
 		F91C596026D9350200808697 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91C595F26D9350200808697 /* ProfileViewController.swift */; };
+		F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */; };
+		F92793D526DE7B0B002DA4EF /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */; };
+		F92793D726DE7C19002DA4EF /* VarientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */; };
 		F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A526D4160A007390F7 /* AppDelegate.swift */; };
 		F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A726D4160A007390F7 /* SceneDelegate.swift */; };
 		F95597AA26D4160A007390F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A926D4160A007390F7 /* ViewController.swift */; };
@@ -76,6 +79,9 @@
 		8D52F48F7188B07A433E4C55 /* Pods-Appurados.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appurados.release.xcconfig"; path = "Target Support Files/Pods-Appurados/Pods-Appurados.release.xcconfig"; sourceTree = "<group>"; };
 		F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrderListTableViewCell.swift; sourceTree = "<group>"; };
 		F91C595F26D9350200808697 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VarientTableViewCell.swift; sourceTree = "<group>"; };
 		F95597A226D4160A007390F7 /* Appurados.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appurados.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95597A526D4160A007390F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F95597A726D4160A007390F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +200,14 @@
 				F91C595F26D9350200808697 /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		F92793D126DE5DAF002DA4EF /* CellClasses */ = {
+			isa = PBXGroup;
+			children = (
+				F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */,
+			);
+			path = CellClasses;
 			sourceTree = "<group>";
 		};
 		F955979926D4160A007390F7 = {
@@ -476,6 +490,7 @@
 		F9F315F726DB69110015BCDC /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				F92793D126DE5DAF002DA4EF /* CellClasses */,
 				F9F3160026DB69830015BCDC /* NotificationViewController.swift */,
 			);
 			path = Notifications;
@@ -520,6 +535,7 @@
 				F9F74AA926D8302A00E2822B /* CellClasses */,
 				F9F74AA326D82E7200E2822B /* FoodOrderViewController.swift */,
 				F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */,
+				F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */,
 			);
 			path = FoodOrder;
 			sourceTree = "<group>";
@@ -529,6 +545,7 @@
 			children = (
 				F9F74AA526D82FE600E2822B /* DishesCollectionViewCell.swift */,
 				F9F74AA726D8301400E2822B /* FoodOrderTableViewCell.swift */,
+				F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -659,6 +676,7 @@
 				F9F3160326DB69970015BCDC /* MyOffersViewController.swift in Sources */,
 				F98787C326DA2F2800FA0DFF /* MyCartTableViewCell.swift in Sources */,
 				F978DE6226D4E7FC009FA173 /* AppSharedData.swift in Sources */,
+				F92793D526DE7B0B002DA4EF /* OrderDetailViewController.swift in Sources */,
 				F978DE5326D4DD80009FA173 /* SideMenuController.swift in Sources */,
 				F978DE4D26D4DD80009FA173 /* Preferences.swift in Sources */,
 				F978DE5026D4DD80009FA173 /* UIViewController+Container.swift in Sources */,
@@ -669,12 +687,14 @@
 				F978DE2C26D4DD56009FA173 /* MessageConstant.swift in Sources */,
 				F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */,
 				F98787CC26DA629C00FA0DFF /* OngoingViewController.swift in Sources */,
+				F92793D726DE7C19002DA4EF /* VarientTableViewCell.swift in Sources */,
 				F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */,
 				F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */,
 				F978DE2E26D4DD56009FA173 /* Extensions.swift in Sources */,
 				F978DE5C26D4DDA2009FA173 /* AppSideMenuViewController.swift in Sources */,
 				F98787CE26DA62A600FA0DFF /* CompleteViewController.swift in Sources */,
 				F9F74AA426D82E7200E2822B /* FoodOrderViewController.swift in Sources */,
+				F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */,
 				F978DE5726D4DD80009FA173 /* SWRevealViewController.m in Sources */,
 				F978DE6126D4E7FC009FA173 /* UserDefaultExtension.swift in Sources */,
 				F9F3160126DB69830015BCDC /* NotificationViewController.swift in Sources */,
@@ -860,7 +880,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Appurados;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Appurados/Appurados/BridgingHeader/BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Appurados/BridgingHeader/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -883,7 +903,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Appurados;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/rohit/Rohit's WorkSpace/Freelance/Appurados/Appurados/BridgingHeader/BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = Appurados/BridgingHeader/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
