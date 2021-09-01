@@ -8418,7 +8418,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7CV-ju-jRC">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="52.5"/>
+                                                                <rect key="frame" x="0.0" y="40" width="375" height="52.5"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltF-qb-xbR">
                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="52.5"/>
@@ -8443,7 +8443,7 @@
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="M8I-Bu-ay1" firstAttribute="leading" secondItem="dJm-An-8jp" secondAttribute="leading" id="7tk-ej-MID"/>
-                                                            <constraint firstItem="7CV-ju-jRC" firstAttribute="top" secondItem="dJm-An-8jp" secondAttribute="top" id="MhU-Jx-cCB"/>
+                                                            <constraint firstItem="7CV-ju-jRC" firstAttribute="top" secondItem="dJm-An-8jp" secondAttribute="top" constant="40" id="MhU-Jx-cCB"/>
                                                             <constraint firstItem="7CV-ju-jRC" firstAttribute="leading" secondItem="dJm-An-8jp" secondAttribute="leading" id="U2u-65-Hnb"/>
                                                             <constraint firstAttribute="bottom" secondItem="M8I-Bu-ay1" secondAttribute="bottom" id="fh0-Sj-LSX"/>
                                                             <constraint firstItem="M8I-Bu-ay1" firstAttribute="top" secondItem="dJm-An-8jp" secondAttribute="top" id="iX3-qz-Jxq"/>
@@ -8912,7 +8912,7 @@
         <image name="minus" catalog="system" width="128" height="24"/>
         <image name="otherlogin" width="268.5" height="39"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="red" width="19.5" height="19.5"/>
+        <image name="red" width="30" height="43"/>
         <image name="sear-1" width="17" height="16.5"/>
         <image name="search" width="15.5" height="15.5"/>
         <image name="select" width="19" height="18.5"/>
