@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     @IBOutlet var cvPopularBrand: UICollectionView!
     @IBOutlet var cvOtherOffer: UICollectionView!
     
-    
+    var arrTopMenu = ["Restaurantes", "Supermercado", "Mensajeria", "More"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func btnOnSearch(_ sender: Any) {
-        
+        pushVc(viewConterlerId: "DishDetailViewController")
     }
     
     @IBAction func btnOnViewAllRastaurants(_ sender: Any) {
@@ -72,7 +72,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case cvTopMenu:
-            return 4
+            return self.arrTopMenu.count
         case cvSlider:
             return 4
         case cvRecommendedProducts:
@@ -94,6 +94,14 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             
             let cell = self.cvTopMenu.dequeueReusableCell(withReuseIdentifier: "HomeTopMenuCollectionViewCell", for: indexPath)as! HomeTopMenuCollectionViewCell
             
+            cell.lblTitle.text = self.arrTopMenu[indexPath.row]
+            
+            if indexPath.row == 3{
+                cell.imgVw.image = #imageLiteral(resourceName: "menu-1")
+               // cell.lblTitle.text = "More"
+            }else{
+                cell.imgVw.image = #imageLiteral(resourceName: "img-1")
+            }
             
             
             return cell
@@ -149,6 +157,10 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         }else{
             return UICollectionViewCell()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.pushVc(viewConterlerId: "OrderDetailViewController")
     }
 }
 

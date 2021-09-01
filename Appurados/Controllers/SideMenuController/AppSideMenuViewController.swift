@@ -32,19 +32,19 @@ class AppSideMenuViewController: UIViewController {
     var selectedIndexpath = 0
     var strBadgeCount = ""
     
-    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Home", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Profile", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "My Cart", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "My Orders", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Package Orders", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "My Favorites", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Rewards", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Offers", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Notification", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Refer and Earn", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "About Us", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Support", menuImageName: "", menuSelectedImageName: ""),
-                                            SideMenuOptions(menuName: "Logout", menuImageName: "", menuSelectedImageName: "")]
+    private let menus: [SideMenuOptions] = [SideMenuOptions(menuName: "Home", menuImageName: "home", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Profile", menuImageName: "profile", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "My Cart", menuImageName: "cart", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "My Orders", menuImageName: "list", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Package Orders", menuImageName: "bike", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "My Favorites", menuImageName: "like", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Rewards", menuImageName: "card", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Offers", menuImageName: "tag", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Notification", menuImageName: "notification", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Refer and Earn", menuImageName: "share", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "About Us", menuImageName: "information", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Support", menuImageName: "spoon", menuSelectedImageName: ""),
+                                            SideMenuOptions(menuName: "Logout", menuImageName: "logout", menuSelectedImageName: "")]
     
     
     //MARK: - Override Methods
@@ -177,11 +177,11 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AppSideMenuTableViewCell", for: indexPath) as! AppSideMenuTableViewCell
         let row = indexPath.row
-//        if self.selectedIndexpath == indexPath.row{
-//            cell.menuImage.image = UIImage(named: menus[row].menuSelectedImageName)
-//        }else{
-//            cell.menuImage.image = UIImage(named: menus[row].menuImageName)
-//        }
+        if self.selectedIndexpath == indexPath.row{
+            cell.imgVw.image = UIImage(named: menus[row].menuImageName)
+        }else{
+            cell.imgVw.image = UIImage(named: menus[row].menuImageName)
+        }
                 
         
         cell.menuName.text = menus[row].menuName

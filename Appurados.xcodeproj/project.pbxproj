@@ -60,6 +60,7 @@
 		F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330526D5002C0006BE93 /* LoginViewController.swift */; };
 		F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330726D505460006BE93 /* SignUpViewController.swift */; };
 		F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */; };
+		F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */; };
 		F9ED45C426D803080053404C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ED45C326D803080053404C /* MapKit.framework */; };
 		F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */; };
 		F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F326DB667B0015BCDC /* MyRewardTableViewCell.swift */; };
@@ -137,6 +138,7 @@
 		F9A7330526D5002C0006BE93 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F9A7330726D505460006BE93 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
+		F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F9ED45C326D803080053404C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F9ED45C526D803180053404C /* Appurados.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Appurados.entitlements; sourceTree = "<group>"; };
 		F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */,
 				F9A7330526D5002C0006BE93 /* LoginViewController.swift */,
 				F9A7330726D505460006BE93 /* SignUpViewController.swift */,
+				F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */,
 			);
 			path = LoginSignup;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				F978DE4D26D4DD80009FA173 /* Preferences.swift in Sources */,
 				F978DE5026D4DD80009FA173 /* UIViewController+Container.swift in Sources */,
 				F978DE3026D4DD56009FA173 /* CustomUIView.swift in Sources */,
+				F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */,
 				F9A7330426D4FBCB0006BE93 /* WelcomeViewController.swift in Sources */,
 				F98787C026DA2D5700FA0DFF /* MyCartViewController.swift in Sources */,
 				F978DE4E26D4DD80009FA173 /* Delegate.swift in Sources */,
