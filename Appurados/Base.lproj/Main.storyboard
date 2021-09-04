@@ -357,16 +357,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dF4-c9-h9X">
                                 <rect key="frame" x="0.0" y="52.5" width="375" height="464.5"/>
                                 <subviews>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qBu-Ac-JQa">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="URQ-Ty-waK" customClass="GMSMapView" customModule="Appurados" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="464.5"/>
-                                    </mapView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="qBu-Ac-JQa" secondAttribute="trailing" id="DGU-2E-FNK"/>
-                                    <constraint firstItem="qBu-Ac-JQa" firstAttribute="leading" secondItem="dF4-c9-h9X" secondAttribute="leading" id="FAn-Wx-Gfd"/>
-                                    <constraint firstAttribute="bottom" secondItem="qBu-Ac-JQa" secondAttribute="bottom" id="W8T-aq-7Fz"/>
-                                    <constraint firstItem="qBu-Ac-JQa" firstAttribute="top" secondItem="dF4-c9-h9X" secondAttribute="top" id="z0B-hO-TfL"/>
+                                    <constraint firstItem="URQ-Ty-waK" firstAttribute="top" secondItem="dF4-c9-h9X" secondAttribute="top" id="P0a-uP-mLk"/>
+                                    <constraint firstAttribute="bottom" secondItem="URQ-Ty-waK" secondAttribute="bottom" id="P2T-aA-mCN"/>
+                                    <constraint firstAttribute="trailing" secondItem="URQ-Ty-waK" secondAttribute="trailing" id="lhc-e0-oeR"/>
+                                    <constraint firstItem="URQ-Ty-waK" firstAttribute="leading" secondItem="dF4-c9-h9X" secondAttribute="leading" id="xPI-ZY-EYZ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dV-6I-1hJ">
@@ -447,23 +448,38 @@
                     <navigationItem key="navigationItem" id="E5z-fn-BiY"/>
                     <connections>
                         <outlet property="lblCurrentLocation" destination="mKz-E5-8ah" id="9h3-Oe-cGi"/>
-                        <outlet property="mapVw" destination="qBu-Ac-JQa" id="3Md-8x-nk5"/>
+                        <outlet property="mapVwGM" destination="URQ-Ty-waK" id="SRD-ji-gDc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wit-4q-1yK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3368.8000000000002" y="-1324.5877061469266"/>
         </scene>
-        <!--View Controller-->
+        <!--Maps View Controller-->
         <scene sceneID="nSc-zj-QDb">
             <objects>
-                <viewController id="Aha-hw-Ctf" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapsViewController" id="Aha-hw-Ctf" customClass="MapsViewController" customModule="Appurados" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pma-zB-8nk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6L-wI-8gw" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="OV4-UD-5Tx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="T6L-wI-8gw" firstAttribute="top" secondItem="OV4-UD-5Tx" secondAttribute="top" id="8vF-JP-qlf"/>
+                            <constraint firstItem="OV4-UD-5Tx" firstAttribute="bottom" secondItem="T6L-wI-8gw" secondAttribute="bottom" id="Ucn-zy-lSH"/>
+                            <constraint firstItem="OV4-UD-5Tx" firstAttribute="trailing" secondItem="T6L-wI-8gw" secondAttribute="trailing" id="gbT-Ki-aVw"/>
+                            <constraint firstItem="T6L-wI-8gw" firstAttribute="leading" secondItem="OV4-UD-5Tx" secondAttribute="leading" id="uBw-8o-vDz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapVw" destination="T6L-wI-8gw" id="Uw2-BQ-ezC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avU-cp-G9P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3003,6 +3019,9 @@
                             <constraint firstItem="E4w-1a-K8b" firstAttribute="trailing" secondItem="ODr-Je-tJy" secondAttribute="trailing" id="rnE-zJ-9kQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tfEmail" destination="Mbe-EP-CMm" id="Umo-8T-KRC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wpl-6e-4X7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

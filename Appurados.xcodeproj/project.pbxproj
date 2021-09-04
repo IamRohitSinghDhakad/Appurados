@@ -10,6 +10,7 @@
 		6A63E9C926D67D5A00CD93DC /* HomeTopMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A63E9C826D67D5A00CD93DC /* HomeTopMenuCollectionViewCell.swift */; };
 		84228705DDE282F471586451 /* Pods_Appurados.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736A1F4F2FDC97A4254182CC /* Pods_Appurados.framework */; };
 		F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */; };
+		F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910A8CC26E36C82005D529F /* MapsViewController.swift */; };
 		F91C596026D9350200808697 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91C595F26D9350200808697 /* ProfileViewController.swift */; };
 		F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */; };
 		F92793D526DE7B0B002DA4EF /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */; };
@@ -84,6 +85,7 @@
 		736A1F4F2FDC97A4254182CC /* Pods_Appurados.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appurados.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D52F48F7188B07A433E4C55 /* Pods-Appurados.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appurados.release.xcconfig"; path = "Target Support Files/Pods-Appurados/Pods-Appurados.release.xcconfig"; sourceTree = "<group>"; };
 		F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrderListTableViewCell.swift; sourceTree = "<group>"; };
+		F910A8CC26E36C82005D529F /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		F91C595F26D9350200808697 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
@@ -206,6 +208,14 @@
 			path = CellClass;
 			sourceTree = "<group>";
 		};
+		F910A8CB26E36C68005D529F /* Google Map */ = {
+			isa = PBXGroup;
+			children = (
+				F910A8CC26E36C82005D529F /* MapsViewController.swift */,
+			);
+			path = "Google Map";
+			sourceTree = "<group>";
+		};
 		F91C595E26D934CD00808697 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +274,7 @@
 		F978DE1926D4D0BE009FA173 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				F910A8CB26E36C68005D529F /* Google Map */,
 				F9F3160626DB69C60015BCDC /* PackageOrders */,
 				F9F315FC26DB69460015BCDC /* Support */,
 				F9F315F926DB692B0015BCDC /* AboutUs */,
@@ -768,6 +779,7 @@
 				F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */,
 				F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */,
 				F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */,
+				F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */,
 				F91C596026D9350200808697 /* ProfileViewController.swift in Sources */,
 				F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */,
 				F978DE5126D4DD80009FA173 /* Segue.swift in Sources */,

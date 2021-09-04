@@ -20,7 +20,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet var btnReferalCode: UITextField!
     
     var strGender = ""
-    var strType = ""
+    var strType = "user"
     var strRegisterId = ""
     
     override func viewDidLoad() {

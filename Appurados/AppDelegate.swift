@@ -7,6 +7,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import GoogleMaps
 
 let ObjAppdelegate = UIApplication.shared.delegate as! AppDelegate
 @main
@@ -15,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navController: UINavigationController?
-    var strGoogleAPiKey = "AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc"
+    var googleApiKey = "AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc"
     
     private static var AppDelegateManager: AppDelegate = {
         let manager = UIApplication.shared.delegate as! AppDelegate
@@ -33,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        
+        //2
+        GMSServices.provideAPIKey(googleApiKey)
         
         return true
     }

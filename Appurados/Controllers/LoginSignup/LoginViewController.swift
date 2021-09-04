@@ -16,6 +16,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tfEmail.text = "arun@gmail.com"
+        self.tfPassword.text = "12345"
 
         // Do any additional setup after loading the view.
     }
@@ -82,7 +85,7 @@ extension LoginViewController{
         
         let dicrParam = ["username":self.tfEmail.text!,
                          "password":self.tfPassword.text!,
-                         "type":self.tfPassword.text!,
+                         "type":"user",
                          "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_Login, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
