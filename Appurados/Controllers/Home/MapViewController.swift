@@ -6,58 +6,58 @@
 //
 
 import UIKit
-import CoreLocation
-import GoogleMaps
+//import CoreLocation
 import GooglePlaces
+import GoogleMaps
 
-class MapViewController: UIViewController, GMSMapViewDelegate {
+class MapViewController: UIViewController {
 
     @IBOutlet var lblCurrentLocation: UILabel!
-    @IBOutlet weak var mapVwGM: GMSMapView!
+//    @IBOutlet weak var mapVwGM: GMSMapView!
     @IBOutlet var vwMap: UIView!
     @IBOutlet var btnOpenSearch: UIButton!
     
     
     private var locationMarker: GMSMarker?
-    private let locationManager = CLLocationManager()
+//    private let locationManager = CLLocationManager()
     
     var currentLocationStr = "Current location"
+    
+    var locationManager: CLLocationManager!
+    var currentLocation: CLLocation?
+    var mapView: GMSMapView!
+    var placesClient: GMSPlacesClient!
+    var preciseLocationZoomLevel: Float = 15.0
+    var approximateLocationZoomLevel: Float = 10.0
     
     
     override func viewDidLoad() {
       super.viewDidLoad()
-
-       // self.mapVwGM.delegate = self
         
-        let camera = GMSCameraPosition.camera(withLatitude: 19.017615, longitude: 72.856164, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: self.vwMap.frame, camera: camera)
-        self.mapVwGM = mapView
-        self.mapVwGM.delegate = self
-        self.mapVwGM.isMyLocationEnabled = true// = CLLocation(latitude: 19.017615, longitude: 72.856164)
-        self.mapVwGM.settings.myLocationButton = true
-        self.mapVwGM.settings.compassButton = true
-        
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapVwGM
-        
-        guard CLLocationManager.locationServicesEnabled() else {
-          print("Please enable location services")
-          return
-        }
-
-        if CLLocationManager.authorizationStatus() == .denied {
-          print("Please authorize location services")
-          return
-        }
-
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
+        // Initialize the location manager.
+        locationManager = CLLocationManager()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 5.0
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
+        locationManager.delegate = self
+
+        placesClient = GMSPlacesClient.shared()
+        
+        // A default location to use when location permission is not granted.
+        let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
+
+        // Create a map.
+        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
+        mapView = GMSMapView.map(withFrame: self.vwMap.bounds, camera: camera)
+        mapView.settings.myLocationButton = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.isMyLocationEnabled = true
+        mapView.delegate = self
+        // Add the map to the view, hide it until we've got a location update.
+        self.vwMap.addSubview(mapView)
+        mapView.isHidden = false
     }
 
     
@@ -85,7 +85,98 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     
 }
 
+// Delegates to handle events for the location manager.
+extension MapViewController: CLLocationManagerDelegate {
 
+  // Handle incoming location events.
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    let location: CLLocation = locations.last!
+    print("Location: \(location)")
+
+    let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+    let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
+                                          longitude: location.coordinate.longitude,
+                                          zoom: zoomLevel)
+
+    if mapView.isHidden {
+      mapView.isHidden = false
+      mapView.camera = camera
+    } else {
+      mapView.animate(to: camera)
+    }
+
+//    listLikelyPlaces()
+  }
+
+  // Handle authorization for the location manager.
+  func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    // Check accuracy authorization
+    let accuracy = manager.accuracyAuthorization
+    switch accuracy {
+    case .fullAccuracy:
+        print("Location accuracy is precise.")
+    case .reducedAccuracy:
+        print("Location accuracy is not precise.")
+    @unknown default:
+      fatalError()
+    }
+
+    // Handle authorization status
+    switch status {
+    case .restricted:
+      print("Location access was restricted.")
+    case .denied:
+      print("User denied access to location.")
+      // Display the map using the default location.
+      mapView.isHidden = false
+    case .notDetermined:
+      print("Location status not determined.")
+    case .authorizedAlways: fallthrough
+    case .authorizedWhenInUse:
+      print("Location status is OK.")
+    @unknown default:
+      fatalError()
+    }
+  }
+
+  // Handle location manager errors.
+  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//    locationManager.stopUpdatingLocation()
+    print("Error: \(error)")
+  }
+}
+
+extension MapViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        // Creates a marker in the center of the map.
+        
+        
+//        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+//        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
+//                                              longitude: coordinate.longitude,
+//                                              zoom: zoomLevel)
+//
+//        if mapView.isHidden {
+//          mapView.isHidden = false
+//          mapView.camera = camera
+//        } else {
+//          mapView.animate(to: camera)
+//        }
+        mapView.clear()
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.latitude)
+        marker.icon = #imageLiteral(resourceName: "red_marker")
+        marker.appearAnimation = .pop
+        marker.title = "Sydney"
+        marker.snippet = "Australia"
+        DispatchQueue.main.async {
+            marker.map = self.mapView
+        }
+        
+    }
+}
+
+/*
 extension MapViewController: CLLocationManagerDelegate {
     
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -153,6 +244,7 @@ extension MapViewController: CLLocationManagerDelegate {
         return true
     }
 }
+*/
 
 
 extension MapViewController: GMSAutocompleteViewControllerDelegate {

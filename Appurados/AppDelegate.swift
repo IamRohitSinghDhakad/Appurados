@@ -39,8 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         //2
-        GMSServices.provideAPIKey(googleApiKey)
-        GMSPlacesClient.provideAPIKey(googleApiKey)
+        GMSPlacesClient.provideAPIKey("AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc")
+        GMSServices.provideAPIKey("AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc")
         
         //3
         GIDSignIn.sharedInstance().clientID = googleSignInID
