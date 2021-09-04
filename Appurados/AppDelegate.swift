@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navController: UINavigationController?
+    var strGoogleAPiKey = "AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc"
     
     private static var AppDelegateManager: AppDelegate = {
         let manager = UIApplication.shared.delegate as! AppDelegate
@@ -55,3 +56,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+
+//Manage AutoLogin
+extension AppDelegate {
+    
+    func LoginNavigation(){
+        let sb = UIStoryboard(name: "Main", bundle: Bundle.main)
+        navController = sb.instantiateViewController(withIdentifier: "LoginNav") as? UINavigationController
+        self.window?.rootViewController = navController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func HomeNavigation() {
+        let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "Reveal")
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
+    }
+    
+    func settingRootController() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let vc = UIStoryboard(name: "Auth", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        //        let navController = UINavigationController(rootViewController: setViewController)
+        appDelegate.window?.rootViewController = vc
+    }
+    
+}
+
+
+public extension UIWindow {
+    
+    var visibleViewController: UIViewController? {
+        
+        return UIWindow.getVisibleViewControllerFrom(vc: self.rootViewController)
+        
+    }
+    
+    static func getVisibleViewControllerFrom(vc: UIViewController?) -> UIViewController? {
+        
+        if let nc = vc as? UINavigationController {
+            
+            return UIWindow.getVisibleViewControllerFrom(vc: nc.visibleViewController)
+            
+        } else if let tc = vc as? UITabBarController {
+            
+            return UIWindow.getVisibleViewControllerFrom(vc: tc.selectedViewController)
+            
+        } else {
+            
+            if let pvc = vc?.presentedViewController {
+                
+                return UIWindow.getVisibleViewControllerFrom(vc: pvc)
+                
+            } else {
+                
+                return vc
+                
+            }
+            
+        }
+        
+    }
+    
+}

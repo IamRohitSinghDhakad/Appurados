@@ -55,6 +55,8 @@
 		F98787CA26DA628F00FA0DFF /* PendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98787C926DA628F00FA0DFF /* PendingViewController.swift */; };
 		F98787CC26DA629C00FA0DFF /* OngoingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98787CB26DA629C00FA0DFF /* OngoingViewController.swift */; };
 		F98787CE26DA62A600FA0DFF /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98787CD26DA62A600FA0DFF /* CompleteViewController.swift */; };
+		F987C49926E2A16400751CA8 /* WebServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F987C49726E2A16400751CA8 /* WebServiceManager.swift */; };
+		F987C49A26E2A16400751CA8 /* WebServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F987C49826E2A16400751CA8 /* WebServiceHelper.swift */; };
 		F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */; };
 		F9A7330426D4FBCB0006BE93 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */; };
 		F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330526D5002C0006BE93 /* LoginViewController.swift */; };
@@ -133,6 +135,8 @@
 		F98787C926DA628F00FA0DFF /* PendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingViewController.swift; sourceTree = "<group>"; };
 		F98787CB26DA629C00FA0DFF /* OngoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingViewController.swift; sourceTree = "<group>"; };
 		F98787CD26DA62A600FA0DFF /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
+		F987C49726E2A16400751CA8 /* WebServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceManager.swift; sourceTree = "<group>"; };
+		F987C49826E2A16400751CA8 /* WebServiceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceHelper.swift; sourceTree = "<group>"; };
 		F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F9A7330526D5002C0006BE93 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				F9ED45C526D803180053404C /* Appurados.entitlements */,
+				F987C49626E2A16400751CA8 /* WebServiceManager */,
 				F9A7330026D4EBD60006BE93 /* ModelsClasses */,
 				F978DE6326D4E853009FA173 /* BridgingHeader */,
 				F978DE3226D4DD70009FA173 /* Resorce */,
@@ -461,6 +466,15 @@
 				F98787CD26DA62A600FA0DFF /* CompleteViewController.swift */,
 			);
 			path = ChildControllers;
+			sourceTree = "<group>";
+		};
+		F987C49626E2A16400751CA8 /* WebServiceManager */ = {
+			isa = PBXGroup;
+			children = (
+				F987C49726E2A16400751CA8 /* WebServiceManager.swift */,
+				F987C49826E2A16400751CA8 /* WebServiceHelper.swift */,
+			);
+			path = WebServiceManager;
 			sourceTree = "<group>";
 		};
 		F9A7330026D4EBD60006BE93 /* ModelsClasses */ = {
@@ -694,6 +708,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F987C49A26E2A16400751CA8 /* WebServiceHelper.swift in Sources */,
 				F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */,
 				F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */,
 				F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */,
@@ -702,6 +717,7 @@
 				F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */,
 				F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */,
 				F978DE4F26D4DD80009FA173 /* TransitionContext.swift in Sources */,
+				F987C49926E2A16400751CA8 /* WebServiceManager.swift in Sources */,
 				F98787CA26DA628F00FA0DFF /* PendingViewController.swift in Sources */,
 				F978DE4A26D4DD80009FA173 /* RDTextView.swift in Sources */,
 				F9F3160326DB69970015BCDC /* MyOffersViewController.swift in Sources */,

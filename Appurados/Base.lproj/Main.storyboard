@@ -2855,6 +2855,10 @@
                             <constraint firstItem="QwH-Lw-6Mk" firstAttribute="trailing" secondItem="R2V-Ht-hE8" secondAttribute="trailing" id="jxE-LD-r72"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tfEmail" destination="gGe-bs-zwu" id="tui-g9-YOd"/>
+                        <outlet property="tfPassword" destination="NFU-In-Zc8" id="jBJ-Rb-KBh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B7I-hl-eSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3239,6 +3243,9 @@
                                                                                             </label>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWi-NP-VJw">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="95.5" height="35"/>
+                                                                                                <connections>
+                                                                                                    <action selector="btnMale:" destination="lEp-iz-O7f" eventType="touchUpInside" id="p5d-sV-pTN"/>
+                                                                                                </connections>
                                                                                             </button>
                                                                                         </subviews>
                                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3272,6 +3279,9 @@
                                                                                             </label>
                                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHS-fw-q2Y">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="95.5" height="35"/>
+                                                                                                <connections>
+                                                                                                    <action selector="btnFemale:" destination="lEp-iz-O7f" eventType="touchUpInside" id="Le7-5m-ZSA"/>
+                                                                                                </connections>
                                                                                             </button>
                                                                                         </subviews>
                                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -3438,6 +3448,16 @@
                             <constraint firstItem="FxO-NS-fjH" firstAttribute="leading" secondItem="tRE-ot-zB6" secondAttribute="leading" id="Grv-k3-2cJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnFemale" destination="GHS-fw-q2Y" id="yGV-8s-BNw"/>
+                        <outlet property="btnMale" destination="gWi-NP-VJw" id="eKB-lY-RMr"/>
+                        <outlet property="btnPassword" destination="t7G-rQ-jWd" id="JFp-7u-Ybr"/>
+                        <outlet property="btnReferalCode" destination="pIy-e3-mhD" id="4Fe-Sk-6Zp"/>
+                        <outlet property="tfEmailAddress" destination="b4g-Hs-AOV" id="mgd-Td-9Sa"/>
+                        <outlet property="tfFirstName" destination="nr7-y2-Iv0" id="06E-Tw-wb0"/>
+                        <outlet property="tfLastName" destination="ihc-aF-GKi" id="GOa-wq-UMC"/>
+                        <outlet property="tfmobileNumber" destination="h6G-eu-CGD" id="e2i-WA-6ic"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJ0-xl-GR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
