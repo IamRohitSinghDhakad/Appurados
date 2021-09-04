@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
 
@@ -18,12 +19,15 @@ class HomeViewController: UIViewController {
     @IBOutlet var cvPopularBrand: UICollectionView!
     @IBOutlet var cvOtherOffer: UICollectionView!
     
+    var arrBannerData = [BannerModel]()
     var arrTopMenu = ["Restaurantes", "Supermercado", "Mensajeria", "More"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setDelegates()
+        
+        self.call_WsGetBanner()
         // Do any additional setup after loading the view.
     }
     
@@ -74,7 +78,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         case cvTopMenu:
             return self.arrTopMenu.count
         case cvSlider:
-            return 4
+            return self.arrBannerData.count
         case cvRecommendedProducts:
             return 10
         case cvFreeDelivery:
@@ -111,7 +115,19 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             
             let cell =  self.cvSlider.dequeueReusableCell(withReuseIdentifier: "HomeSliderCollectionViewCell", for: indexPath)as! HomeSliderCollectionViewCell
             
-            cell.imgVwSlider.allCorners()
+            let obj = self.arrBannerData[indexPath.row]
+            
+//            if let user_image = obj.strBannerImage as? String{
+//                let profilePic = user_image
+//                if profilePic != "" {
+//                    let url = URL(string: profilePic)
+//                    cell.imgVwSlider.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+//                }
+//            }else{
+//                cell.imgVwSlider.image = #imageLiteral(resourceName: "img")
+//            }
+            
+           // cell.imgVwSlider.allCorners()
             
             
             return cell
@@ -195,7 +211,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 
             let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
 
-            return CGSize(width: size, height: size)
+            return CGSize(width: size, height: 140)
             
         }else if collectionView == self.cvRecommendedProducts{
             let noOfCellsInRow = 2.5
@@ -250,8 +266,63 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
             
             return CGSize(width: 200, height: 200)
         }
+    }
+}
 
-       
+
+//MARK:- Call APi Get get_banner
+extension HomeViewController{
+    
+    func call_WsGetBanner(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getBannerHome, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    for data in arrData{
+                        let obj = BannerModel.init(dict: data)
+                        self.arrBannerData.append(obj)
+                    }
+                    
+                    self.cvSlider.reloadData()
+                    
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+                
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+                
+                
+            }
+            
+            
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+        
+        
     }
     
 }

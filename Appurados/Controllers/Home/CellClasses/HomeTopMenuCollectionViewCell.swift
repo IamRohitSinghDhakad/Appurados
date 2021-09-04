@@ -25,7 +25,11 @@ class HomeSliderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgVwSlider: UIImageView!
     
     override func awakeFromNib() {
-        self.imgVwSlider.allCorners()
+        self.imgVwSlider.layer.masksToBounds = true
+        self.imgVwSlider.cornerRadius = 10
+       // self.imgVwSlider.clipsToBounds = true
+        self.imgVwSlider.viewShadowHeaderWithCorner(corner: 10)
+       // self.imgVwSlider.allCorners()
     }
     
     

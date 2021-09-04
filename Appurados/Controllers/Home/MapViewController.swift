@@ -8,11 +8,15 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
+import GooglePlaces
 
 class MapViewController: UIViewController, GMSMapViewDelegate {
 
     @IBOutlet var lblCurrentLocation: UILabel!
     @IBOutlet weak var mapVwGM: GMSMapView!
+    @IBOutlet var vwMap: UIView!
+    @IBOutlet var btnOpenSearch: UIButton!
+    
     
     private var locationMarker: GMSMarker?
     private let locationManager = CLLocationManager()
@@ -25,15 +29,19 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
 
        // self.mapVwGM.delegate = self
         
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: 19.017615, longitude: 72.856164, zoom: 6.0)
+        let mapView = GMSMapView.map(withFrame: self.vwMap.frame, camera: camera)
         self.mapVwGM = mapView
+        self.mapVwGM.delegate = self
+        self.mapVwGM.isMyLocationEnabled = true// = CLLocation(latitude: 19.017615, longitude: 72.856164)
+        self.mapVwGM.settings.myLocationButton = true
+        self.mapVwGM.settings.compassButton = true
         
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapVwGM
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+//        marker.title = "Sydney"
+//        marker.snippet = "Australia"
+//        marker.map = mapVwGM
         
         guard CLLocationManager.locationServicesEnabled() else {
           print("Please enable location services")
@@ -50,8 +58,6 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = 5.0
         locationManager.startUpdatingLocation()
-        
-        
     }
 
     
@@ -59,6 +65,13 @@ class MapViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
            // determineCurrentLocation()
     }
+    
+    @IBAction func btnOpenSearch(_ sender: Any) {
+        let placePickerController = GMSAutocompleteViewController()
+           placePickerController.delegate = self
+           present(placePickerController, animated: true, completion: nil)
+    }
+    
     
     
     @IBAction func btnConfrmLocation(_ sender: Any) {
@@ -85,99 +98,90 @@ extension MapViewController: CLLocationManagerDelegate {
 
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let location = locations.last else { return }
-    if let existingMaker = locationMarker {
-      CATransaction.begin()
-      CATransaction.setAnimationDuration(2.0)
-      existingMaker.position = location.coordinate
-      CATransaction.commit()
-    } else {
-        
+    
+   // let location = locations.last
+
+    let camera = GMSCameraPosition.camera(withLatitude: (location.coordinate.latitude), longitude: (location.coordinate.longitude), zoom: 17.0)
+    
+    self.mapVwGM?.animate(to: camera)
+    
+    //Finally stop updating location otherwise it will come again and again in this delegate
+   // self.locationManager.stopUpdatingLocation()
+    
+//    if let existingMaker = locationMarker {
+//      CATransaction.begin()
+//      CATransaction.setAnimationDuration(2.0)
+//      existingMaker.position = location.coordinate
+//      CATransaction.commit()
+//    } else {
+//
 //      let marker = GMSMarker(position: location.coordinate)
 //      // Animated walker images derived from an www.angryanimator.com tutorial.
 //      // See: http://www.angryanimator.com/word/2010/11/26/tutorial-2-walk-cycle/
 //      let animationFrames = (1...8).compactMap {
 //        UIImage(named: "step\($0)")
 //      }
-//      marker.icon = UIImage.animatedImage(with: animationFrames, duration: 0.8)
+//        marker.icon = #imageLiteral(resourceName: "red")
 //      // Taking into account walker's shadow.
 //      marker.groundAnchor = CGPoint(x: 0.5, y: 0.97)
-//      marker.map = mapVw
+//      marker.map = mapVwGM
 //      locationMarker = marker
-    }
-   // mapVw.animate(with: GMSCameraUpdate.setTarget(location.coordinate, zoom: 17))
+//    }
+//    let camera = try GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.latitude, zoom: 14.0)
+//    DispatchQueue.main.async {
+//        CATransaction.begin()
+//        CATransaction.setValue(2, forKey: kCATransactionAnimationDuration)
+//        self.locationMarker?.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.latitude)
+//        self.locationMarker?.map?.animate(to: camera)
+//        CATransaction.commit()
+//    }
+//
+    
+//    let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 17.0)
+//    mapVwGM.camera = camera
+//    mapVwGM.animate(to: camera)
+//    mapVwGM.moveCamera(GMSCameraUpdate.setCamera(camera))
+//    mapVwGM.animate(with: GMSCameraUpdate.setTarget(location.coordinate, zoom: 17))
   }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print(coordinate)
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        mapView.animate(toLocation: marker.position)
+        return true
+    }
 }
 
 
+extension MapViewController: GMSAutocompleteViewControllerDelegate {
 
+  // Handle the user's selection.
+  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+    print("Place name: \(String(describing: place.name))")
+    print("Place address: \(String(describing: place.formattedAddress))")
+    print("Place attributions: \(String(describing: place.attributions))")
+    dismiss(animated: true, completion: nil)
+  }
 
-//
-//extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate{
-//
-//    //MARK:- CLLocationManagerDelegate Methods
-//
-////      func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-////          let mUserLocation:CLLocation = locations[0] as CLLocation
-////
-////          let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
-////          let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-////
-////        self.mapVw.setRegion(mRegion, animated: true)
-////      }
-//
-//  func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//          print("Error - locationManager: \(error.localizedDescription)")
-//      }
-//  //MARK:- Intance Methods
-//
-//  func determineCurrentLocation() {
-//      locationManager = CLLocationManager()
-//      locationManager.delegate = self
-//      locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//      locationManager.requestAlwaysAuthorization()
-//
-//      if CLLocationManager.locationServicesEnabled() {
-//          locationManager.startUpdatingLocation()
-//      }
-//   }
-//
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let mUserLocation:CLLocation = locations[0] as CLLocation
-//        let center = CLLocationCoordinate2D(latitude: mUserLocation.coordinate.latitude, longitude: mUserLocation.coordinate.longitude)
-//        let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//        self.mapVw.setRegion(mRegion, animated: true)
-//
-//        // Get user's Current Location and Drop a pin
-//    let mkAnnotation: MKPointAnnotation = MKPointAnnotation()
-//        mkAnnotation.coordinate = CLLocationCoordinate2DMake(mUserLocation.coordinate.latitude, mUserLocation.coordinate.longitude)
-//        mkAnnotation.title = self.setUsersClosestLocation(mLattitude: mUserLocation.coordinate.latitude, mLongitude: mUserLocation.coordinate.longitude)
-//        self.mapVw.addAnnotation(mkAnnotation)
-//    }
-//    //MARK:- Intance Methods
-//
-//    func setUsersClosestLocation(mLattitude: CLLocationDegrees, mLongitude: CLLocationDegrees) -> String {
-//        let geoCoder = CLGeocoder()
-//        let location = CLLocation(latitude: mLattitude, longitude: mLongitude)
-//
-//        geoCoder.reverseGeocodeLocation(location) {
-//            (placemarks, error) -> Void in
-//
-//            if let mPlacemark = placemarks{
-//                if let dict = mPlacemark[0].addressDictionary as? [String: Any]{
-//                    if let Name = dict["Name"] as? String{
-//                        if let City = dict["City"] as? String{
-//                            self.currentLocationStr = Name + ", " + City
-//                            self.lblCurrentLocation.text = self.currentLocationStr
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        return currentLocationStr
-//    }
-//
-////    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-////          mapView.animate(toLocation: marker.position)
-////          return true
-////     }
-//}
+  func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    // TODO: handle the error.
+    print("Error: ", error.localizedDescription)
+  }
+
+  // User canceled the operation.
+  func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+    dismiss(animated: true, completion: nil)
+  }
+
+  // Turn the network activity indicator on and off again.
+  func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+  }
+
+  func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+  }
+
+}

@@ -13,9 +13,11 @@ target 'Appurados' do
   pod 'Firebase/Messaging'
   pod 'iOSDropDown'
   pod 'GoogleMaps'
+  pod 'GooglePlaces'
   pod 'GoogleSignIn'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
+  
 
   
   

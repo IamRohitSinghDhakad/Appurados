@@ -18,7 +18,7 @@ struct WsUrl{
     static let url_getSubCategory = BASE_URL + "get_sub_category?"
     static let url_Login  = BASE_URL + "login"
     static let url_getProfile = BASE_URL + "get_profile"
-    static let url_getStates = BASE_URL + "get_state?"
+    static let url_getBannerHome = BASE_URL + "get_banner"
     static let url_getCity = BASE_URL + "get_city?"
     static let url_completeProfile = BASE_URL + "complete_profile"
     static let url_forgotPassword = BASE_URL + "forgot_password"

@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleMaps
+import GooglePlaces
 
 class MapsViewController: UIViewController {
 
@@ -22,7 +23,7 @@ class MapsViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
         mapVw = GMSMapView.map(withFrame: self.view.frame, camera: camera)
        // mapVw.delegate = self
-//        self.view.addSubview(mapVw)
+     //   self.view.addSubview(mapVw)
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
@@ -70,18 +71,18 @@ extension MapsViewController: CLLocationManagerDelegate {
       CATransaction.commit()
     } else {
         
-//      let marker = GMSMarker(position: location.coordinate)
-//      // Animated walker images derived from an www.angryanimator.com tutorial.
-//      // See: http://www.angryanimator.com/word/2010/11/26/tutorial-2-walk-cycle/
-//      let animationFrames = (1...8).compactMap {
-//        UIImage(named: "step\($0)")
-//      }
-//      marker.icon = UIImage.animatedImage(with: animationFrames, duration: 0.8)
-//      // Taking into account walker's shadow.
-//      marker.groundAnchor = CGPoint(x: 0.5, y: 0.97)
-//      marker.map = mapVw
-//      locationMarker = marker
+      let marker = GMSMarker(position: location.coordinate)
+      // Animated walker images derived from an www.angryanimator.com tutorial.
+      // See: http://www.angryanimator.com/word/2010/11/26/tutorial-2-walk-cycle/
+      let animationFrames = (1...8).compactMap {
+        UIImage(named: "step\($0)")
+      }
+      marker.icon = UIImage.animatedImage(with: animationFrames, duration: 0.8)
+      // Taking into account walker's shadow.
+      marker.groundAnchor = CGPoint(x: 0.5, y: 0.97)
+      marker.map = mapVw
+      locationMarker = marker
     }
-   // mapVw.animate(with: GMSCameraUpdate.setTarget(location.coordinate, zoom: 17))
+    mapVw.animate(with: GMSCameraUpdate.setTarget(location.coordinate, zoom: 17))
   }
 }

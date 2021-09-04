@@ -1945,6 +1945,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 Copyright 2021 Google
 
+## GooglePlaces
+
+Copyright 2021 Google
+
 ## GoogleSignIn
 
 Copyright 2019 Google

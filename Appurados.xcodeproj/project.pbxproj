@@ -64,6 +64,7 @@
 		F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330726D505460006BE93 /* SignUpViewController.swift */; };
 		F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */; };
 		F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */; };
+		F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */; };
 		F9ED45C426D803080053404C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ED45C326D803080053404C /* MapKit.framework */; };
 		F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */; };
 		F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F326DB667B0015BCDC /* MyRewardTableViewCell.swift */; };
@@ -145,6 +146,7 @@
 		F9A7330726D505460006BE93 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
 		F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		F9ED45C326D803080053404C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F9ED45C526D803180053404C /* Appurados.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Appurados.entitlements; sourceTree = "<group>"; };
 		F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			isa = PBXGroup;
 			children = (
 				F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */,
+				F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				F978DE4B26D4DD80009FA173 /* UIViewController+SideMenu.swift in Sources */,
 				F9F315FE26DB69560015BCDC /* SupportViewController.swift in Sources */,
 				F9F3160826DB69D50015BCDC /* SendPackageViewController.swift in Sources */,
+				F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */,
 				F9F3160526DB69B80015BCDC /* MyFavoritesViewController.swift in Sources */,
 				F978DE5526D4DD80009FA173 /* RevealViewController.swift in Sources */,
 				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,

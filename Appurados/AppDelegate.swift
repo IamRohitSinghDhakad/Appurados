@@ -8,6 +8,8 @@
 import UIKit
 import IQKeyboardManagerSwift
 import GoogleMaps
+import GooglePlaces
+import GoogleSignIn
 
 let ObjAppdelegate = UIApplication.shared.delegate as! AppDelegate
 @main
@@ -17,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navController: UINavigationController?
     var googleApiKey = "AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc"
-    
+    var googleSignInID = "436121379274-pc9ebpo4d8s7etivu8o81vi59qgdbehu.apps.googleusercontent.com"
+     
     private static var AppDelegateManager: AppDelegate = {
         let manager = UIApplication.shared.delegate as! AppDelegate
         return manager
@@ -37,9 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //2
         GMSServices.provideAPIKey(googleApiKey)
+        GMSPlacesClient.provideAPIKey(googleApiKey)
+        
+        //3
+        GIDSignIn.sharedInstance().clientID = googleSignInID
         
         return true
     }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url)
+    }
+    
 
 //    // MARK: UISceneSession Lifecycle
 //
