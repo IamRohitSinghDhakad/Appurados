@@ -24,6 +24,7 @@
 		F95597AD26D4160A007390F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95597AB26D4160A007390F7 /* Main.storyboard */; };
 		F95597AF26D4160C007390F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F95597AE26D4160C007390F7 /* Assets.xcassets */; };
 		F95597B226D4160C007390F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95597B026D4160C007390F7 /* LaunchScreen.storyboard */; };
+		F95F541126E527CD0047D1A7 /* RestaurentsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */; };
 		F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2126D4D155009FA173 /* HomeViewController.swift */; };
 		F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2326D4DBAE009FA173 /* MapViewController.swift */; };
 		F978DE2C26D4DD56009FA173 /* MessageConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2526D4DD56009FA173 /* MessageConstant.swift */; };
@@ -102,6 +103,7 @@
 		F95597AE26D4160C007390F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F95597B126D4160C007390F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F95597B326D4160C007390F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurentsDetailModel.swift; sourceTree = "<group>"; };
 		F978DE2126D4D155009FA173 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F978DE2326D4DBAE009FA173 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F978DE2526D4DD56009FA173 /* MessageConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageConstant.swift; sourceTree = "<group>"; };
@@ -495,6 +497,7 @@
 			children = (
 				F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */,
 				F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */,
+				F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 			files = (
 				F987C49A26E2A16400751CA8 /* WebServiceHelper.swift in Sources */,
 				F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */,
+				F95F541126E527CD0047D1A7 /* RestaurentsDetailModel.swift in Sources */,
 				F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */,
 				F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */,
 				F935B01A26DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift in Sources */,

@@ -13,18 +13,15 @@ import GoogleMaps
 class MapViewController: UIViewController {
 
     @IBOutlet var lblCurrentLocation: UILabel!
-//    @IBOutlet weak var mapVwGM: GMSMapView!
     @IBOutlet var vwMap: UIView!
     @IBOutlet var btnOpenSearch: UIButton!
-    
-    
-    private var locationMarker: GMSMarker?
-//    private let locationManager = CLLocationManager()
-    
+    var cirlce: GMSCircle!
+    var userSelectedLatitude : Double?
+    var userSelectedLongitude : Double?
     var currentLocationStr = "Current location"
-    
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
+    private var locationMarker: GMSMarker?
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
@@ -54,6 +51,7 @@ class MapViewController: UIViewController {
         mapView.settings.myLocationButton = true
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.isMyLocationEnabled = true
+       
         mapView.delegate = self
         // Add the map to the view, hide it until we've got a location update.
         self.vwMap.addSubview(mapView)
@@ -64,6 +62,12 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
            // determineCurrentLocation()
+        let defaultLocation = CLLocation(latitude: 19.017615, longitude: 72.856164)
+        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
+        cirlce = GMSCircle(position: camera.target, radius: 100)
+        cirlce.fillColor = UIColor.red.withAlphaComponent(0.5)
+        cirlce.map = mapView
     }
     
     @IBAction func btnOpenSearch(_ sender: Any) {
@@ -75,6 +79,9 @@ class MapViewController: UIViewController {
     
     
     @IBAction func btnConfrmLocation(_ sender: Any) {
+        objAppShareData.UserDetail.strlatitude = "\(String(describing: self.userSelectedLatitude))"
+        objAppShareData.UserDetail.strlongitude = "\(String(describing: self.userSelectedLongitude))"
+        objAppShareData.UserDetail.strAddress = self.lblCurrentLocation.text ?? "Something went wrong!"
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
         let navController = UINavigationController(rootViewController: vc)
@@ -147,33 +154,59 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        // Creates a marker in the center of the map.
-        
-        
-//        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
-//        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
-//                                              longitude: coordinate.longitude,
-//                                              zoom: zoomLevel)
-//
-//        if mapView.isHidden {
-//          mapView.isHidden = false
-//          mapView.camera = camera
-//        } else {
-//          mapView.animate(to: camera)
-//        }
-        mapView.clear()
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.latitude)
-        marker.icon = #imageLiteral(resourceName: "red_marker")
-        marker.appearAnimation = .pop
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        DispatchQueue.main.async {
-            marker.map = self.mapView
-        }
-        
+    
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+      //  print(marker)
     }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+          // print("\(position.target.latitude) \(position.target.longitude)")
+        
+        let myLocation = CLLocation(latitude: position.target.latitude, longitude: position.target.longitude)
+        var strFinalAddress = ""
+
+        DispatchQueue.background(delay: 0.3) {
+            myLocation.fetchAddress { address, error in
+                guard let address = address, error == nil else
+                {return}
+                strFinalAddress = address
+            }
+        } completion: {
+            self.userSelectedLatitude = position.target.latitude
+            self.userSelectedLongitude = position.target.longitude
+            self.lblCurrentLocation.text = strFinalAddress
+        }
+
+           cirlce.position = position.target
+       }
+    
+//    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+//        // Creates a marker in the center of the map.
+//
+//
+////        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+////        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
+////                                              longitude: coordinate.longitude,
+////                                              zoom: zoomLevel)
+////
+////        if mapView.isHidden {
+////          mapView.isHidden = false
+////          mapView.camera = camera
+////        } else {
+////          mapView.animate(to: camera)
+////        }
+//        mapView.clear()
+//        let marker = GMSMarker()
+//        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.latitude)
+//        marker.icon = #imageLiteral(resourceName: "red_marker")
+//        marker.appearAnimation = .pop
+//        marker.title = "Sydney"
+//        marker.snippet = "Australia"
+//        DispatchQueue.main.async {
+//            marker.map = self.mapView
+//        }
+//
+//    }
 }
 
 /*
@@ -275,5 +308,57 @@ extension MapViewController: GMSAutocompleteViewControllerDelegate {
   func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
     UIApplication.shared.isNetworkActivityIndicatorVisible = false
   }
+
+}
+
+
+extension CLLocation {
+func fetchAddress(completion: @escaping (_ address: String?, _ error: Error?) -> ()) {
+    CLGeocoder().reverseGeocodeLocation(self) {
+        let palcemark = $0?.first
+        var address = ""
+        if let subThoroughfare = palcemark?.subThoroughfare {
+            address = address + subThoroughfare + ","
+        }
+        if let thoroughfare = palcemark?.thoroughfare {
+            address = address + thoroughfare + ","
+        }
+        if let locality = palcemark?.locality {
+            address = address + locality + ","
+        }
+        if let subLocality = palcemark?.subLocality {
+            address = address + subLocality + ","
+        }
+        if let administrativeArea = palcemark?.administrativeArea {
+            address = address + administrativeArea + ","
+        }
+        if let postalCode = palcemark?.postalCode {
+            address = address + postalCode + ","
+        }
+        if let country = palcemark?.country {
+            address = address + country + ","
+        }
+        if address.last == "," {
+            address = String(address.dropLast())
+        }
+        completion(address,$1)
+       // completion("\($0?.first?.subThoroughfare ?? ""), \($0?.first?.thoroughfare ?? ""), \($0?.first?.locality ?? ""), \($0?.first?.subLocality ?? ""), \($0?.first?.administrativeArea ?? ""), \($0?.first?.postalCode ?? ""), \($0?.first?.country ?? "")",$1)
+    }
+ }
+}
+
+
+extension DispatchQueue {
+
+    static func background(delay: Double = 0.0, background: (()->Void)? = nil, completion: (() -> Void)? = nil) {
+        DispatchQueue.global(qos: .background).async {
+            background?()
+            if let completion = completion {
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+                    completion()
+                })
+            }
+        }
+    }
 
 }

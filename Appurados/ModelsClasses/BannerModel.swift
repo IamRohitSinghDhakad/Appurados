@@ -28,7 +28,31 @@ class BannerModel: NSObject {
         if let banner_name = dict["banner_name"] as? String{
             self.strBannerName = banner_name
         }
-        
     }
+}
+
+
+
+class CaterogryModel: NSObject {
     
+    var strCategoryID: String = ""
+    var strCategoryImage: String = ""
+    var strCategoryName:String = ""
+    
+    init(dict : [String:Any]) {
+        
+        if let banner_id = dict["banner_id"] as? String{
+            self.strCategoryID = banner_id
+        }else if let banner_id = dict["banner_id"] as? Int{
+            self.strCategoryID = "\(banner_id)"
+        }
+        
+        if let category_image = dict["category_image"] as? String{
+            self.strCategoryImage = category_image
+        }
+        
+        if let category_name = dict["category_name"] as? String{
+            self.strCategoryName = category_name
+        }
+    }
 }
