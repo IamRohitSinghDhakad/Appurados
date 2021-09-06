@@ -19,6 +19,9 @@ class RestaurentsDetailModel: NSObject {
     var strDistance:String = ""
     var strTime:String = ""
     var strMinimumOrderAmount:String = ""
+    var strFreeDelivery:String = ""
+    var strRating:String = ""
+    var isFavorite:Bool = false
     
     init(dict : [String:Any]) {
         
@@ -55,6 +58,39 @@ class RestaurentsDetailModel: NSObject {
         
         if let time = dict["time"] as? String{
             self.strTime = time
+        }
+        
+        
+        if let free_delivery = dict["free_delivery"] as? String{
+            self.strFreeDelivery = free_delivery
+        }else if let free_delivery = dict["free_delivery"] as? Int{
+            self.strFreeDelivery = "\(free_delivery)"
+        }
+        
+        if let liked = dict["liked"] as? String{
+            let isFav = liked
+            if isFav == "1"{
+                self.isFavorite = true
+            }else{
+                self.isFavorite = false
+            }
+            
+        }else if let liked = dict["liked"] as? Int{
+            let isFav = "\(liked)"
+            if isFav == "1"{
+                self.isFavorite = true
+            }else{
+                self.isFavorite = false
+            }
+        }
+        
+        
+        
+        
+        if let rating = dict["rating"] as? String{
+            self.strRating = rating
+        }else if let rating = dict["rating"] as? Int{
+            self.strRating = "\(rating)"
         }
         
         
@@ -142,4 +178,6 @@ class RestaurentsDetailModel: NSObject {
  "working_days" = "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday";
 },
 {
+ 
+
  */

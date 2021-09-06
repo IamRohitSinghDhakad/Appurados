@@ -177,7 +177,10 @@ extension MapViewController: GMSMapViewDelegate {
             self.lblCurrentLocation.text = strFinalAddress
         }
 
-           cirlce.position = position.target
+        if cirlce != nil{
+            cirlce.position = position.target
+            self.lblCurrentLocation.text = strFinalAddress
+        }
        }
     
 //    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {

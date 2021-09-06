@@ -13,6 +13,7 @@ class FoodOrderViewController: UIViewController {
     @IBOutlet var tblRestaurents: UITableView!
     @IBOutlet var tblHgtConstants: NSLayoutConstraint!
     
+    var arrAllRestaurants = [RestaurentsDetailModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +57,35 @@ class FoodOrderViewController: UIViewController {
 extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.arrAllRestaurants.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoodOrderTableViewCell")as! FoodOrderTableViewCell
+        
+        let obj = self.arrAllRestaurants[indexPath.row]
+        cell.lblVendorName.text = obj.strVendorName
+        cell.lblSpeciality.text = obj.strSpecialties
+        cell.lblTime.text = obj.strTime
+        
+        cell.lblRating.text = obj.strRating
+        if obj.isFavorite{
+            cell.imgVeFav.image = #imageLiteral(resourceName: "heart")
+        }else{
+            cell.imgVeFav.image = #imageLiteral(resourceName: "like")
+        }
+        
+        if obj.strFreeDelivery == "1"{
+            cell.lblDistance.text = "(Free Delivery)"
+        }else{
+            cell.lblDistance.text = obj.strDistance
+        }
+        
+        let profilePic = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if profilePic != "" {
+                let url = URL(string: profilePic!)
+                cell.imgVwVendor.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+            }
         
         return cell
     }

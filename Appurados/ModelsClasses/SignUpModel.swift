@@ -87,6 +87,15 @@ class userDetailModel: NSObject {
             self.strUserName = username
         }
         
+        if let username = dict["name"] as? String{
+            self.strUserName = username
+        }
+        
+        if let user_image = dict["user_image"] as? String{
+            self.strProfilePicture = user_image
+        }
+        
+    
         if let strMembership = dict["has_membership"] as? String{
             self.strMembershipStats = strMembership
         }else if let strMembership = dict["has_membership"] as? Int{

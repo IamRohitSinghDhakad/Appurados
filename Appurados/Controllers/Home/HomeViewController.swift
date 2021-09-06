@@ -32,7 +32,8 @@ class HomeViewController: UIViewController {
     var arrTempCategoryData = [CaterogryModel]()
     var arrCategoryData = [CaterogryModel]()
     var arrFreeDeliveryItem = [RestaurentsDetailModel]()
-    var arrRecomendedItem = [RestaurentsDetailModel]()
+    var arrTotalRestaurents = [RestaurentsDetailModel]()
+    var arrRecomendedItem = [ProductDetailModel]()
     var arrOfferItem = [RestaurentsDetailModel]()
     var arrFavoriteItem = [RestaurentsDetailModel]()
     var arrPopularItem = [RestaurentsDetailModel]()
@@ -47,6 +48,8 @@ class HomeViewController: UIViewController {
         self.subVwMore.isHidden = true
         // Do any additional setup after loading the view.
     }
+    
+    
     
   /// ============================== ##### Setup Views ##### ==================================//
     func setDelegates(){
@@ -79,6 +82,7 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.lblDeliverAddressHeader.text = objAppShareData.UserDetail.strAddress
+        self.call_WsGetProfile()
     }
     
     @IBAction func openSideMenu(_ sender: Any) {
@@ -90,7 +94,10 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func btnOnViewAllRastaurants(_ sender: Any) {
-        pushVc(viewConterlerId: "FoodOrderViewController")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodOrderViewController")as! FoodOrderViewController
+        vc.arrAllRestaurants = arrTotalRestaurents
+        self.navigationController?.pushViewController(vc, animated: true)
+        //pushVc(viewConterlerId: "FoodOrderViewController")
     }
     @IBAction func btnCrossSubVw(_ sender: Any) {
         self.subVwMore.isHidden = true
@@ -118,7 +125,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         case cvPopularBrand:
             return self.arrPopularItem.count
         case cvOtherOffer:
-            return 8
+            return self.arrOfferItem.count
         default:
             return 4
         }
@@ -167,7 +174,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             
             let obj = self.arrBannerData[indexPath.row]
             
-            if let user_image = obj.strBannerImage as? String{
+            if let user_image = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) as? String{
                 let profilePic = user_image
                 if profilePic != "" {
                     let url = URL(string: profilePic)
@@ -267,7 +274,25 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             
             let cell = self.cvOtherOffer.dequeueReusableCell(withReuseIdentifier: "HomeOtherOfferCollectionViewCell", for: indexPath)as! HomeOtherOfferCollectionViewCell
             
+            let obj = self.arrOfferItem[indexPath.row]
             
+            cell.lblRasturentName.text = obj.strVendorName
+            cell.lblDistance.text = obj.strDistance
+            cell.lblPrice.text = obj.strMinimumOrderAmount + "$"
+            cell.lblDishes.text = obj.strSpecialties
+            
+            
+            let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                if profilePic != "" {
+                    let url = URL(string: profilePic!)
+                    cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                }
+            
+            let restaurentImg = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                if restaurentImg != "" {
+                    let url = URL(string: restaurentImg!)
+                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                }
             
             return cell
             
@@ -322,7 +347,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
             return CGSize(width: size, height: 160)
             
         }else if collectionView == self.cvRecommendedProducts{
-            let noOfCellsInRow = 2.5
+            let noOfCellsInRow = 2.2
 
             let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
 
@@ -332,7 +357,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
 
             let size = Int((collectionView.bounds.width - totalSpace) / CGFloat(noOfCellsInRow))
 
-            return CGSize(width: size, height: size + 20)
+            return CGSize(width: size, height: size + 25)
         }else if collectionView == self.cvFreeDelivery{
             let noOfCellsInRow = 2
 
@@ -558,16 +583,18 @@ extension HomeViewController{
         let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
                          "vendor_id":"",
                          "category_id":"",
-                         "lat":objAppShareData.UserDetail.strlatitude,
-                         "lng":objAppShareData.UserDetail.strlongitude,
+                         "lat":"",
+                         "lng":"",
                          "free_delivery":"",
                          "has_offers":"",
                          "popular":"",
-                         "my_favorite":"1",
+                         "recommended":"1",
+                         "my_favorite":"",
                          "offer_category_id":"",
-                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
+                         "ios_register_id":""]as [String:Any]
+        print(dicrParam)
         
-        objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getProduct, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
          //   objWebServiceManager.hideIndicator()
             
             let status = (response["status"] as? Int)
@@ -578,7 +605,7 @@ extension HomeViewController{
                 if let arrData = response["result"]as? [[String:Any]]{
                     
                     for data in arrData{
-                        let obj = RestaurentsDetailModel.init(dict: data)
+                        let obj = ProductDetailModel.init(dict: data)
                         self.arrRecomendedItem.append(obj)
                     }
                     self.call_WsGetPopularProduct()
@@ -623,7 +650,8 @@ extension HomeViewController{
                          "popular":"1",
                          "my_favorite":"",
                          "offer_category_id":"",
-                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
+                         "ios_register_id":""]as [String:Any]
+        print(dicrParam)
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
           //  objWebServiceManager.hideIndicator()
@@ -682,10 +710,10 @@ extension HomeViewController{
                          "popular":"",
                          "my_favorite":"",
                          "offer_category_id":"",
-                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
+                         "ios_register_id":""]as [String:Any]
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
-            objWebServiceManager.hideIndicator()
+          //  objWebServiceManager.hideIndicator()
             
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
@@ -699,6 +727,7 @@ extension HomeViewController{
                         self.arrOfferItem.append(obj)
                     }
                     self.cvOtherOffer.reloadData()
+                    self.call_WsGetVendorCount()
                     
                     let allCount = self.arrRecomendedItem.count + self.arrFreeDeliveryItem.count + self.arrPopularItem.count + self.arrOfferItem.count
                     self.btnAllRestaurents.setTitle("All \(allCount) Restaurents", for: .normal)
@@ -710,11 +739,6 @@ extension HomeViewController{
                 objWebServiceManager.hideIndicator()
                 if let msgg = response["result"]as? String{
                     self.vwOfferCV.isHidden = true
-                    
-                    let allCount = self.arrRecomendedItem.count + self.arrFreeDeliveryItem.count + self.arrPopularItem.count + self.arrOfferItem.count
-                    self.btnAllRestaurents.setTitle("All \(allCount) Restaurents ", for: .normal)
-                    
-                    
                    // objAlert.showAlert(message: msgg, title: "", controller: self)
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "", controller: self)
@@ -725,4 +749,115 @@ extension HomeViewController{
             objWebServiceManager.hideIndicator()
         }
     }
+    
+    
+    //MARK:- Vendor Count Product
+    func call_WsGetVendorCount(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":"",
+                         "category_id":"",
+                         "lat":"",
+                         "lng":"",
+                         "free_delivery":"",
+                         "has_offers":"",
+                         "popular":"",
+                         "recommended":"",
+                         "my_favorite":"",
+                         "offer_category_id":"",
+                         "ios_register_id":""]as [String:Any]
+      
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+           objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    for data in arrData{
+                        let obj = RestaurentsDetailModel.init(dict: data)
+                        self.arrTotalRestaurents.append(obj)
+                    }
+                    
+                    self.btnAllRestaurents.setTitle("All \(arrData.count) Restaurents ", for: .normal)
+                    
+                }else{
+                    self.btnAllRestaurents.setTitle("All Restaurents ", for: .normal)
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+}
+
+
+
+extension HomeViewController{
+    
+    func call_WsGetProfile(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+       // objWebServiceManager.showIndicator()
+        
+        let dict = ["user_id":objAppShareData.UserDetail.strUserId]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getProfile, params: dict, queryParams: [:], strCustomValidation: "") { (response) in
+        //    objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                if let user_data  = response["result"] as? [String:Any]{
+
+                    
+                    
+                   
+                }
+                else {
+                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
 }

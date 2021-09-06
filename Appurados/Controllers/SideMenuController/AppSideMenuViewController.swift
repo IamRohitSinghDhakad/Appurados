@@ -66,6 +66,11 @@ class AppSideMenuViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        let profilePic = objAppShareData.UserDetail.strProfilePicture .trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if profilePic != "" {
+                let url = URL(string: profilePic!)
+                self.imgVwUser.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "user-1"))
+            }
 
     }
     

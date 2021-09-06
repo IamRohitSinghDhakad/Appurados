@@ -9,6 +9,16 @@ import UIKit
 
 class FoodOrderTableViewCell: UITableViewCell {
 
+    @IBOutlet var imgVwVendor: UIImageView!
+    @IBOutlet var lblVendorName: UILabel!
+    @IBOutlet var lblSpeciality: UILabel!
+    @IBOutlet var lblTime: UILabel!
+    @IBOutlet var lblDistance: UILabel!
+    @IBOutlet var imgVeFav: UIImageView!
+    @IBOutlet var vwRating: UIView!
+    @IBOutlet var lblRating: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

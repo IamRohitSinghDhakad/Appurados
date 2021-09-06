@@ -65,6 +65,7 @@
 		F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330726D505460006BE93 /* SignUpViewController.swift */; };
 		F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */; };
 		F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */; };
+		F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */; };
 		F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */; };
 		F9ED45C426D803080053404C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ED45C326D803080053404C /* MapKit.framework */; };
 		F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */; };
@@ -148,6 +149,7 @@
 		F9A7330726D505460006BE93 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
 		F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailModel.swift; sourceTree = "<group>"; };
 		F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		F9ED45C326D803080053404C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F9ED45C526D803180053404C /* Appurados.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Appurados.entitlements; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */,
 				F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */,
 				F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */,
+				F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */,
 				F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */,
 				F91C596026D9350200808697 /* ProfileViewController.swift in Sources */,
+				F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */,
 				F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */,
 				F978DE5126D4DD80009FA173 /* Segue.swift in Sources */,
 				F978DE2D26D4DD56009FA173 /* ValidationManager.swift in Sources */,
