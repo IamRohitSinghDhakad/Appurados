@@ -24,6 +24,7 @@ struct WsUrl{
     static let url_getProduct = BASE_URL + "get_product?"
     static let url_forgotPassword = BASE_URL + "forgot_password"
     static let url_GetUserList = BASE_URL + "get_users"
+    static let url_GetOrders = BASE_URL + "get_order"
     
    
 }

@@ -43,7 +43,8 @@ extension MyRewardViewController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
-    
-    
-    
+
 }
+
+
+//get_rewards
