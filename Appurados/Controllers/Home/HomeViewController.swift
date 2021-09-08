@@ -280,7 +280,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             cell.lblDistance.text = obj.strDistance
             cell.lblPrice.text = obj.strMinimumOrderAmount + "$"
             cell.lblDishes.text = obj.strSpecialties
-            
+            cell.vwRating.rating = Double(obj.strRating) ?? 0.0
             
             let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if profilePic != "" {

@@ -11,6 +11,9 @@
 		84228705DDE282F471586451 /* Pods_Appurados.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736A1F4F2FDC97A4254182CC /* Pods_Appurados.framework */; };
 		F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */; };
 		F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910A8CC26E36C82005D529F /* MapsViewController.swift */; };
+		F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878026E8E3BE00458BE7 /* RewardModel.swift */; };
+		F914878326E8EC8200458BE7 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878226E8EC8200458BE7 /* NotificationModel.swift */; };
+		F914878626E8EEE900458BE7 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878526E8EEE900458BE7 /* FloatRatingView.swift */; };
 		F91C596026D9350200808697 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91C595F26D9350200808697 /* ProfileViewController.swift */; };
 		F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */; };
 		F92793D526DE7B0B002DA4EF /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */; };
@@ -90,6 +93,9 @@
 		8D52F48F7188B07A433E4C55 /* Pods-Appurados.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appurados.release.xcconfig"; path = "Target Support Files/Pods-Appurados/Pods-Appurados.release.xcconfig"; sourceTree = "<group>"; };
 		F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrderListTableViewCell.swift; sourceTree = "<group>"; };
 		F910A8CC26E36C82005D529F /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
+		F914878026E8E3BE00458BE7 /* RewardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardModel.swift; sourceTree = "<group>"; };
+		F914878226E8EC8200458BE7 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		F914878526E8EEE900458BE7 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
 		F91C595F26D9350200808697 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F92793D226DE5E06002DA4EF /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +230,14 @@
 			path = "Google Map";
 			sourceTree = "<group>";
 		};
+		F914878426E8EED500458BE7 /* FloatingRatingView */ = {
+			isa = PBXGroup;
+			children = (
+				F914878526E8EEE900458BE7 /* FloatRatingView.swift */,
+			);
+			path = FloatingRatingView;
+			sourceTree = "<group>";
+		};
 		F91C595E26D934CD00808697 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,6 +361,7 @@
 		F978DE3226D4DD70009FA173 /* Resorce */ = {
 			isa = PBXGroup;
 			children = (
+				F914878426E8EED500458BE7 /* FloatingRatingView */,
 				F978DE3326D4DD80009FA173 /* RDTextView */,
 				F978DE3526D4DD80009FA173 /* SideMenuClasses */,
 			);
@@ -504,6 +519,8 @@
 				F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */,
 				F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */,
 				F99D5A0826E7F70E00F4C3F4 /* OrdersDetailModel.swift */,
+				F914878026E8E3BE00458BE7 /* RewardModel.swift */,
+				F914878226E8EC8200458BE7 /* NotificationModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -737,6 +754,7 @@
 				F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */,
 				F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */,
 				F935B01A26DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift in Sources */,
+				F914878626E8EEE900458BE7 /* FloatRatingView.swift in Sources */,
 				F9F74AA826D8301400E2822B /* FoodOrderTableViewCell.swift in Sources */,
 				F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */,
 				F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */,
@@ -753,6 +771,7 @@
 				F978DE5026D4DD80009FA173 /* UIViewController+Container.swift in Sources */,
 				F978DE3026D4DD56009FA173 /* CustomUIView.swift in Sources */,
 				F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */,
+				F914878326E8EC8200458BE7 /* NotificationModel.swift in Sources */,
 				F9A7330426D4FBCB0006BE93 /* WelcomeViewController.swift in Sources */,
 				F98787C026DA2D5700FA0DFF /* MyCartViewController.swift in Sources */,
 				F978DE4E26D4DD80009FA173 /* Delegate.swift in Sources */,
@@ -789,6 +808,7 @@
 				F978DE5526D4DD80009FA173 /* RevealViewController.swift in Sources */,
 				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
+				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
 				F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */,
 				F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */,
 				F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */,

@@ -165,17 +165,19 @@ extension MapViewController: GMSMapViewDelegate {
         let myLocation = CLLocation(latitude: position.target.latitude, longitude: position.target.longitude)
         var strFinalAddress = ""
 
-        DispatchQueue.background(delay: 0.3) {
+      //  print(myLocation)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             myLocation.fetchAddress { address, error in
                 guard let address = address, error == nil else
                 {return}
                 strFinalAddress = address
+                self.userSelectedLatitude = position.target.latitude
+                self.userSelectedLongitude = position.target.longitude
+                self.lblCurrentLocation.text = strFinalAddress
             }
-        } completion: {
-            self.userSelectedLatitude = position.target.latitude
-            self.userSelectedLongitude = position.target.longitude
-            self.lblCurrentLocation.text = strFinalAddress
         }
+      
 
         if cirlce != nil{
             cirlce.position = position.target

@@ -1106,12 +1106,25 @@
                                                                                                             <nil key="textColor"/>
                                                                                                             <nil key="highlightedColor"/>
                                                                                                         </label>
-                                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-c9-yqu">
+                                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-c9-yqu" customClass="FloatRatingView" customModule="Appurados" customModuleProvider="target">
                                                                                                             <rect key="frame" x="83" y="138.5" width="80" height="15"/>
                                                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="height" constant="15" id="HMo-fR-19K"/>
                                                                                                             </constraints>
+                                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="star"/>
+                                                                                                                <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="str"/>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                                                                                    <integer key="value" value="0"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                                                                                    <integer key="value" value="5"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                                                                                    <real key="value" value="2.5"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                            </userDefinedRuntimeAttributes>
                                                                                                         </view>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(5 Reviews)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcJ-r4-v1T">
                                                                                                             <rect key="frame" x="8" y="139" width="70" height="13.5"/>
@@ -1455,12 +1468,25 @@
                                                                                                             <nil key="textColor"/>
                                                                                                             <nil key="highlightedColor"/>
                                                                                                         </label>
-                                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oms-6T-Mbp">
+                                                                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oms-6T-Mbp" customClass="FloatRatingView" customModule="Appurados" customModuleProvider="target">
                                                                                                             <rect key="frame" x="83" y="138.5" width="80" height="15"/>
                                                                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                                                             <constraints>
                                                                                                                 <constraint firstAttribute="height" constant="15" id="Eye-Jh-JNl"/>
                                                                                                             </constraints>
+                                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                                <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="star"/>
+                                                                                                                <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="str"/>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="minRating">
+                                                                                                                    <integer key="value" value="0"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="maxRating">
+                                                                                                                    <integer key="value" value="5"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                                                                                    <real key="value" value="2.5"/>
+                                                                                                                </userDefinedRuntimeAttribute>
+                                                                                                            </userDefinedRuntimeAttributes>
                                                                                                         </view>
                                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(5 Reviews)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Znm-BD-1nI">
                                                                                                             <rect key="frame" x="8" y="139" width="70" height="13.5"/>
@@ -6011,6 +6037,11 @@
                                                                 <constraint firstAttribute="trailing" secondItem="8ml-Dn-3Kz" secondAttribute="trailing" constant="10" id="pSj-wt-CqO"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="lblPoints" destination="oI3-Vf-oHQ" id="dvC-Hd-CHf"/>
+                                                            <outlet property="lblTimeAgo" destination="gqJ-br-Vh3" id="IGh-zl-Qgv"/>
+                                                            <outlet property="lblTitle" destination="Uw9-p5-HFZ" id="shz-aZ-MTV"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                             </tableView>
@@ -9419,6 +9450,7 @@
         <image name="spoon" width="10.5" height="17.5"/>
         <image name="spray" width="64" height="64"/>
         <image name="star" width="16.5" height="16"/>
+        <image name="str" width="16.5" height="16"/>
         <image name="time" width="11" height="10.5"/>
         <image name="user-1" width="96" height="96"/>
         <namedColor name="AppColor">

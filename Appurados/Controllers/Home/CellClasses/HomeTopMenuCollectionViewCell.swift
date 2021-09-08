@@ -65,7 +65,7 @@ class HomeFreeDeliveryCollectionViewCell: UICollectionViewCell {
     @IBOutlet var lblDistance: UILabel!
     @IBOutlet var lblPrice: UILabel!
     @IBOutlet var lblDishes: UILabel!
-    @IBOutlet var vwRating: UIView!
+    @IBOutlet var vwRating: FloatRatingView!
     @IBOutlet var lblReviewCount: UILabel!
     
     override func awakeFromNib() {
@@ -97,7 +97,7 @@ class HomeOtherOfferCollectionViewCell: UICollectionViewCell {
     @IBOutlet var lblDistance: UILabel!
     @IBOutlet var lblPrice: UILabel!
     @IBOutlet var lblDishes: UILabel!
-    @IBOutlet var vwRating: UIView!
+    @IBOutlet var vwRating: FloatRatingView!
     @IBOutlet var lblReviewCount: UILabel!
     
     
