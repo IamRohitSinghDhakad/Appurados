@@ -69,7 +69,7 @@ extension OngoingViewController{
         
         
         let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
-                         "status":"pending"]as [String:Any]
+                         "status":"accept,shipped,accepted,picked"]as [String:Any]
         
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_GetOrders, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in

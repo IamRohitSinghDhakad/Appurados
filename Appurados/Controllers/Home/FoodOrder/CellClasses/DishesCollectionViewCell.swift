@@ -9,6 +9,8 @@ import UIKit
 
 class DishesCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet var lblOfferFood: UILabel!
+    @IBOutlet var imgvw: UIImageView!
     override func awakeFromNib() {
         
     }

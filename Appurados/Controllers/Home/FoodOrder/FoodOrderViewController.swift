@@ -14,6 +14,8 @@ class FoodOrderViewController: UIViewController {
     @IBOutlet var tblHgtConstants: NSLayoutConstraint!
     
     var arrAllRestaurants = [RestaurentsDetailModel]()
+    var arrOfferCategory = [OfferCategoryModel]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class FoodOrderViewController: UIViewController {
         self.tblRestaurents.delegate = self
         self.tblRestaurents.dataSource = self
 
+        self.call_WsGetOfferCategory()
         // Do any additional setup after loading the view.
     }
     
@@ -108,13 +111,22 @@ extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
 extension FoodOrderViewController: UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return self.arrOfferCategory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DishesCollectionViewCell", for: indexPath)as! DishesCollectionViewCell
         
+        let obj = self.arrOfferCategory[indexPath.row]
+        
+        cell.lblOfferFood.text = obj.strOffer_category_name
+        
+        let profilePic = obj.strOffer_category_image.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if profilePic != "" {
+                let url = URL(string: profilePic!)
+                cell.imgvw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+            }
         
         
         return cell
@@ -146,4 +158,57 @@ extension FoodOrderViewController: UICollectionViewDelegateFlowLayout{
             
         
     }
+}
+
+/// ============================== ##### get_offer_category  ##### ==================================//
+extension FoodOrderViewController{
+    
+    func call_WsGetOfferCategory(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+       // let dict = ["user_id":objAppShareData.UserDetail.strUserId]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_GetOfferCategory, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            
+            if status == MessageConstant.k_StatusCode{
+                
+                if let user_data  = response["result"] as? [[String:Any]]{
+
+                    for data in user_data{
+                        let obj = OfferCategoryModel.init(dict: data)
+                        self.arrOfferCategory.append(obj)
+                    }
+                    
+                    self.cvDishes.reloadData()
+                   
+                }
+                else {
+                    objAlert.showAlert(message: "Something went wrong!", title: "", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
 }
