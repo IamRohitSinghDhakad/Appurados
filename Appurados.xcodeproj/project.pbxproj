@@ -72,6 +72,8 @@
 		F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330726D505460006BE93 /* SignUpViewController.swift */; };
 		F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */; };
 		F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */; };
+		F9B1969626EBA2E200182139 /* ChangeAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1969526EBA2E200182139 /* ChangeAddressViewController.swift */; };
+		F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */; };
 		F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */; };
 		F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */; };
 		F9ED45C426D803080053404C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ED45C326D803080053404C /* MapKit.framework */; };
@@ -163,6 +165,8 @@
 		F9A7330726D505460006BE93 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
 		F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		F9B1969526EBA2E200182139 /* ChangeAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAddressViewController.swift; sourceTree = "<group>"; };
+		F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
 		F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailModel.swift; sourceTree = "<group>"; };
 		F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		F9ED45C326D803080053404C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -476,6 +480,8 @@
 			children = (
 				F98787C126DA2EEF00FA0DFF /* CellClasses */,
 				F98787BF26DA2D5700FA0DFF /* MyCartViewController.swift */,
+				F9B1969526EBA2E200182139 /* ChangeAddressViewController.swift */,
+				F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */,
 			);
 			path = MyCart;
 			sourceTree = "<group>";
@@ -818,11 +824,13 @@
 				F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */,
 				F9F3160526DB69B80015BCDC /* MyFavoritesViewController.swift in Sources */,
 				F978DE5526D4DD80009FA173 /* RevealViewController.swift in Sources */,
+				F9B1969626EBA2E200182139 /* ChangeAddressViewController.swift in Sources */,
 				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
 				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
 				F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */,
 				F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */,
+				F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */,
 				F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */,
 				F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */,
 				F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */,

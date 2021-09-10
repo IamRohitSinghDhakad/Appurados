@@ -46,7 +46,7 @@ class CartItemsModel: NSObject {
             self.strProductImage = image
         }
         
-        if let strProductName = dict["strProductName"] as? String{
+        if let strProductName = dict["product_name"] as? String{
             self.strProductName = strProductName
         }
         

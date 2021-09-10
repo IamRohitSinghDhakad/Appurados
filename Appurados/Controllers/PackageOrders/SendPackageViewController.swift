@@ -48,7 +48,7 @@ extension SendPackageViewController: UITableViewDelegate,UITableViewDataSource{
         let profilePic = obj.strUser_image.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             if profilePic != "" {
                 let url = URL(string: profilePic!)
-                cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
         

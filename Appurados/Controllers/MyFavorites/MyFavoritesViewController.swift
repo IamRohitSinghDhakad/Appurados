@@ -62,7 +62,7 @@ extension MyFavoritesViewController: UITableViewDelegate,UITableViewDataSource{
         let profilePic = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             if profilePic != "" {
                 let url = URL(string: profilePic!)
-                cell.imgVwVendor.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                cell.imgVwVendor.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
         return cell

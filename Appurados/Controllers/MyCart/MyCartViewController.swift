@@ -30,15 +30,26 @@ class MyCartViewController: UIViewController {
         self.tblOrders.delegate = self
         self.tblOrders.dataSource = self
         
+        self.subVwConfirmation.isHidden = true
         self.call_WsCartDetail()
         
         // Do any additional setup after loading the view.
     }
     
+    func setUserData(){
+        self.lblDeliveryCharges.text = self.strDileveryCharge
+        self.lblBasketTotal.text = self.strDileveryCharge
+    }
+    
     /// Manage Table vuew hight :----->
     override func viewWillLayoutSubviews() {
+       // super.updateViewConstraints()
+       // self.tblHgtConstant?.constant = self.tblOrders.contentSize.height + 50
+        DispatchQueue.main.async {
+            self.tblHgtConstant.constant = CGFloat((self.arrCartItems.count) * 100)//Here 30 is my cell height
+             self.tblOrders.reloadData()
+        }
         super.updateViewConstraints()
-        self.tblHgtConstant?.constant = self.tblOrders.contentSize.height
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -87,27 +98,27 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCartTableViewCell")as! MyCartTableViewCell
-        
         let obj = self.arrCartItems[indexPath.row]
         
-        cell.lblFinalPrice.text = obj.strActualPrice
-        cell.lblPrice.text = obj.strProductPrice
+        cell.lblFinalPrice.text = obj.strProductPrice//obj.strActualPrice
+        cell.lblPrice.text = obj.strActualPrice
         cell.lblQuantity.text = obj.strQuantity
         cell.lblDishName.text = obj.strProductName
         
         let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             if profilePic != "" {
                 let url = URL(string: profilePic!)
-                cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
+        self.lblBasketTotal.text = obj.strProductPrice
         
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.viewWillLayoutSubviews()
+     //   self.viewWillLayoutSubviews()
     }
     
 }
@@ -151,6 +162,7 @@ extension MyCartViewController {
                             self.strDileveryCharge = delivery_charge
                         }else  if let delivery_charge = response["delivery_charge"]as? Int{
                             self.strDileveryCharge = "\(delivery_charge)"
+                            
                         }
                         
                         for data in arrData{
@@ -159,8 +171,8 @@ extension MyCartViewController {
                         }
                         
                         self.tblOrders.reloadData()
-                        
                         self.viewWillLayoutSubviews()
+                        self.setUserData()
                         
                     }else{
                         //self.btnAllRestaurents.setTitle("All Restaurents ", for: .normal)

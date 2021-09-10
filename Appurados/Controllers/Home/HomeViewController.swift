@@ -37,6 +37,8 @@ class HomeViewController: UIViewController {
     var arrOfferItem = [RestaurentsDetailModel]()
     var arrFavoriteItem = [RestaurentsDetailModel]()
     var arrPopularItem = [RestaurentsDetailModel]()
+    var x = 1
+    var timer = Timer()
     
     //var arrTopMenu = ["Restaurantes", "Supermercado", "Mensajeria", "More"]
     
@@ -49,6 +51,12 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.timer.invalidate()
+    }
     
     
   /// ============================== ##### Setup Views ##### ==================================//
@@ -117,7 +125,10 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
         case cvMore:
             return self.arrCategoryData.count
         case cvSlider:
-            return self.arrBannerData.count
+            let count = self.arrBannerData.count
+            self.pageControllerSlider.numberOfPages = count
+            self.pageControllerSlider.isHidden = !(count > 1)
+            return count
         case cvRecommendedProducts:
             return self.arrRecomendedItem.count
         case cvFreeDelivery:
@@ -150,7 +161,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
                     let profilePic = obj?.strCategoryImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                         if profilePic != "" {
                             let url = URL(string: profilePic!)
-                            cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                            cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                         }
                 }
                 
@@ -161,7 +172,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
                 let profilePic = obj?.strCategoryImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                     if profilePic != "" {
                         let url = URL(string: profilePic!)
-                        cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                        cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                     }
             }
             
@@ -178,7 +189,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
                 let profilePic = user_image
                 if profilePic != "" {
                     let url = URL(string: profilePic)
-                    cell.imgVwSlider.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwSlider.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             }else{
                 cell.imgVwSlider.image = #imageLiteral(resourceName: "img")
@@ -205,13 +216,13 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if profilePic != "" {
                     let url = URL(string: profilePic!)
-                    cell.imgVwTop.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwTop.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             
             let restaurentImg = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if restaurentImg != "" {
                     let url = URL(string: restaurentImg!)
-                    cell.imgVwRestaurant.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwRestaurant.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             
             
@@ -245,7 +256,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             let restaurentImg = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if restaurentImg != "" {
                     let url = URL(string: restaurentImg!)
-                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             
             return cell
@@ -264,7 +275,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             let restaurentImg = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if restaurentImg != "" {
                     let url = URL(string: restaurentImg!)
-                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             
             return cell
@@ -285,13 +296,13 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if profilePic != "" {
                     let url = URL(string: profilePic!)
-                    cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             
             let restaurentImg = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if restaurentImg != "" {
                     let url = URL(string: restaurentImg!)
-                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "img-1"))
+                    cell.imgVwRastaurent.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
                 }
             
             return cell
@@ -400,6 +411,41 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout{
             return CGSize(width: 200, height: 200)
         }
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        if scrollView == self.cvSlider{
+            self.pageControllerSlider?.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+        }
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvSlider{
+            self.pageControllerSlider?.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
+        }
+       
+    }
+}
+
+///Auto Scroll logic
+extension HomeViewController{
+   
+    func setTimer() {
+        self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(HomeViewController.autoScroll), userInfo: nil, repeats: true)
+    }
+   
+    @objc func autoScroll() {
+        if self.x < self.arrBannerData.count {
+          let indexPath = IndexPath(item: x, section: 0)
+          self.cvSlider.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+          self.x = self.x + 1
+        }else{
+          self.x = 0
+          self.cvSlider.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
+    
 }
 
 
@@ -435,6 +481,7 @@ extension HomeViewController{
 
                     self.cvSlider.reloadData()
                     
+                    self.setTimer()
                     self.call_WsGetCategory()
                     
                 }else{
