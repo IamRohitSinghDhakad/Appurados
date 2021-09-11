@@ -1,19 +1,14 @@
 //
-//  FoodDetailTableViewCell.swift
+//  VendorDetailTableViewCell.swift
 //  Appurados
 //
-//  Created by Rohit Singh Dhakad on 01/09/21.
+//  Created by Rohit Singh Dhakad on 11/09/21.
 //
 
 import UIKit
 
-class FoodDetailTableViewCell: UITableViewCell {
+class VendorDetailTableViewCell: UITableViewCell {
 
-    @IBOutlet var lblCategoryHeading: UILabel!
-    @IBOutlet var lblTitls: UILabel!
-    @IBOutlet var lblDescription: UILabel!
-    @IBOutlet var imgVwDish: UIImageView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -72,6 +72,10 @@
 		F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330526D5002C0006BE93 /* LoginViewController.swift */; };
 		F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330726D505460006BE93 /* SignUpViewController.swift */; };
 		F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */; };
+		F9AE5FBA26EC8AD500486077 /* VendorDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AE5FB926EC8AD500486077 /* VendorDetailTableViewCell.swift */; };
+		F9AE5FBC26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AE5FBB26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift */; };
+		F9AE5FBE26EC8B6900486077 /* FoodCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AE5FBD26EC8B6900486077 /* FoodCategoryTableViewCell.swift */; };
+		F9AE5FC026EC8C1A00486077 /* FoodDetailVendorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AE5FBF26EC8C1A00486077 /* FoodDetailVendorViewController.swift */; };
 		F9AEB24926E01E35002CE923 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */; };
 		F9B1969626EBA2E200182139 /* ChangeAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1969526EBA2E200182139 /* ChangeAddressViewController.swift */; };
 		F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */; };
@@ -166,6 +170,10 @@
 		F9A7330526D5002C0006BE93 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F9A7330726D505460006BE93 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishDetailViewController.swift; sourceTree = "<group>"; };
+		F9AE5FB926EC8AD500486077 /* VendorDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorDetailTableViewCell.swift; sourceTree = "<group>"; };
+		F9AE5FBB26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		F9AE5FBD26EC8B6900486077 /* FoodCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		F9AE5FBF26EC8C1A00486077 /* FoodDetailVendorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailVendorViewController.swift; sourceTree = "<group>"; };
 		F9AEB24826E01E35002CE923 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		F9B1969526EBA2E200182139 /* ChangeAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAddressViewController.swift; sourceTree = "<group>"; };
 		F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
@@ -618,6 +626,7 @@
 				F9AB33E926D8DFA100D1AF78 /* DishDetailViewController.swift */,
 				F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */,
 				F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */,
+				F9AE5FBF26EC8C1A00486077 /* FoodDetailVendorViewController.swift */,
 			);
 			path = FoodOrder;
 			sourceTree = "<group>";
@@ -630,6 +639,9 @@
 				F92793D626DE7C19002DA4EF /* VarientTableViewCell.swift */,
 				F935B01926DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift */,
 				F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */,
+				F9AE5FB926EC8AD500486077 /* VendorDetailTableViewCell.swift */,
+				F9AE5FBB26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift */,
+				F9AE5FBD26EC8B6900486077 /* FoodCategoryTableViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -786,6 +798,7 @@
 				F978DE6226D4E7FC009FA173 /* AppSharedData.swift in Sources */,
 				F92793D526DE7B0B002DA4EF /* OrderDetailViewController.swift in Sources */,
 				F978DE5326D4DD80009FA173 /* SideMenuController.swift in Sources */,
+				F9AE5FBA26EC8AD500486077 /* VendorDetailTableViewCell.swift in Sources */,
 				F978DE4D26D4DD80009FA173 /* Preferences.swift in Sources */,
 				F978DE5026D4DD80009FA173 /* UIViewController+Container.swift in Sources */,
 				F9A0104526EA95E600D1580A /* OfferCategoryModel.swift in Sources */,
@@ -813,6 +826,7 @@
 				F9F3160126DB69830015BCDC /* NotificationViewController.swift in Sources */,
 				F9F74AA626D82FE600E2822B /* DishesCollectionViewCell.swift in Sources */,
 				F98787C726DA5FA400FA0DFF /* MyOrdersViewController.swift in Sources */,
+				F9AE5FBE26EC8B6900486077 /* FoodCategoryTableViewCell.swift in Sources */,
 				F9F3160B26DB9B740015BCDC /* SendPackageTableViewCell.swift in Sources */,
 				F978DE5D26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift in Sources */,
 				F9F315FB26DB693E0015BCDC /* AboutUsViewController.swift in Sources */,
@@ -833,6 +847,7 @@
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
 				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
 				F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */,
+				F9AE5FC026EC8C1A00486077 /* FoodDetailVendorViewController.swift in Sources */,
 				F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */,
 				F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */,
 				F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */,
@@ -841,6 +856,7 @@
 				F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */,
 				F91C596026D9350200808697 /* ProfileViewController.swift in Sources */,
 				F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */,
+				F9AE5FBC26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift in Sources */,
 				F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */,
 				F978DE5126D4DD80009FA173 /* Segue.swift in Sources */,
 				F978DE2D26D4DD56009FA173 /* ValidationManager.swift in Sources */,

@@ -95,8 +95,12 @@ extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+      //  vc.strVendorID = self.arrAllRestaurants[indexPath.row].strVendorID
+        vc.objVendorDetails = self.arrAllRestaurants[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
         
-        self.pushVc(viewConterlerId: "FoodDetailViewController")
+        //self.pushVc(viewConterlerId: "FoodDetailViewController")
        // self.pushVc(viewConterlerId: "OrderDetailViewController")
     }
     

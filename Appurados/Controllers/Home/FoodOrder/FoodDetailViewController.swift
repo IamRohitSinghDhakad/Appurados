@@ -16,6 +16,11 @@ class FoodDetailViewController: UIViewController {
     @IBOutlet var tblHgtConstact: NSLayoutConstraint!
     
     var lastContentOffset = CGFloat()
+    var strVendorID = ""
+    
+    var objVendorDetails: RestaurentsDetailModel?
+    var arrSubCategoryID = [SubCategoryModel]()
+    var arrProductDetails = [ProductModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +32,8 @@ class FoodDetailViewController: UIViewController {
         self.tblVwContent.dataSource = self
         
         self.scrollVw.delegate = self
+        
+        self.call_WsGetSubCategory(strVendorID: objVendorDetails!.strVendorID)
 
     }
     
@@ -117,4 +124,188 @@ extension FoodDetailViewController: UIScrollViewDelegate{
         //        headerFrame.origin.y = CGFloat(max(self.cvStickyHeader.frame.origin.y, scrollView.contentOffset.y))
         //        self.cvStickyHeader.frame = headerFrame
     }
+}
+
+
+extension FoodDetailViewController{
+    
+    //MARK:- Free Delivery
+    func call_WsGetGetVendorDetails(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":self.strVendorID,
+                         "category_id":"",
+                         "lat":objAppShareData.UserDetail.strlatitude,
+                         "lng":objAppShareData.UserDetail.strlongitude,
+                         "free_delivery":"",
+                         "has_offers":"",
+                         "popular":"",
+                         "my_favorite":"",
+                         "offer_category_id":"",
+                         "ios_register_id":""]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+         //   objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+//                    for data in arrData{
+//                        let obj = RestaurentsDetailModel.init(dict: data)
+//                        self.arrFreeDeliveryItem.append(obj)
+//                    }
+//                    self.call_WsGetRecomendedProduct()
+//                    self.cvFreeDelivery.reloadData()
+                    
+                //    self.call_WsGetSubCategory()
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+//                    self.call_WsGetRecomendedProduct()
+//                    self.vwFreeDeliveryCV.isHidden = true
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    //MARK:- Free Delivery
+    func call_WsGetSubCategory(strVendorID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":strVendorID,
+                         "category_id":"",
+                         "lat":"",
+                         "lng":"",
+                         "free_delivery":"",
+                         "has_offers":"",
+                         "popular":"",
+                         "my_favorite":"",
+                         "offer_category_id":"",
+                         "ios_register_id":""]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getSubCategory, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+         //   objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    for data in arrData{
+                        let obj = SubCategoryModel.init(dict: data)
+                        self.arrSubCategoryID.append(obj)
+                    }
+//                    self.call_WsGetRecomendedProduct()
+//                    self.cvFreeDelivery.reloadData()
+                    self.call_WsGetAllProducts(strVendorID: strVendorID)
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+//                    self.call_WsGetRecomendedProduct()
+//                    self.vwFreeDeliveryCV.isHidden = true
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    //MARK:- Free Delivery
+    func call_WsGetAllProducts(strVendorID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":strVendorID,
+                         "category_id":"",
+                         "lat":"",
+                         "lng":"",
+                         "free_delivery":"",
+                         "has_offers":"",
+                         "popular":"",
+                         "my_favorite":"",
+                         "offer_category_id":"",
+                         "ios_register_id":""]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getProduct, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+         //   objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    for data in arrData{
+                        let obj = ProductModel.init(dict: data)
+                        self.arrProductDetails.append(obj)
+                    }
+//                    self.call_WsGetRecomendedProduct()
+//                    self.cvFreeDelivery.reloadData()
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+//                    self.call_WsGetRecomendedProduct()
+//                    self.vwFreeDeliveryCV.isHidden = true
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
 }
