@@ -9,21 +9,27 @@ import UIKit
 
 class AddNewAddressViewController: UIViewController {
 
+    var strAddressType = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnAddressTypeSelect(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            self.strAddressType = "Home"
+        case 1:
+            self.strAddressType = "Office"
+        default:
+            self.strAddressType = "Other"
+        }
     }
-    */
+    @IBAction func btnOnBackHeader(_ sender: Any) {
+        onBackPressed()
+    }
+    
 
 }

@@ -10,6 +10,7 @@ import UIKit
 class ChangeAddressViewController: UIViewController {
 
     @IBOutlet weak var tblAddress: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,17 +18,11 @@ class ChangeAddressViewController: UIViewController {
     }
     
 
-    @IBOutlet weak var btnAddNewAddress: UILabel!
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnAddNewAddress(_ sender: Any) {
+        self.pushVc(viewConterlerId: "AddNewAddressViewController")
     }
-   
-     */
+
     @IBAction func btnOnBackHeader(_ sender: Any) {
+        onBackPressed()
     }
 }

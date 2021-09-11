@@ -59,7 +59,7 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOnChangeAddress(_ sender: Any) {
-        
+        self.pushVc(viewConterlerId: "ChangeAddressViewController")
     }
     
     @IBAction func btnOpenSideMenu(_ sender: Any) {
