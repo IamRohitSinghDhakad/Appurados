@@ -29,7 +29,7 @@ class MyRewardViewController: UIViewController {
     }
     
     @IBAction func btnRedeemNow(_ sender: Any) {
-        
+        self.pushVc(viewConterlerId: "RedeemRewardViewController")
     }
 }
 

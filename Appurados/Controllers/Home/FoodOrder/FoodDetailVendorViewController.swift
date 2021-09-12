@@ -11,7 +11,6 @@ class FoodDetailVendorViewController: UIViewController {
     
     @IBOutlet var tblFoodDetails: UITableView!
     
-    
     var cell_FoodCategoryTableViewCell: FoodCategoryTableViewCell?
     
     var objVendorDetails: RestaurentsDetailModel?
@@ -71,6 +70,20 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let cell = self.tblFoodDetails.dequeueReusableCell(withIdentifier: "VendorDetailTableViewCell") as! VendorDetailTableViewCell
+            
+            cell.lblVendorName.text = objVendorDetails?.strVendorName
+            cell.lblSpecilaity.text = objVendorDetails?.strSpecialties
+            cell.lblAddress.text = objVendorDetails?.strAddress
+            cell.lblDistance.text = objVendorDetails?.strDistance
+            cell.lblDiscount.text = objVendorDetails?.strDiscountLabel
+           
+             let profilePic = objVendorDetails?.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                 if profilePic != "" {
+                     let url = URL(string: profilePic!)
+                    cell.imgVwVendor.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
+                 }
+             
+            
             return cell
         }
         else {
@@ -99,8 +112,6 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tblFoodDetails.dequeueReusableCell(withIdentifier: "FoodDetailTableViewCell", for: indexPath) as! FoodDetailTableViewCell
-        
-    
         
         let obj = self.arrProductDetails[indexPath.row]
         

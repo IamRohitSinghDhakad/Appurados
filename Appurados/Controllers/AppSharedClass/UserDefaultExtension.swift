@@ -27,6 +27,9 @@ extension UserDefaults{
         static let kAuthToken = "authToken"
         static  let kUserId = "userId"
         static  let kUserName = "userName"
+        static let strAddress = "address"
+        static let strLatitude = "latitude"
+        static let strLongitute = "longitute"
     }
     
 }

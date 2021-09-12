@@ -41,6 +41,21 @@ class AppSharedData: NSObject {
         }
     }
     
+    open var isLocationDetails: Bool {
+        get {
+            if (UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.strAddress) as? String) != nil {
+                objAppShareData.UserDetail.strAddress = UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.strAddress) as! String
+                objAppShareData.UserDetail.strlatitude = UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.strLatitude) as! String
+                objAppShareData.UserDetail.strlongitude = UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.strLongitute) as! String
+                
+                return true
+            }
+            return false
+        }
+    }
+    
+    
+    
     // MARK: - saveUpdateUserInfoFromAppshareData ---------------------
     func SaveUpdateUserInfoFromAppshareData(userDetail:[String:Any])
     {

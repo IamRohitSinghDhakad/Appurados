@@ -12,6 +12,8 @@ class FoodOrderViewController: UIViewController {
     @IBOutlet var cvDishes: UICollectionView!
     @IBOutlet var tblRestaurents: UITableView!
     @IBOutlet var tblHgtConstants: NSLayoutConstraint!
+    @IBOutlet var vwSearchBar: UIView!
+    @IBOutlet var tfSearchBar: UITextField!
     
     var arrAllRestaurants = [RestaurentsDetailModel]()
     var arrOfferCategory = [OfferCategoryModel]()
@@ -19,6 +21,7 @@ class FoodOrderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.vwSearchBar.isHidden = true
         
         self.cvDishes.delegate = self
         self.cvDishes.dataSource = self
@@ -27,6 +30,8 @@ class FoodOrderViewController: UIViewController {
         self.tblRestaurents.dataSource = self
 
         self.call_WsGetOfferCategory()
+        
+        
         // Do any additional setup after loading the view.
     }
     
@@ -51,6 +56,7 @@ class FoodOrderViewController: UIViewController {
     }
     
     @IBAction func btnOnSearch(_ sender: Any) {
+        self.vwSearchBar.isHidden = false
         
     }
 }

@@ -317,7 +317,19 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
       //  self.pushVc(viewConterlerId: "OrderDetailViewController")
         
         if collectionView == self.cvTopMenu{
-            if indexPath.row == 3{
+            let obj = self.arrTempCategoryData[indexPath.row]
+            switch obj.strCategoryName {
+            case "Restaurantes":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodOrderViewController")as! FoodOrderViewController
+                vc.arrAllRestaurants = arrTotalRestaurents
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "Supermercados":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "Mensajeria":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackageFormFillViewController")as! SendPackageFormFillViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
                 self.subVwMore.isHidden = false
             }
         }

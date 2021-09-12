@@ -45,11 +45,20 @@ class ViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
       
         if AppSharedData.sharedObject().isLoggedIn {
-           // let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
-            let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController)!
-            let navController = UINavigationController(rootViewController: vc)
-            navController.isNavigationBarHidden = true
-            appDelegate.window?.rootViewController = navController
+            
+            if AppSharedData.sharedObject().isLocationDetails{
+                let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+                let navController = UINavigationController(rootViewController: vc)
+                navController.isNavigationBarHidden = true
+                appDelegate.window?.rootViewController = navController
+                
+            }else{
+                
+                let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "MapViewController") as? MapViewController)!
+                let navController = UINavigationController(rootViewController: vc)
+                navController.isNavigationBarHidden = true
+                appDelegate.window?.rootViewController = navController
+            }
         }
         else {
             let vc = (self.authStoryboard.instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController)!

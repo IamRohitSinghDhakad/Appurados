@@ -10,6 +10,7 @@ import UIKit
 class NotificationViewController: UIViewController {
 
     @IBOutlet weak var tblNotifications: UITableView!
+    var arrNotification = [NotificationModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +33,17 @@ class NotificationViewController: UIViewController {
 extension NotificationViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.arrNotification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationTableViewCell")as! NotificationTableViewCell
         
+        let obj = self.arrNotification[indexPath.row]
         
+        
+        cell.lblTitle.text = obj.strNotificationtitle
+        cell.lblDesc.text = obj.strTimeAgo
         
         return cell
     }
@@ -70,14 +75,14 @@ extension NotificationViewController{
             if status == MessageConstant.k_StatusCode{
 
                 if let arrData = response["result"]as? [[String:Any]]{
-                    var strTotalPoints:Int = 0
+                    //var strTotalPoints:Int = 0
                     
                     for data in arrData{
                         let obj = NotificationModel.init(dict: data)
-                        //self.arrRewardList.append(obj)
+                        self.arrNotification.append(obj)
                     }
                     
-                   
+                    self.tblNotifications.reloadData()
                     
                 }else{
                     objAlert.showAlert(message: "Notification Data not found", title: "Alert", controller: self)

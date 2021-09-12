@@ -82,6 +82,10 @@
 		F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */; };
 		F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */; };
 		F9ED45C426D803080053404C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ED45C326D803080053404C /* MapKit.framework */; };
+		F9F10D7826EE7A1800EFC362 /* RedeemRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F10D7726EE7A1800EFC362 /* RedeemRewardViewController.swift */; };
+		F9F10D7A26EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F10D7926EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift */; };
+		F9F10D7C26EE83C600EFC362 /* PromocodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F10D7B26EE83C600EFC362 /* PromocodeModel.swift */; };
+		F9F10D7E26EE950500EFC362 /* SendPackageFormFillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F10D7D26EE950400EFC362 /* SendPackageFormFillViewController.swift */; };
 		F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */; };
 		F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315F326DB667B0015BCDC /* MyRewardTableViewCell.swift */; };
 		F9F315FB26DB693E0015BCDC /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F315FA26DB693E0015BCDC /* AboutUsViewController.swift */; };
@@ -181,6 +185,10 @@
 		F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		F9ED45C326D803080053404C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F9ED45C526D803180053404C /* Appurados.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Appurados.entitlements; sourceTree = "<group>"; };
+		F9F10D7726EE7A1800EFC362 /* RedeemRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemRewardViewController.swift; sourceTree = "<group>"; };
+		F9F10D7926EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemRewardCollectionViewCell.swift; sourceTree = "<group>"; };
+		F9F10D7B26EE83C600EFC362 /* PromocodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromocodeModel.swift; sourceTree = "<group>"; };
+		F9F10D7D26EE950400EFC362 /* SendPackageFormFillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPackageFormFillViewController.swift; sourceTree = "<group>"; };
 		F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardViewController.swift; sourceTree = "<group>"; };
 		F9F315F326DB667B0015BCDC /* MyRewardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRewardTableViewCell.swift; sourceTree = "<group>"; };
 		F9F315FA26DB693E0015BCDC /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
@@ -547,6 +555,7 @@
 				F9A0104426EA95E600D1580A /* OfferCategoryModel.swift */,
 				F9A0104626EA9E9700D1580A /* SendPackageModel.swift */,
 				F9A0104826EAA71A00D1580A /* CartItemsModel.swift */,
+				F9F10D7B26EE83C600EFC362 /* PromocodeModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -556,6 +565,8 @@
 			children = (
 				F9F315F126DB63C70015BCDC /* MyRewardViewController.swift */,
 				F9F315F326DB667B0015BCDC /* MyRewardTableViewCell.swift */,
+				F9F10D7726EE7A1800EFC362 /* RedeemRewardViewController.swift */,
+				F9F10D7926EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift */,
 			);
 			path = MyReward;
 			sourceTree = "<group>";
@@ -606,6 +617,7 @@
 			children = (
 				F9F3160926DB9B510015BCDC /* CellClasses */,
 				F9F3160726DB69D50015BCDC /* SendPackageViewController.swift */,
+				F9F10D7D26EE950400EFC362 /* SendPackageFormFillViewController.swift */,
 			);
 			path = PackageOrders;
 			sourceTree = "<group>";
@@ -780,6 +792,7 @@
 			files = (
 				F987C49A26E2A16400751CA8 /* WebServiceHelper.swift in Sources */,
 				F9A7330826D505460006BE93 /* SignUpViewController.swift in Sources */,
+				F9F10D7E26EE950500EFC362 /* SendPackageFormFillViewController.swift in Sources */,
 				F95F541126E527CD0047D1A7 /* RestaurentsDetailModel.swift in Sources */,
 				F978DE5226D4DD80009FA173 /* UIView+Container.swift in Sources */,
 				F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */,
@@ -819,6 +832,7 @@
 				F978DE5C26D4DDA2009FA173 /* AppSideMenuViewController.swift in Sources */,
 				F98787CE26DA62A600FA0DFF /* CompleteViewController.swift in Sources */,
 				F9F74AA426D82E7200E2822B /* FoodOrderViewController.swift in Sources */,
+				F9F10D7A26EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift in Sources */,
 				F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */,
 				F9A0104726EA9E9700D1580A /* SendPackageModel.swift in Sources */,
 				F978DE5726D4DD80009FA173 /* SWRevealViewController.m in Sources */,
@@ -838,12 +852,14 @@
 				F978DE4C26D4DD80009FA173 /* StatusBar.swift in Sources */,
 				F978DE4B26D4DD80009FA173 /* UIViewController+SideMenu.swift in Sources */,
 				F9F315FE26DB69560015BCDC /* SupportViewController.swift in Sources */,
+				F9F10D7C26EE83C600EFC362 /* PromocodeModel.swift in Sources */,
 				F9F3160826DB69D50015BCDC /* SendPackageViewController.swift in Sources */,
 				F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */,
 				F9F3160526DB69B80015BCDC /* MyFavoritesViewController.swift in Sources */,
 				F978DE5526D4DD80009FA173 /* RevealViewController.swift in Sources */,
 				F9B1969626EBA2E200182139 /* ChangeAddressViewController.swift in Sources */,
 				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,
+				F9F10D7826EE7A1800EFC362 /* RedeemRewardViewController.swift in Sources */,
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
 				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
 				F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */,

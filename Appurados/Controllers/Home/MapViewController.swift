@@ -79,14 +79,29 @@ class MapViewController: UIViewController {
     
     
     @IBAction func btnConfrmLocation(_ sender: Any) {
-        objAppShareData.UserDetail.strlatitude = "\(String(describing: self.userSelectedLatitude))"
-        objAppShareData.UserDetail.strlongitude = "\(String(describing: self.userSelectedLongitude))"
-        objAppShareData.UserDetail.strAddress = self.lblCurrentLocation.text ?? "Something went wrong!"
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
-        let navController = UINavigationController(rootViewController: vc)
-        navController.isNavigationBarHidden = true
-        appDelegate.window?.rootViewController = navController
+        
+        if self.lblCurrentLocation.text!.isEmpty{
+            objAlert.showAlert(message: "Please select location", title: "Alert", controller: self)
+        }else{
+            
+            objAppShareData.UserDetail.strlatitude = "\(String(describing: self.userSelectedLatitude))"
+            objAppShareData.UserDetail.strlongitude = "\(String(describing: self.userSelectedLongitude))"
+            objAppShareData.UserDetail.strAddress = self.lblCurrentLocation.text ?? "Something went wrong!"
+            
+            UserDefaults.standard.setValue(objAppShareData.UserDetail.strlatitude, forKey: UserDefaults.KeysDefault.strLatitude)
+            UserDefaults.standard.setValue(objAppShareData.UserDetail.strlongitude, forKey: UserDefaults.KeysDefault.strLongitute)
+            UserDefaults.standard.setValue(objAppShareData.UserDetail.strAddress, forKey: UserDefaults.KeysDefault.strAddress)
+            
+            print(UserDefaults.standard.value(forKey:  UserDefaults.KeysDefault.strAddress))
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+            let navController = UINavigationController(rootViewController: vc)
+            navController.isNavigationBarHidden = true
+            appDelegate.window?.rootViewController = navController
+        }
+        
+       
     }
     
     
