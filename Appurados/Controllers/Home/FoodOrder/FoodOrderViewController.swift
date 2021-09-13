@@ -88,6 +88,7 @@ class FoodOrderViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FilterViewController")as! FilterViewController
         vc.strTitle = "Cuisines"
         vc.isFromFilter = false
+        vc.arrSubCategory = self.arrOfferCategory
         vc.closerForDictFilter = { dict
             in
             print(dict)
