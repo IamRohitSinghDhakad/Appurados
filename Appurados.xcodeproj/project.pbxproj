@@ -21,6 +21,8 @@
 		F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */; };
 		F935B01A26DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01926DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift */; };
 		F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */; };
+		F93A75C226EF6D6C009E34BB /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A75C126EF6D6C009E34BB /* FilterViewController.swift */; };
+		F93A75C426EF922F009E34BB /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */; };
 		F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A526D4160A007390F7 /* AppDelegate.swift */; };
 		F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A726D4160A007390F7 /* SceneDelegate.swift */; };
 		F95597AA26D4160A007390F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A926D4160A007390F7 /* ViewController.swift */; };
@@ -117,6 +119,8 @@
 		F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewController.swift; sourceTree = "<group>"; };
 		F935B01926DEBAAA00FC86A7 /* FoodDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
+		F93A75C126EF6D6C009E34BB /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 		F95597A226D4160A007390F7 /* Appurados.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appurados.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95597A526D4160A007390F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F95597A726D4160A007390F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -639,6 +643,7 @@
 				F92793D426DE7B0B002DA4EF /* OrderDetailViewController.swift */,
 				F935B01726DEBA5E00FC86A7 /* FoodDetailViewController.swift */,
 				F9AE5FBF26EC8C1A00486077 /* FoodDetailVendorViewController.swift */,
+				F93A75C126EF6D6C009E34BB /* FilterViewController.swift */,
 			);
 			path = FoodOrder;
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				F9AE5FB926EC8AD500486077 /* VendorDetailTableViewCell.swift */,
 				F9AE5FBB26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift */,
 				F9AE5FBD26EC8B6900486077 /* FoodCategoryTableViewCell.swift */,
+				F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -835,6 +841,7 @@
 				F9F10D7A26EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift in Sources */,
 				F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */,
 				F9A0104726EA9E9700D1580A /* SendPackageModel.swift in Sources */,
+				F93A75C226EF6D6C009E34BB /* FilterViewController.swift in Sources */,
 				F978DE5726D4DD80009FA173 /* SWRevealViewController.m in Sources */,
 				F978DE6126D4E7FC009FA173 /* UserDefaultExtension.swift in Sources */,
 				F9F3160126DB69830015BCDC /* NotificationViewController.swift in Sources */,
@@ -874,6 +881,7 @@
 				F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */,
 				F9AE5FBC26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift in Sources */,
 				F935B01826DEBA5E00FC86A7 /* FoodDetailViewController.swift in Sources */,
+				F93A75C426EF922F009E34BB /* FilterTableViewCell.swift in Sources */,
 				F978DE5126D4DD80009FA173 /* Segue.swift in Sources */,
 				F978DE2D26D4DD56009FA173 /* ValidationManager.swift in Sources */,
 			);

@@ -13,6 +13,7 @@ class MyFavoritesViewController: UIViewController {
     @IBOutlet var tfSearch: UITextField!
     
     var arrFavList = [RestaurentsDetailModel]()
+    var arrFavListFiltered = [RestaurentsDetailModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,8 @@ class MyFavoritesViewController: UIViewController {
         
         self.call_WsMyFavList()
         
+        self.tfSearch.delegate = self
+        self.tfSearch.addTarget(self, action: #selector(searchContactAsPerText(_ :)), for: .editingChanged)
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
@@ -35,13 +38,13 @@ class MyFavoritesViewController: UIViewController {
 extension MyFavoritesViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrFavList.count
+        return self.arrFavListFiltered.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FoodOrderTableViewCell")as! FoodOrderTableViewCell
         
-        let obj = self.arrFavList[indexPath.row]
+        let obj = self.arrFavListFiltered[indexPath.row]
         cell.lblVendorName.text = obj.strVendorName
         cell.lblSpeciality.text = obj.strSpecialties
         cell.lblTime.text = obj.strTime
@@ -68,6 +71,33 @@ extension MyFavoritesViewController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
+}
+
+//MARK:- Searching
+extension MyFavoritesViewController{
+    
+    @objc func searchContactAsPerText(_ textfield:UITextField) {
+     
+        self.arrFavListFiltered.removeAll()
+        if textfield.text?.count != 0 {
+            for dicData in self.arrFavList {
+                let isMachingWorker : NSString = (dicData.strVendorName) as NSString
+                let range = isMachingWorker.lowercased.range(of: textfield.text!, options: NSString.CompareOptions.caseInsensitive, range: nil,   locale: nil)
+                if range != nil {
+                    arrFavListFiltered.append(dicData)
+                }
+            }
+        } else {
+            self.arrFavListFiltered = self.arrFavList
+        }
+        if self.arrFavListFiltered.count == 0{
+            self.tblRestaurents.displayBackgroundText(text: "No Record Found")
+        }else{
+            self.tblRestaurents.displayBackgroundText(text: "")
+        }
+        
+            self.tblRestaurents.reloadData()
+    }
 }
 
 extension MyFavoritesViewController{
@@ -110,6 +140,8 @@ extension MyFavoritesViewController{
                         let obj = RestaurentsDetailModel.init(dict: data)
                         self.arrFavList.append(obj)
                     }
+                    
+                    self.arrFavListFiltered = self.arrFavList
                     self.tblRestaurents.reloadData()
                                         
                 }else{

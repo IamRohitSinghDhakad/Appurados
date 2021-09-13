@@ -16,12 +16,16 @@ class FoodOrderViewController: UIViewController {
     @IBOutlet var tfSearchBar: UITextField!
     
     var arrAllRestaurants = [RestaurentsDetailModel]()
+    var arrFilteredAllrestaurents = [RestaurentsDetailModel]()
     var arrOfferCategory = [OfferCategoryModel]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.vwSearchBar.isHidden = true
+    
+        self.tfSearchBar.delegate = self
+        self.tfSearchBar.addTarget(self, action: #selector(searchContactAsPerText(_ :)), for: .editingChanged)
         
         self.cvDishes.delegate = self
         self.cvDishes.dataSource = self
@@ -35,9 +39,23 @@ class FoodOrderViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillLayoutSubviews() {
-        super.updateViewConstraints()
-        self.tblHgtConstants?.constant = self.tblRestaurents.contentSize.height
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
+    
+//    override func viewWillLayoutSubviews() {
+//        DispatchQueue.main.async {
+//           // //Here 30 is my cell height
+//            self.tblHgtConstants.constant = CGFloat((self.arrFilteredAllrestaurents.count) * 100)
+//             self.tblRestaurents.reloadData()
+//        }
+//        super.updateViewConstraints()
+//    }
+    
+    override func viewDidLayoutSubviews() {
+        tblRestaurents.heightAnchor.constraint(equalToConstant:
+        tblRestaurents.contentSize.height).isActive = true
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
@@ -46,17 +64,54 @@ class FoodOrderViewController: UIViewController {
     
 
     @IBAction func btnOnFilter(_ sender: Any) {
+     
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FilterViewController")as! FilterViewController
+        vc.strTitle = "Filter"
+        vc.isFromFilter = true
+        vc.closerForDictFilter = { dict
+            in
+            print(dict)
+            if dict.count != 0{
+                print(dict)
+            }
+        }
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true // available in IOS13
+        }
+        self.modalPresentationStyle = .overCurrentContext
+        self.navigationController?.present(vc, animated: true, completion: nil)
         
     }
     
 
     @IBAction func btnOnCuisines(_ sender: Any) {
-        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FilterViewController")as! FilterViewController
+        vc.strTitle = "Cuisines"
+        vc.isFromFilter = false
+        vc.closerForDictFilter = { dict
+            in
+            print(dict)
+            if dict.count != 0{
+                print(dict)
+            }
+        }
+        if #available(iOS 13.0, *) {
+            self.isModalInPresentation = true // available in IOS13
+        }
+        self.modalPresentationStyle = .overCurrentContext
+        self.navigationController?.present(vc, animated: true, completion: nil)
         
     }
     
     @IBAction func btnOnSearch(_ sender: Any) {
-        self.vwSearchBar.isHidden = false
+        
+        if self.vwSearchBar.isHidden{
+            self.vwSearchBar.isHidden = false
+        }else{
+            self.tfSearchBar.text = ""
+            self.vwSearchBar.isHidden = true
+        }
+        
         
     }
 }
@@ -66,13 +121,16 @@ class FoodOrderViewController: UIViewController {
 extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.arrAllRestaurants.count
+        self.tblHgtConstants.constant = CGFloat((self.arrFilteredAllrestaurents.count) * 100)
+        
+        return self.arrFilteredAllrestaurents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoodOrderTableViewCell")as! FoodOrderTableViewCell
         
-        let obj = self.arrAllRestaurants[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoodOrderTableViewCell")as! FoodOrderTableViewCell
+                
+        let obj = self.arrFilteredAllrestaurents[indexPath.row]
         cell.lblVendorName.text = obj.strVendorName
         cell.lblSpeciality.text = obj.strSpecialties
         cell.lblTime.text = obj.strTime
@@ -102,20 +160,43 @@ extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
-      //  vc.strVendorID = self.arrAllRestaurants[indexPath.row].strVendorID
-        vc.objVendorDetails = self.arrAllRestaurants[indexPath.row]
+        vc.objVendorDetails = self.arrFilteredAllrestaurents[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
-        
-        //self.pushVc(viewConterlerId: "FoodDetailViewController")
-       // self.pushVc(viewConterlerId: "OrderDetailViewController")
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.viewWillLayoutSubviews()
+       // self.viewWillLayoutSubviews()
     }
     
+}
+
+//MARK:- Searching
+extension FoodOrderViewController{
     
-    
+    @objc func searchContactAsPerText(_ textfield:UITextField) {
+        self.tblHgtConstants.constant = 100
+        self.arrFilteredAllrestaurents.removeAll()
+        if textfield.text?.count != 0 {
+            for dicData in self.arrAllRestaurants {
+                let isMachingWorker : NSString = (dicData.strVendorName) as NSString
+                let range = isMachingWorker.lowercased.range(of: textfield.text!, options: NSString.CompareOptions.caseInsensitive, range: nil,   locale: nil)
+                if range != nil {
+                    arrFilteredAllrestaurents.append(dicData)
+                }
+            }
+        } else {
+            self.arrFilteredAllrestaurents = self.arrAllRestaurants
+        }
+        if self.arrFilteredAllrestaurents.count == 0{
+            self.tblRestaurents.displayBackgroundText(text: "No Record Found")
+        }else{
+            self.tblRestaurents.displayBackgroundText(text: "")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.tblRestaurents.reloadData()
+        }
+    }
 }
 
 /// ============================== ##### UICollectionView Delegates And Datasources ##### ==================================//

@@ -63,7 +63,8 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOpenSideMenu(_ sender: Any) {
-        self.subVwConfirmation.isHidden = false
+        self.sideMenuController?.revealMenu()
+        //self.subVwConfirmation.isHidden = false
     }
     @IBAction func btnOnCheckUncheckSpclReq(_ sender: Any) {
         

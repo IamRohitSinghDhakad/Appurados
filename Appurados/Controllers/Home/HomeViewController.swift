@@ -104,6 +104,7 @@ class HomeViewController: UIViewController {
     @IBAction func btnOnViewAllRastaurants(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodOrderViewController")as! FoodOrderViewController
         vc.arrAllRestaurants = arrTotalRestaurents
+        vc.arrFilteredAllrestaurents = arrTotalRestaurents
         self.navigationController?.pushViewController(vc, animated: true)
         //pushVc(viewConterlerId: "FoodOrderViewController")
     }
@@ -322,6 +323,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             case "Restaurantes":
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodOrderViewController")as! FoodOrderViewController
                 vc.arrAllRestaurants = arrTotalRestaurents
+                vc.arrFilteredAllrestaurents = arrTotalRestaurents
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Supermercados":
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
