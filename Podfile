@@ -17,7 +17,7 @@ target 'Appurados' do
   pod 'GoogleSignIn'
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
-  
+  pod 'LocationPicker'
 
   
   

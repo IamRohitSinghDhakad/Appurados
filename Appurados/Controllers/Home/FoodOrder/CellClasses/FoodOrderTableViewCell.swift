@@ -17,6 +17,7 @@ class FoodOrderTableViewCell: UITableViewCell {
     @IBOutlet var imgVeFav: UIImageView!
     @IBOutlet var vwRating: UIView!
     @IBOutlet var lblRating: UILabel!
+    @IBOutlet weak var btnFavUnfav: UIButton!
     
     
     override func awakeFromNib() {

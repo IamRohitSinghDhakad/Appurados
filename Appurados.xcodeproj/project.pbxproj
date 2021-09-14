@@ -57,6 +57,7 @@
 		F978DE5D26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE5B26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift */; };
 		F978DE6126D4E7FC009FA173 /* UserDefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE5F26D4E7FC009FA173 /* UserDefaultExtension.swift */; };
 		F978DE6226D4E7FC009FA173 /* AppSharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE6026D4E7FC009FA173 /* AppSharedData.swift */; };
+		F97918A726F0D0FA008F3192 /* AddressModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97918A626F0D0FA008F3192 /* AddressModel.swift */; };
 		F98787C026DA2D5700FA0DFF /* MyCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98787BF26DA2D5700FA0DFF /* MyCartViewController.swift */; };
 		F98787C326DA2F2800FA0DFF /* MyCartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98787C226DA2F2800FA0DFF /* MyCartTableViewCell.swift */; };
 		F98787C726DA5FA400FA0DFF /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98787C626DA5FA400FA0DFF /* MyOrdersViewController.swift */; };
@@ -161,6 +162,7 @@
 		F978DE5F26D4E7FC009FA173 /* UserDefaultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultExtension.swift; sourceTree = "<group>"; };
 		F978DE6026D4E7FC009FA173 /* AppSharedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSharedData.swift; sourceTree = "<group>"; };
 		F978DE6426D4E86A009FA173 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		F97918A626F0D0FA008F3192 /* AddressModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressModel.swift; sourceTree = "<group>"; };
 		F98787BF26DA2D5700FA0DFF /* MyCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCartViewController.swift; sourceTree = "<group>"; };
 		F98787C226DA2F2800FA0DFF /* MyCartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCartTableViewCell.swift; sourceTree = "<group>"; };
 		F98787C626DA5FA400FA0DFF /* MyOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 				F9A0104626EA9E9700D1580A /* SendPackageModel.swift */,
 				F9A0104826EAA71A00D1580A /* CartItemsModel.swift */,
 				F9F10D7B26EE83C600EFC362 /* PromocodeModel.swift */,
+				F97918A626F0D0FA008F3192 /* AddressModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,
 				F9F10D7826EE7A1800EFC362 /* RedeemRewardViewController.swift in Sources */,
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
+				F97918A726F0D0FA008F3192 /* AddressModel.swift in Sources */,
 				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
 				F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */,
 				F9AE5FC026EC8C1A00486077 /* FoodDetailVendorViewController.swift in Sources */,

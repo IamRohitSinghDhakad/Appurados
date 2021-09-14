@@ -59,7 +59,15 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOnChangeAddress(_ sender: Any) {
-        self.pushVc(viewConterlerId: "ChangeAddressViewController")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangeAddressViewController")as! ChangeAddressViewController
+        vc.closerForDictAddress = { dict
+            in
+            print(dict)
+            self.lblDeliverTo.text = "Deliver to \(dict.strAddress_name)"
+            self.lblAddress.text = dict.strAddress
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
+      //  self.pushVc(viewConterlerId: "ChangeAddressViewController")
     }
     
     @IBAction func btnOpenSideMenu(_ sender: Any) {

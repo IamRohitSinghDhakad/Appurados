@@ -41,10 +41,10 @@ class CaterogryModel: NSObject {
     
     init(dict : [String:Any]) {
         
-        if let banner_id = dict["banner_id"] as? String{
-            self.strCategoryID = banner_id
-        }else if let banner_id = dict["banner_id"] as? Int{
-            self.strCategoryID = "\(banner_id)"
+        if let category_id = dict["category_id"] as? String{
+            self.strCategoryID = category_id
+        }else if let category_id = dict["category_id"] as? Int{
+            self.strCategoryID = "\(category_id)"
         }
         
         if let category_image = dict["category_image"] as? String{

@@ -12,6 +12,7 @@ class OfferCategoryModel: NSObject {
     var strOffer_category_id:String = ""
     var strOffer_category_image:String = ""
     var strOffer_category_name:String = ""
+    var isSelected:Bool = false
     
     init(dict : [String:Any]) {
         
@@ -41,5 +42,22 @@ class OfferCategoryModel: NSObject {
          status = 1;
      },
      */
+    
+}
+
+
+class FilterModel {
+
+//    var arrFilterData:[String]?
+    var strIsSelected: Bool = false
+    var strFilterData: String = ""
+    
+    init(filterString: String, isSelectedFilter: Bool) {
+        self.strIsSelected = isSelectedFilter
+        self.strFilterData = filterString
+    
+//        self.arrFilterData = ["RESTAURANTS WITHOUT MINIMUM ORDER", "NEW RESTAURANTS", "RECOMMENDED RESTAURANTS", "BEST RATED RESTAURANTS", "RESTAURANT FAVORITES", "FREE DELIVERY"]
+        
+    }
     
 }

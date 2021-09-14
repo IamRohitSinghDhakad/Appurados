@@ -31,6 +31,8 @@ struct WsUrl{
     static let url_GetCartDetails = BASE_URL + "get_cart"
     static let url_GetUserAddress = BASE_URL + "get_user_address"
     static let url_GetPromoCode = BASE_URL + "get_promocode"
+    static let url_FavUnfav = BASE_URL + "save_in_favorite"
+    static let url_AddAddress = BASE_URL + "add_user_address"
     
    
 }

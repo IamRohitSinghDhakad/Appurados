@@ -21,10 +21,14 @@ class MyFavoritesViewController: UIViewController {
         self.tblRestaurents.delegate = self
         self.tblRestaurents.dataSource = self
         
-        self.call_WsMyFavList()
-        
         self.tfSearch.delegate = self
         self.tfSearch.addTarget(self, action: #selector(searchContactAsPerText(_ :)), for: .editingChanged)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.call_WsMyFavList()
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
@@ -68,8 +72,22 @@ extension MyFavoritesViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.imgVwVendor.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
+        cell.btnFavUnfav.tag = indexPath.row
+        cell.btnFavUnfav.addTarget(self, action: #selector(favBtnClick(button:)), for: .touchUpInside)
+        
+        
         return cell
     }
+    
+    
+    @objc func favBtnClick(button: UIButton){
+        print("Index = \(button.tag)")
+        self.tfSearch.text = ""
+        self.view.endEditing(true)
+        let vendorID = self.arrFavListFiltered[button.tag].strVendorID
+        self.call_WsFavUnfavorite(strVendorID: vendorID, strIndex: button.tag)
+    }
+
     
 }
 
@@ -134,6 +152,9 @@ extension MyFavoritesViewController{
             print(response)
             if status == MessageConstant.k_StatusCode{
 
+                self.arrFavList.removeAll()
+                self.arrFavListFiltered.removeAll()
+                
                 if let arrData = response["result"]as? [[String:Any]]{
                     
                     for data in arrData{
@@ -141,6 +162,7 @@ extension MyFavoritesViewController{
                         self.arrFavList.append(obj)
                     }
                     
+                    print("=================>>>> ",self.arrFavList.count)
                     self.arrFavListFiltered = self.arrFavList
                     self.tblRestaurents.reloadData()
                                         
@@ -157,6 +179,56 @@ extension MyFavoritesViewController{
             }
         } failure: { (Error) in
           //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    func call_WsFavUnfavorite(strVendorID:String, strIndex:Int){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let dict = ["user_id":objAppShareData.UserDetail.strUserId,
+                    "id":strVendorID]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_FavUnfav, params: dict, queryParams: [:], strCustomValidation: "") { (response) in
+          //  objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+           
+            
+            if status == MessageConstant.k_StatusCode{
+               // let obj = self.arrAllRestaurants[strIndex]
+//                if let result  = response["result"] as? [String:Any]{
+//                    obj.isFavorite = true
+//                }
+//                else {
+//                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+//                }
+             //   self.tblRestaurents.reloadData()
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                  //  let obj = self.arrAllRestaurants[strIndex]
+                   // obj.isFavorite = false
+                   // self.tblRestaurents.reloadData()
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                    self.call_WsMyFavList()
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
             objWebServiceManager.hideIndicator()
         }
     }

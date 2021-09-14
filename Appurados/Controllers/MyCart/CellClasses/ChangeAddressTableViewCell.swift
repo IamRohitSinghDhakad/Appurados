@@ -9,6 +9,10 @@ import UIKit
 
 class ChangeAddressTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lblTypeAddress: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var btnSelectAddress: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
