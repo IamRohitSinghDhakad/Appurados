@@ -257,17 +257,10 @@ extension WelcomeViewController{
             if statusCode == MessageConstant.k_StatusCode{
                 objWebServiceManager.hideIndicator()
                 if let user_details  = response["result"] as? [String:Any] {
-//                    let isEmailVerified = user_details["email_verified"] as! String
-//                    if isEmailVerified == "0" {
-//                        //Show Email Verification Popup
-//                        self.vwSub.isHidden = false
-//                    }
-//                    else {
                         print(user_details)
                         objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details)
                         objAppShareData.fetchUserInfoFromAppshareData()
-                        self.pushVc(viewConterlerId: "DemoViewController")
-//                    }
+                        self.pushVc(viewConterlerId: "MapViewController")
                 }
                 else {
                     objAlert.showAlert(message: "Something went wrong!", title: "Alert", controller: self)

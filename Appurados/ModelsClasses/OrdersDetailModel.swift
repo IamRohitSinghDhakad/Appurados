@@ -18,6 +18,7 @@ class OrdersDetailModel: NSObject {
     var strPrice:String = ""
     var strDeliveryCharge:String = ""
     var strSubTotal:String = ""
+    var strOrderID:String = ""
     
     var arrCart = [OrdersCartDetailModel]()
     
@@ -28,6 +29,14 @@ class OrdersDetailModel: NSObject {
         }else if let vendor_id = dict["vendor_id"] as? Int{
             self.strVendorID = "\(vendor_id)"
         }
+        
+        if let order_id = dict["order_id"] as? String{
+            self.strOrderID = order_id
+        }else if let order_id = dict["order_id"] as? Int{
+            self.strOrderID = "\(order_id)"
+        }
+        
+        
         
         if let banner_image = dict["user_image"] as? String{
             self.strBannerImage = banner_image
@@ -61,6 +70,15 @@ class OrdersDetailModel: NSObject {
         if let time_ago = dict["time_ago"] as? String{
             self.strTimeAgo = time_ago
         }
+        
+        if let arrCatrItems = dict["cart"] as? [[String:Any]]{
+            for data in arrCatrItems{
+                let obj = OrdersCartDetailModel(dict: data)
+                self.arrCart.append(obj)
+            }
+        }
+        
+        
         
         
         

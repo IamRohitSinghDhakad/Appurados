@@ -89,7 +89,7 @@ class AppSharedData: NSObject {
         UserDetail = userDetailModel(dict: [:])
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        let vc = (UIStoryboard(name: "Auth", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController)!
+        let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "WelcomeViewController") as? WelcomeViewController)!
         let navController = UINavigationController(rootViewController: vc)
         navController.isNavigationBarHidden = true
         appDelegate.window?.rootViewController = navController

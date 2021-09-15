@@ -45,8 +45,29 @@ extension PendingViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.imgVw.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
+        cell.btnOpen.tag = indexPath.row
+        cell.btnOpen.addTarget(self, action: #selector(openOrderDetail(button:)), for: .touchUpInside)
+        
+        cell.btnRepeat.tag = indexPath.row
+        cell.btnRepeat.addTarget(self, action: #selector(repeatOrderDetail(button:)), for: .touchUpInside)
+        
+        
         return cell
     }
+    
+    @objc func openOrderDetail(button: UIButton){
+        print("Index = \(button.tag)")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyOrderDetailViewController")as! MyOrderDetailViewController
+        vc.strOrderID = self.arrPendingOrders[button.tag].strOrderID
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+
+    
+    @objc func repeatOrderDetail(button: UIButton){
+        print("Index = \(button.tag)")
+       
+    }
+
 }
 
 
@@ -76,6 +97,7 @@ extension PendingViewController{
             let message = (response["message"] as? String)
             if status == MessageConstant.k_StatusCode{
 
+                print(response)
                 if let arrData = response["result"]as? [[String:Any]]{
                     
                     for data in arrData{

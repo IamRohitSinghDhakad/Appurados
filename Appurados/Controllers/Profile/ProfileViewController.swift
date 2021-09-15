@@ -129,4 +129,92 @@ extension ProfileViewController{
         }
     }
     
+    //MARK:- Update Profile Webservice
+    func call_wsUpdateProfile(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        self.view.endEditing(true)
+        
+        var imageData = [Data]()
+        var imgData : Data?
+        if self.pickedImage != nil{
+            imgData = (self.pickedImage?.jpegData(compressionQuality: 1.0))!
+        }
+        else {
+            imgData = (self.imgVwUser.image?.jpegData(compressionQuality: 1.0))!
+        }
+        imageData.append(imgData!)
+        
+        let imageParam = ["user_image"]
+        
+        print(imageData)
+        
+       
+        let dicrParam = ["name":self.tfName.text!,
+                         "email":self.tfEmail.text!,
+                         "user_id":objAppShareData.UserDetail.strUserId,
+                         "looking_for":lookingFor,
+                         "dob":self.tfDOB.text!,
+                         "age":self.strAge,
+                         "country":self.tfCountry.text!,
+                         "state":self.tfState.text!,
+                         "city":self.tfCity.text!,
+                         "sex":self.selectedGender,
+                         "short_bio":self.txtVwAboutMe.text!,
+                         "hair":self.tfHairColor.text!,
+                         "eye":self.tfEyeColor.text!,
+                         "skin":self.tfSkinTone.text!,
+                         "height":self.tfHeightInMeter.text!,
+                         "music":self.tfMusic.text!,
+                         "sport":self.tfTheSportOf.text!,
+                         "cinema":self.tfCinema.text!,
+                         "highlight_info":self.txtVwSpecificInformation.text!,
+                         "allow_sex":strSelectedIWantToBeFound,
+                         "allow_country":self.strSelectedIWantToBeFoundInCountry,
+                         "allow_state":self.strSelectedIWantToBeFoundInState,
+                         "allow_city":self.strSelectedIWantToBeFoundInCity]as [String:Any]
+        
+        print(dicrParam)
+        
+        objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_completeProfile, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "user_image", mimeType: "image/jpeg") { (response) in
+            objWebServiceManager.hideIndicator()
+            print(response)
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            
+            if status == MessageConstant.k_StatusCode{
+            
+                let user_details  = response["result"] as? [String:Any]
+
+                objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details ?? [:])
+                objAppShareData.fetchUserInfoFromAppshareData()
+
+                if self.isComingFrom == "Basic Information"{
+                    objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "Actualización de información básica con éxito", controller: self) {
+                        self.onBackPressed()
+                    }
+                }else{
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+                    let navController = UINavigationController(rootViewController: vc)
+                    navController.isNavigationBarHidden = true
+                    appDelegate.window?.rootViewController = navController
+                }
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+            }
+        } failure: { (Error) in
+            print(Error)
+        }
+    }
+    
+    
 }

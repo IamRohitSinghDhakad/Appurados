@@ -198,7 +198,7 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         self.selectedIndexpath = row
         
-        if row == 12 || row == 9{
+        if row == 9{
             sideMenuController?.hideMenu()
             
             let text = "This is the text.... Appurados App"
@@ -213,6 +213,13 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
 //            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {
 //                self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)
 //            }
+            
+        }
+        if row == 12 {
+            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Yes", title: "Logout?", message: "Are you sure you want to logout?", controller: self) {
+                AppSharedData.sharedObject().signOut()
+                //self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)
+            }
             
         }
         else {

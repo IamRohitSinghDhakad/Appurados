@@ -101,6 +101,8 @@
 		F9F74AA426D82E7200E2822B /* FoodOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F74AA326D82E7200E2822B /* FoodOrderViewController.swift */; };
 		F9F74AA626D82FE600E2822B /* DishesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F74AA526D82FE600E2822B /* DishesCollectionViewCell.swift */; };
 		F9F74AA826D8301400E2822B /* FoodOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F74AA726D8301400E2822B /* FoodOrderTableViewCell.swift */; };
+		F9FF647726F1D76B00F75CF5 /* MyOrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF647526F1D76B00F75CF5 /* MyOrderDetailViewController.swift */; };
+		F9FF647826F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FF647626F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -207,6 +209,8 @@
 		F9F74AA326D82E7200E2822B /* FoodOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOrderViewController.swift; sourceTree = "<group>"; };
 		F9F74AA526D82FE600E2822B /* DishesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9F74AA726D8301400E2822B /* FoodOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodOrderTableViewCell.swift; sourceTree = "<group>"; };
+		F9FF647526F1D76B00F75CF5 /* MyOrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderDetailViewController.swift; sourceTree = "<group>"; };
+		F9FF647626F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +528,8 @@
 			children = (
 				F98787C826DA627E00FA0DFF /* ChildControllers */,
 				F98787C626DA5FA400FA0DFF /* MyOrdersViewController.swift */,
+				F9FF647626F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift */,
+				F9FF647526F1D76B00F75CF5 /* MyOrderDetailViewController.swift */,
 			);
 			path = MyOrders;
 			sourceTree = "<group>";
@@ -811,6 +817,7 @@
 				F9F74AA826D8301400E2822B /* FoodOrderTableViewCell.swift in Sources */,
 				F9F315F426DB667B0015BCDC /* MyRewardTableViewCell.swift in Sources */,
 				F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */,
+				F9FF647726F1D76B00F75CF5 /* MyOrderDetailViewController.swift in Sources */,
 				F978DE4F26D4DD80009FA173 /* TransitionContext.swift in Sources */,
 				F987C49926E2A16400751CA8 /* WebServiceManager.swift in Sources */,
 				F98787CA26DA628F00FA0DFF /* PendingViewController.swift in Sources */,
@@ -870,6 +877,7 @@
 				F9B1969626EBA2E200182139 /* ChangeAddressViewController.swift in Sources */,
 				F978DE2F26D4DD56009FA173 /* AlertViewController.swift in Sources */,
 				F9F10D7826EE7A1800EFC362 /* RedeemRewardViewController.swift in Sources */,
+				F9FF647826F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift in Sources */,
 				F95597AA26D4160A007390F7 /* ViewController.swift in Sources */,
 				F97918A726F0D0FA008F3192 /* AddressModel.swift in Sources */,
 				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
