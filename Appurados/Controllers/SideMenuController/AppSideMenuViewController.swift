@@ -198,31 +198,45 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
         
         self.selectedIndexpath = row
         
-        if row == 9{
-            sideMenuController?.hideMenu()
+//        if objAppShareData.isDemoMode == true{
+//            if row == 1{
+//
+//            }
+//        }
+        
+        switch row {
+        case 1:
+            if objAppShareData.isDemoMode == true{
+                sideMenuController?.hideMenu()
+                objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Yes", title: "Login Needed", message: "To use this functionality you have to login first\nWant to login now?", controller: self) {
+                    //Back to login page
+                    AppSharedData.sharedObject().signOut()
+                }
+                
+            }else{
+                sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
+                sideMenuController?.hideMenu()
+                
+                if let identifier = sideMenuController?.currentCacheIdentifier() {
+                    print("[Example] View Controller Cache Identifier: \(identifier)")
+                }
+            }
             
+        case 9:
+            sideMenuController?.hideMenu()
             let text = "This is the text.... Appurados App"
-            let image = UIImage(named: "Product")
+            _ = UIImage(named: "Product")
             let myWebsite = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
             let shareAll = [text, myWebsite!] as [Any]
             let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
-            
-            
-//            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "si", title: "Cerrar Sesión", message: "¿Quieres cerrar sesión??", controller: self) {
-//                self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)
-//            }
-            
-        }
-        if row == 12 {
+        case 12:
+            sideMenuController?.hideMenu()
             objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Yes", title: "Logout?", message: "Are you sure you want to logout?", controller: self) {
                 AppSharedData.sharedObject().signOut()
-                //self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)
             }
-            
-        }
-        else {
+        default:
             sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
             sideMenuController?.hideMenu()
             
@@ -230,6 +244,34 @@ extension AppSideMenuViewController: UITableViewDelegate, UITableViewDataSource 
                 print("[Example] View Controller Cache Identifier: \(identifier)")
             }
         }
+       
+        
+//        if row == 9{
+//            sideMenuController?.hideMenu()
+//
+//            let text = "This is the text.... Appurados App"
+//            let image = UIImage(named: "Product")
+//            let myWebsite = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
+//            let shareAll = [text, myWebsite!] as [Any]
+//            let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+//            activityViewController.popoverPresentationController?.sourceView = self.view
+//            self.present(activityViewController, animated: true, completion: nil)
+//        }
+//        if row == 12 {
+//            objAlert.showAlertCallBack(alertLeftBtn: "No", alertRightBtn: "Yes", title: "Logout?", message: "Are you sure you want to logout?", controller: self) {
+//                AppSharedData.sharedObject().signOut()
+//                //self.call_WSLogout(strUserID: objAppShareData.UserDetail.strUserId)
+//            }
+//
+//        }
+//        else {
+//            sideMenuController?.setContentViewController(with: "\(row)", animated: Preferences.shared.enableTransitionAnimation)
+//            sideMenuController?.hideMenu()
+//
+//            if let identifier = sideMenuController?.currentCacheIdentifier() {
+//                print("[Example] View Controller Cache Identifier: \(identifier)")
+//            }
+//        }
         
         self.tableView.reloadData()
     }

@@ -5149,16 +5149,26 @@
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTZ-vx-W4i">
+                                                                <rect key="frame" x="137.5" y="30" width="100" height="100"/>
+                                                                <connections>
+                                                                    <action selector="btnOpenCamera:" destination="kHD-Ag-91p" eventType="touchUpInside" id="YkQ-3k-vI7"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstItem="TQe-lX-Mmq" firstAttribute="leading" secondItem="qUP-9K-cZ5" secondAttribute="leading" constant="10" id="0Cx-eg-mrf"/>
                                                             <constraint firstItem="TQe-lX-Mmq" firstAttribute="top" secondItem="xvS-4F-EvO" secondAttribute="bottom" constant="25" id="3xV-Bn-V6l"/>
+                                                            <constraint firstItem="MTZ-vx-W4i" firstAttribute="height" secondItem="xvS-4F-EvO" secondAttribute="height" id="8TV-uM-PnD"/>
                                                             <constraint firstItem="xvS-4F-EvO" firstAttribute="top" secondItem="qUP-9K-cZ5" secondAttribute="top" constant="30" id="Cp4-iv-fXj"/>
                                                             <constraint firstItem="IRg-bY-58q" firstAttribute="leading" secondItem="qUP-9K-cZ5" secondAttribute="leading" constant="10" id="DBd-b9-6MA"/>
                                                             <constraint firstItem="xvS-4F-EvO" firstAttribute="centerX" secondItem="qUP-9K-cZ5" secondAttribute="centerX" id="NYr-IY-N2k"/>
+                                                            <constraint firstItem="MTZ-vx-W4i" firstAttribute="centerY" secondItem="xvS-4F-EvO" secondAttribute="centerY" id="NoU-bD-uu8"/>
+                                                            <constraint firstItem="MTZ-vx-W4i" firstAttribute="centerX" secondItem="xvS-4F-EvO" secondAttribute="centerX" id="YBA-mw-3uZ"/>
                                                             <constraint firstItem="IRg-bY-58q" firstAttribute="top" secondItem="TQe-lX-Mmq" secondAttribute="bottom" constant="10" id="b60-2W-mtB"/>
                                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ezt-DZ-0Hb" secondAttribute="bottom" constant="30" id="b7q-8j-bQT"/>
+                                                            <constraint firstItem="MTZ-vx-W4i" firstAttribute="width" secondItem="xvS-4F-EvO" secondAttribute="width" id="bFP-kx-C5t"/>
                                                             <constraint firstAttribute="trailing" secondItem="TQe-lX-Mmq" secondAttribute="trailing" constant="10" id="bVr-QW-WtX"/>
                                                             <constraint firstAttribute="trailing" secondItem="IRg-bY-58q" secondAttribute="trailing" constant="10" id="d7c-1s-Pfz"/>
                                                             <constraint firstItem="ezt-DZ-0Hb" firstAttribute="top" secondItem="IRg-bY-58q" secondAttribute="bottom" constant="10" id="uIF-Ew-wZ5"/>
@@ -5208,6 +5218,7 @@
                         <outlet property="tfMobileNumber" destination="NFK-Xz-IVw" id="fWl-DV-PQY"/>
                         <outlet property="tfName" destination="lxC-m6-hLO" id="DgF-DK-2Ju"/>
                         <outlet property="tfPassword" destination="yKG-py-UTV" id="FF0-Xb-0sc"/>
+                        <outlet property="vwPassword" destination="aKx-7q-5v3" id="FE3-gY-OcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahC-cN-6Bo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

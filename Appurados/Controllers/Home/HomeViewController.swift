@@ -90,7 +90,11 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.lblDeliverAddressHeader.text = objAppShareData.UserDetail.strAddress
-        self.call_WsGetProfile()
+        
+        if objAppShareData.isDemoMode == false{
+            self.call_WsGetProfile()
+        }
+        
     }
     
     @IBAction func openSideMenu(_ sender: Any) {

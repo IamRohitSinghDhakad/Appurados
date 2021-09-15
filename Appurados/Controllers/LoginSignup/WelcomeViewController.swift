@@ -41,7 +41,8 @@ class WelcomeViewController: UIViewController {
     
 
     @IBAction func btnOnSkip(_ sender: Any) {
-        
+        objAppShareData.isDemoMode = true
+        self.pushVc(viewConterlerId: "MapViewController")
     }
     
     @IBAction func btnFacebookLogin(_ sender: Any) {

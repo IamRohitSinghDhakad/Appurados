@@ -67,5 +67,19 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Paing app does not request this permission or utilize this functionality but it is included in our info.plist since our app utilizes permissions library, which references this permission in its code.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Paing would like to make data available to nearby bluetooth devices even when you&apos;re not using the app.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(Appurados) App requires access to the photo library to upload your profile photo.</string>
+	<key>NSMicrophoneUsageDescription - 2</key>
+	<string>$(Appurados)&quot;App need access to microphone to record video for upload on your profile.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(Appurados)&quot;We need access to your Gallery so you can save images on your device.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(Appurados)&quot;We need access to your Gallery so you can save images on your device.</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>

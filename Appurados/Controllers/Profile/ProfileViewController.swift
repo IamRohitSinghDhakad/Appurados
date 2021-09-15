@@ -7,6 +7,8 @@
 
 import UIKit
 import SDWebImage
+import AVKit
+import Photos
 
 class ProfileViewController: UIViewController {
 
@@ -19,6 +21,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet var imgVwFemale: UIImageView!
     @IBOutlet var imgVwMale: UIImageView!
     @IBOutlet var tfPassword: UITextField!
+    @IBOutlet var vwPassword: UIView!
+    
+    
+    var imagePicker = UIImagePickerController()
+    var pickedImage:UIImage?
+    var strGender = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +36,13 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func btnOnMale(_ sender: Any) {
+        self.strGender = "Male"
         self.imgVwMale.image = #imageLiteral(resourceName: "red")
         self.imgVwFemale.image = #imageLiteral(resourceName: "radio")
     }
     
     @IBAction func btnOnFemale(_ sender: Any) {
+        self.strGender = "Female"
         self.imgVwMale.image = #imageLiteral(resourceName: "radio")
         self.imgVwFemale.image = #imageLiteral(resourceName: "red")
     }
@@ -42,10 +52,209 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func btnOnSave(_ sender: Any) {
+        self.call_wsUpdateProfile()
+    }
+    
+    @IBAction func btnOpenCamera(_ sender: Any) {
+        self.setImage()
+    }
+}
+
+extension ProfileViewController{
+    
+    func checkCameraAccess() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .denied:
+            print("Denied, request permission from settings")
+            DispatchQueue.main.async {
+                self.showCameraAlert()
+            }
+            
+        case .restricted:
+            print("Restricted, device owner must approve")
+            DispatchQueue.main.async {
+                self.showCameraAlert()
+            }
+        case .authorized:
+            print("Authorized, proceed")
+            DispatchQueue.main.async {
+                self.openCamera()
+              //  self.setImage()
+            }
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { success in
+                if success {
+                    print("Permission granted, proceed")
+                    DispatchQueue.main.async {
+                        self.openCamera()
+                     //   self.setImage()
+                    }
+                } else {
+                    print("Permission denied")
+                    DispatchQueue.main.async {
+                        self.showCameraAlert()
+                    }
+                }
+            }
+        @unknown default:
+            break
+        }
+    }
+    
+    
+    //MARK: - Photo Library Permission
+    
+    func openPhotoLibraryPermissions() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        if (status == .authorized) {
+            // Access has been granted.
+            DispatchQueue.main.async {
+                self.openGallery()
+            }
+        } else if (status == .denied) {
+            // Access has been denied.
+            DispatchQueue.main.async {
+                self.presentPhotoLibrarySettings()
+            }
+        } else if (status == .restricted) {
+            // Access has been restricted.
+            DispatchQueue.main.async {
+                self.presentPhotoLibrarySettings()
+            }
+        } else if (status == .notDetermined) {
+            PHPhotoLibrary.requestAuthorization({status in
+                if status == .authorized{
+                    DispatchQueue.main.async {
+                        self.openGallery()
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.presentPhotoLibrarySettings()
+                    }
+                }
+            })
+        }
+    }
+    
+    func presentPhotoLibrarySettings() {
+        let uiAlert = UIAlertController(title: "Alert", message: "In order to capture images you have to allow camera under your settings.", preferredStyle: UIAlertController.Style.alert)
+        self.present(uiAlert, animated: true, completion: nil)
+        
+        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            DispatchQueue.main.async {
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                }
+            }
+        }))
+        
+        uiAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            
+        }))
+    }
+    
+    func showCameraAlert(){
+        let uiAlert = UIAlertController(title: "Alert", message: "In order to capture images you have to allow camera under your settings.", preferredStyle: UIAlertController.Style.alert)
+        self.present(uiAlert, animated: true, completion: nil)
+        
+        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            DispatchQueue.main.async {
+                if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+                }
+            }
+        }))
+        
+        uiAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
+            
+        }))
+    }
+}
+
+//Image Piker Delegates
+extension ProfileViewController:UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    // MARK:- UIImage Picker Delegate
+    func setImage(){
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertAction.Style.default)
+        {
+            UIAlertAction in
+            self.checkCameraAccess()
+        }
+        
+        let galleryAction = UIAlertAction(title: "Gallery", style: UIAlertAction.Style.default)
+        {
+            UIAlertAction in
+            self.openPhotoLibraryPermissions()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel)
+        {
+            UIAlertAction in
+        }
+        alert.addAction(cameraAction)
+        alert.addAction(galleryAction)
+        alert.addAction(cancelAction)
+        alert.popoverPresentationController?.sourceView = self.view
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Open camera
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.modalPresentationStyle = .fullScreen
+            self .present(imagePicker, animated: true, completion: nil)
+        } else {
+           self.openGallery()
+        }
+    }
+    
+    // Open gallery
+    func openGallery()
+    {
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.modalPresentationStyle = .fullScreen
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[.editedImage] as? UIImage {
+            self.pickedImage = editedImage
+            self.imgVwUser.image = self.pickedImage
+            imagePicker.dismiss(animated: true, completion: nil)
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            self.pickedImage = originalImage
+            self.imgVwUser.image = pickedImage
+            imagePicker.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    func cornerImage(image: UIImageView, color: UIColor ,width: CGFloat){
+        image.layer.cornerRadius = image.layer.frame.size.height / 2
+        image.layer.masksToBounds = false
+        image.layer.borderColor = color.cgColor
+        image.layer.borderWidth = width
         
     }
     
 }
+
 
 
 extension ProfileViewController{
@@ -73,12 +282,25 @@ extension ProfileViewController{
                 
                 if let user_data  = response["result"] as? [String:Any]{
 
+                    if let isSocialType = user_data["social_type"]as? String{
+                        if isSocialType == ""{
+                            self.vwPassword.isHidden = false
+                        }else{
+                            self.vwPassword.isHidden = true
+                        }
+                        
+                    }else{
+                        self.vwPassword.isHidden = false
+                    }
+                    
                     if let name = user_data["name"]as? String{
                         self.tfName.text = name
+                        self.lblName.text = name
                     }
 
                     if let email = user_data["email"]as? String{
                         self.tfEmail.text = email
+                        self.lblEmail.text = email
                     }
 
                     if let phone = user_data["mobile"]as? String{
@@ -88,12 +310,14 @@ extension ProfileViewController{
                     if let pswrd = user_data["password"]as? String{
                         self.tfPassword.text = pswrd
                     }
-                    var strGender = ""
+                   
                     if let gender = user_data["sex"]as? String{
-                        strGender = gender
+                        self.strGender = gender
+                    }else{
+                        self.strGender = "Male"
                     }
                     
-                    if strGender == "Male"{
+                    if self.strGender == "Male"{
                         self.imgVwMale.image = #imageLiteral(resourceName: "red")
                         self.imgVwFemale.image = #imageLiteral(resourceName: "radio")
                     }else{
@@ -154,35 +378,17 @@ extension ProfileViewController{
         let imageParam = ["user_image"]
         
         print(imageData)
-        
        
-        let dicrParam = ["name":self.tfName.text!,
-                         "email":self.tfEmail.text!,
-                         "user_id":objAppShareData.UserDetail.strUserId,
-                         "looking_for":lookingFor,
-                         "dob":self.tfDOB.text!,
-                         "age":self.strAge,
-                         "country":self.tfCountry.text!,
-                         "state":self.tfState.text!,
-                         "city":self.tfCity.text!,
-                         "sex":self.selectedGender,
-                         "short_bio":self.txtVwAboutMe.text!,
-                         "hair":self.tfHairColor.text!,
-                         "eye":self.tfEyeColor.text!,
-                         "skin":self.tfSkinTone.text!,
-                         "height":self.tfHeightInMeter.text!,
-                         "music":self.tfMusic.text!,
-                         "sport":self.tfTheSportOf.text!,
-                         "cinema":self.tfCinema.text!,
-                         "highlight_info":self.txtVwSpecificInformation.text!,
-                         "allow_sex":strSelectedIWantToBeFound,
-                         "allow_country":self.strSelectedIWantToBeFoundInCountry,
-                         "allow_state":self.strSelectedIWantToBeFoundInState,
-                         "allow_city":self.strSelectedIWantToBeFoundInCity]as [String:Any]
+        let dicrParam = [ "user_id":objAppShareData.UserDetail.strUserId,
+                          "name":self.tfName.text!,
+                          "email":self.tfEmail.text!,
+                          "sex":self.strGender,
+                          "password":self.tfPassword.text!,
+                          "mobile":self.tfMobileNumber.text!]as [String:Any]
         
         print(dicrParam)
         
-        objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_completeProfile, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "user_image", mimeType: "image/jpeg") { (response) in
+        objWebServiceManager.uploadMultipartWithImagesData(strURL: WsUrl.url_updateProfile, params: dicrParam, showIndicator: true, customValidation: "", imageData: imgData, imageToUpload: imageData, imagesParam: imageParam, fileName: "user_image", mimeType: "image/jpeg") { (response) in
             objWebServiceManager.hideIndicator()
             print(response)
             let status = (response["status"] as? Int)
@@ -194,19 +400,9 @@ extension ProfileViewController{
 
                 objAppShareData.SaveUpdateUserInfoFromAppshareData(userDetail: user_details ?? [:])
                 objAppShareData.fetchUserInfoFromAppshareData()
-
-                if self.isComingFrom == "Basic Information"{
-                    objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "", message: "Actualización de información básica con éxito", controller: self) {
-                        self.onBackPressed()
-                    }
-                }else{
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
-                    let navController = UINavigationController(rootViewController: vc)
-                    navController.isNavigationBarHidden = true
-                    appDelegate.window?.rootViewController = navController
-                }
                 
+                self.call_WsGetProfile()
+
             }else{
                 objWebServiceManager.hideIndicator()
                 objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
