@@ -12,6 +12,7 @@ class RedeemRewardViewController: UIViewController {
     @IBOutlet var cvPromoCode: UICollectionView!
     
     var arrPromocode = [PromocodeModel]()
+    var strTotalPoints:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,13 +54,44 @@ extension RedeemRewardViewController:UICollectionViewDelegate,UICollectionViewDa
         
         if strStatus == "1"{
             cell.lblPromocode.text = obj.strPromocode
+           // cell.btnBuyNow.isUserInteractionEnabled = false
         }else{
             cell.lblPromocode.text = "Buy Now"
+           // cell.btnBuyNow.isUserInteractionEnabled = true
         }
+        
+        cell.btnBuyNow.tag = indexPath.row
+        cell.btnBuyNow.addTarget(self, action: #selector(btnBuyNow(button:)), for: .touchUpInside)
+        
         
         return cell
     }
     
+    @objc func btnBuyNow(button: UIButton){
+        print("Index = \(button.tag)")
+        
+        let strStatus = self.arrPromocode[button.tag].strPurchasedStatus
+        
+        if strStatus == "1"{
+         
+            let pasteboard = UIPasteboard.general
+            pasteboard.string = self.arrPromocode[button.tag].strPromocode
+            objAlert.showAlert(message: "Promocode copied", title: "", controller: self)
+            
+        }else{
+            let needPoints = Int(self.arrPromocode[button.tag].strPoints)
+            if needPoints != nil{
+                if needPoints ?? 0 < self.strTotalPoints{
+                    let promoCode = self.arrPromocode[button.tag].strPromocode
+                    self.call_WsBuyOffer(strPromocode: promoCode)
+                }else{
+                    objAlert.showAlert(message: "you don't have sufficient points to buy this", title: "Alert", controller: self)
+                }
+            }
+        }
+        
+       
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
@@ -109,6 +141,55 @@ extension RedeemRewardViewController{
                     }
                     
                     self.cvPromoCode.reloadData()
+                    
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    
+    func call_WsBuyOffer(strPromocode:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        let dict = ["user_id": objAppShareData.UserDetail.strUserId, "promocode":strPromocode]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_BuyOffer, params: dict, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    self.call_WsGetOffers()
+                    
+//                    for data in arrData{
+//                        let obj = PromocodeModel.init(dict: data)
+//                        self.arrPromocode.append(obj)
+//                    }
+//
+//                    self.cvPromoCode.reloadData()
                     
                 }else{
                     objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)

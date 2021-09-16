@@ -65,8 +65,11 @@ extension PendingViewController: UITableViewDelegate,UITableViewDataSource{
     
     @objc func repeatOrderDetail(button: UIButton){
         print("Index = \(button.tag)")
-       
+        let orderID = self.arrPendingOrders[button.tag].strOrderID
+        self.call_WsRepeatOrder(strOrderID: orderID)
+        
     }
+    
 
 }
 
@@ -111,6 +114,61 @@ extension PendingViewController{
                 }else{
                     //self.btnAllRestaurents.setTitle("All Restaurents ", for: .normal)
                     objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    //MARK:- Repeat order API
+    
+    //MARK:- Vendor Count Product
+    func call_WsRepeatOrder(strOrderID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "order_id":strOrderID]as [String:Any]
+        
+        print(dicrParam)
+        objWebServiceManager.requestGet(strURL: WsUrl.url_RepeatOrder, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+           objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            if status == MessageConstant.k_StatusCode{
+
+                print(response)
+                if let arrData = response["data"]as? [[String:Any]]{
+                    
+                    objAlert.showAlert(message: "Order repeat succsfully.", title: "Success", controller: self)
+                    
+//                    for data in arrData{
+//                        let obj = OrdersDetailModel.init(dict: data)
+//                        self.arrPendingOrders.append(obj)
+//                    }
+//
+//
+//                    self.tblOrdersList.reloadData()
+                    
+                }else{
+                    //self.btnAllRestaurents.setTitle("All Restaurents ", for: .normal)
                 }
             }else{
                 objWebServiceManager.hideIndicator()

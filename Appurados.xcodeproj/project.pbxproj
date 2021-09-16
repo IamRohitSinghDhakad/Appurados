@@ -10,6 +10,8 @@
 		6A63E9C926D67D5A00CD93DC /* HomeTopMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A63E9C826D67D5A00CD93DC /* HomeTopMenuCollectionViewCell.swift */; };
 		84228705DDE282F471586451 /* Pods_Appurados.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736A1F4F2FDC97A4254182CC /* Pods_Appurados.framework */; };
 		F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */; };
+		F90741DE26F33B440031C1EB /* MyOfferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90741DD26F33B440031C1EB /* MyOfferTableViewCell.swift */; };
+		F90741E126F3763E0031C1EB /* TrackOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90741E026F3763E0031C1EB /* TrackOrderViewController.swift */; };
 		F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910A8CC26E36C82005D529F /* MapsViewController.swift */; };
 		F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878026E8E3BE00458BE7 /* RewardModel.swift */; };
 		F914878326E8EC8200458BE7 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878226E8EC8200458BE7 /* NotificationModel.swift */; };
@@ -111,6 +113,8 @@
 		736A1F4F2FDC97A4254182CC /* Pods_Appurados.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appurados.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D52F48F7188B07A433E4C55 /* Pods-Appurados.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appurados.release.xcconfig"; path = "Target Support Files/Pods-Appurados/Pods-Appurados.release.xcconfig"; sourceTree = "<group>"; };
 		F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrderListTableViewCell.swift; sourceTree = "<group>"; };
+		F90741DD26F33B440031C1EB /* MyOfferTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOfferTableViewCell.swift; sourceTree = "<group>"; };
+		F90741E026F3763E0031C1EB /* TrackOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderViewController.swift; sourceTree = "<group>"; };
 		F910A8CC26E36C82005D529F /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		F914878026E8E3BE00458BE7 /* RewardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardModel.swift; sourceTree = "<group>"; };
 		F914878226E8EC8200458BE7 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -530,6 +534,7 @@
 				F98787C626DA5FA400FA0DFF /* MyOrdersViewController.swift */,
 				F9FF647626F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift */,
 				F9FF647526F1D76B00F75CF5 /* MyOrderDetailViewController.swift */,
+				F90741E026F3763E0031C1EB /* TrackOrderViewController.swift */,
 			);
 			path = MyOrders;
 			sourceTree = "<group>";
@@ -588,6 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				F9F3160226DB69970015BCDC /* MyOffersViewController.swift */,
+				F90741DD26F33B440031C1EB /* MyOfferTableViewCell.swift */,
 			);
 			path = MyOffers;
 			sourceTree = "<group>";
@@ -844,11 +850,13 @@
 				F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */,
 				F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */,
 				F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */,
+				F90741E126F3763E0031C1EB /* TrackOrderViewController.swift in Sources */,
 				F978DE2E26D4DD56009FA173 /* Extensions.swift in Sources */,
 				F978DE5C26D4DDA2009FA173 /* AppSideMenuViewController.swift in Sources */,
 				F98787CE26DA62A600FA0DFF /* CompleteViewController.swift in Sources */,
 				F9F74AA426D82E7200E2822B /* FoodOrderViewController.swift in Sources */,
 				F9F10D7A26EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift in Sources */,
+				F90741DE26F33B440031C1EB /* MyOfferTableViewCell.swift in Sources */,
 				F92793D326DE5E06002DA4EF /* NotificationTableViewCell.swift in Sources */,
 				F9A0104726EA9E9700D1580A /* SendPackageModel.swift in Sources */,
 				F93A75C226EF6D6C009E34BB /* FilterViewController.swift in Sources */,

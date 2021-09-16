@@ -26,6 +26,7 @@ struct WsUrl{
     static let url_forgotPassword = BASE_URL + "forgot_password"
     static let url_getRewards = BASE_URL + "get_rewards"
     static let url_GetOrders = BASE_URL + "get_order"
+    static let url_RepeatOrder = BASE_URL + "repeate_order?"
     static let url_Getnotification = BASE_URL + "get_notification"
     static let url_GetOfferCategory = BASE_URL + "get_offer_category"
     static let url_GetPackageDelivery = BASE_URL + "get_package_delivery"
@@ -34,6 +35,7 @@ struct WsUrl{
     static let url_GetPromoCode = BASE_URL + "get_promocode"
     static let url_FavUnfav = BASE_URL + "save_in_favorite"
     static let url_AddAddress = BASE_URL + "add_user_address"
+    static let url_BuyOffer = BASE_URL + "buy_offer_voucher"
     
    
 }

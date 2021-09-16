@@ -15,13 +15,13 @@ class MapViewController: UIViewController {
     @IBOutlet var lblCurrentLocation: UILabel!
     @IBOutlet var vwMap: UIView!
     @IBOutlet var btnOpenSearch: UIButton!
-    var cirlce: GMSCircle!
+  //  var cirlce: GMSCircle!
     var userSelectedLatitude : Double?
     var userSelectedLongitude : Double?
     var currentLocationStr = "Current location"
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
-    private var locationMarker: GMSMarker?
+    var marker = GMSMarker()
     var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var preciseLocationZoomLevel: Float = 15.0
@@ -62,12 +62,12 @@ class MapViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
            // determineCurrentLocation()
-        let defaultLocation = CLLocation(latitude: 19.017615, longitude: 72.856164)
-        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
-        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
-        cirlce = GMSCircle(position: camera.target, radius: 100)
-        cirlce.fillColor = UIColor.red.withAlphaComponent(0.5)
-        cirlce.map = mapView
+//        let defaultLocation = CLLocation(latitude: 19.017615, longitude: 72.856164)
+//        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+//        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
+//        cirlce = GMSCircle(position: camera.target, radius: 100)
+//        cirlce.fillColor = UIColor.red.withAlphaComponent(0.5)
+//        cirlce.map = mapView
     }
     
     @IBAction func btnOpenSearch(_ sender: Any) {
@@ -115,10 +115,30 @@ extension MapViewController: CLLocationManagerDelegate {
     let location: CLLocation = locations.last!
     print("Location: \(location)")
 
+    
+   
+    marker.map = nil
+    marker.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    marker.title = "My location"
+  //  marker.snippet = "Australia"
+    marker.map = mapView
+    
     let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
     let camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude,
                                           longitude: location.coordinate.longitude,
                                           zoom: zoomLevel)
+    
+    
+    var strFinalAddress = ""
+    let myLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        myLocation.fetchAddress { address, error in
+            guard let address = address, error == nil else
+            {return}
+            strFinalAddress = address
+            self.userSelectedLatitude = location.coordinate.latitude
+            self.userSelectedLongitude = location.coordinate.longitude
+            self.lblCurrentLocation.text = strFinalAddress
+        }
 
     if mapView.isHidden {
       mapView.isHidden = false
@@ -172,38 +192,67 @@ extension MapViewController: GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
       //  print(marker)
+        var strFinalAddress = ""
+        let myLocation = CLLocation(latitude: marker.position.latitude, longitude: marker.position.longitude)
+            myLocation.fetchAddress { address, error in
+                guard let address = address, error == nil else
+                {return}
+                strFinalAddress = address
+                self.userSelectedLatitude = marker.position.latitude
+                self.userSelectedLongitude = marker.position.longitude
+                self.lblCurrentLocation.text = strFinalAddress
+            }
+        
     }
+    
+    
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
           // print("\(position.target.latitude) \(position.target.longitude)")
         
-        let myLocation = CLLocation(latitude: position.target.latitude, longitude: position.target.longitude)
-        var strFinalAddress = ""
+//        let myLocation = CLLocation(latitude: position.target.latitude, longitude: position.target.longitude)
+//        var strFinalAddress = ""
+       // marker.position = position.target
+           // self.lblCurrentLocation.text = strFinalAddress
 
-      //  print(myLocation)
+    }
+    
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         
+        
+        var strFinalAddress = ""
+        let myLocation = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             myLocation.fetchAddress { address, error in
                 guard let address = address, error == nil else
                 {return}
                 strFinalAddress = address
-                self.userSelectedLatitude = position.target.latitude
-                self.userSelectedLongitude = position.target.longitude
+                self.userSelectedLatitude = coordinate.latitude
+                self.userSelectedLongitude = coordinate.longitude
                 self.lblCurrentLocation.text = strFinalAddress
             }
         }
-      
+        
 
-        if cirlce != nil{
-            cirlce.position = position.target
-            self.lblCurrentLocation.text = strFinalAddress
+        marker.map = nil
+        marker.position = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        print(marker.position)
+        DispatchQueue.main.async {
+        
+            self.marker.title = "Selected location"
+            //  marker.snippet = "Australia"
+            self.marker.map = self.mapView
+            let zoomLevel = self.locationManager.accuracyAuthorization == .fullAccuracy ? self.preciseLocationZoomLevel : self.approximateLocationZoomLevel
+            let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
+                                                  longitude: coordinate.longitude,
+                                                  zoom: zoomLevel)
+            mapView.animate(to: camera)
         }
-       }
+    }
     
-//    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-//        // Creates a marker in the center of the map.
-//
-//
+    
+    
 ////        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
 ////        let camera = GMSCameraPosition.camera(withLatitude: coordinate.latitude,
 ////                                              longitude: coordinate.longitude,
