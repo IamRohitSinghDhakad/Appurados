@@ -14,7 +14,7 @@ class DishDetailViewController: UIViewController {
     @IBOutlet var tfSearch: UITextField!
     
     var strCategoryID:String = ""
-    var strtitle = "All Rastaurents"
+    var strtitle = ""
     
     var arrRestauranrts = [RestaurentsDetailModel]()
     var arrRestauranrtsFiltered = [RestaurentsDetailModel]()

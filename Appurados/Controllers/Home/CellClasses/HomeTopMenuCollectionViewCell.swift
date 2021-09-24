@@ -46,10 +46,12 @@ class HomeRecommendedProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var vwImgContainer: UIView!
     
     override func awakeFromNib() {
      
         self.imgVwTop.topCornersImgVw()
+        self.imgVwRestaurant.applyshadowWithCorner(containerView: self.vwImgContainer, cornerRadious: 5)
     }
 }
 
@@ -67,9 +69,11 @@ class HomeFreeDeliveryCollectionViewCell: UICollectionViewCell {
     @IBOutlet var lblDishes: UILabel!
     @IBOutlet var vwRating: FloatRatingView!
     @IBOutlet var lblReviewCount: UILabel!
+    @IBOutlet weak var vwImgContainer: UIView!
     
     override func awakeFromNib() {
         self.imgVwDish.topCornersImgVw()
+        self.imgVwRastaurent.applyshadowWithCorner(containerView: self.vwImgContainer, cornerRadious: 5)
     }
 }
 
@@ -99,10 +103,12 @@ class HomeOtherOfferCollectionViewCell: UICollectionViewCell {
     @IBOutlet var lblDishes: UILabel!
     @IBOutlet var vwRating: FloatRatingView!
     @IBOutlet var lblReviewCount: UILabel!
+    @IBOutlet weak var vwImgContainer: UIView!
     
     
     override func awakeFromNib() {
         self.imgVwDish.topCornersImgVw()
+        self.imgVwRastaurent.applyshadowWithCorner(containerView: self.vwImgContainer, cornerRadious: 5)
     }
 }
 
@@ -126,5 +132,17 @@ extension UIImageView{
       //  self.clipsToBounds = true
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 10
+    }
+    
+    func applyshadowWithCorner(containerView : UIView, cornerRadious : CGFloat){
+        containerView.clipsToBounds = false
+        containerView.layer.shadowColor = UIColor.darkGray.cgColor
+        containerView.layer.shadowOpacity = 0.6
+        containerView.layer.shadowOffset = CGSize.zero
+        containerView.layer.shadowRadius = 5
+        containerView.layer.cornerRadius = cornerRadious
+        containerView.layer.shadowPath = UIBezierPath(roundedRect: containerView.bounds, cornerRadius: cornerRadious).cgPath
+        self.clipsToBounds = true
+        self.layer.cornerRadius = cornerRadious
     }
 }

@@ -102,7 +102,10 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func btnOnSearch(_ sender: Any) {
-        pushVc(viewConterlerId: "DishDetailViewController")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
+        vc.strtitle = "All Rastaurants"
+        self.navigationController?.pushViewController(vc, animated: true)
+       // pushVc(viewConterlerId: "DishDetailViewController")
     }
     
     @IBAction func btnOnViewAllRastaurants(_ sender: Any) {
@@ -335,6 +338,37 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Mensajeria":
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackageFormFillViewController")as! SendPackageFormFillViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            default:
+                self.subVwMore.isHidden = false
+            }
+        }
+        
+        if collectionView == self.cvMore{
+            let obj = self.arrCategoryData[indexPath.row]
+            switch obj.strCategoryName {
+            case "Restaurantes":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodOrderViewController")as! FoodOrderViewController
+                vc.arrAllRestaurants = arrTotalRestaurents
+                vc.strCategoryIDForSearch = obj.strCategoryID
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "Supermercados":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
+                vc.strCategoryID = obj.strCategoryID
+                vc.strtitle = obj.strCategoryName
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "Mensajeria":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackageFormFillViewController")as! SendPackageFormFillViewController
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "Cafe & Postres":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
+                vc.strCategoryID = obj.strCategoryID
+                vc.strtitle = obj.strCategoryName
+                self.navigationController?.pushViewController(vc, animated: true)
+            case "Farmacias":
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
+                vc.strCategoryID = obj.strCategoryID
+                vc.strtitle = obj.strCategoryName
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 self.subVwMore.isHidden = false
