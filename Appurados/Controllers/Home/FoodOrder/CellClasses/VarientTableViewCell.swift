@@ -9,6 +9,11 @@ import UIKit
 
 class VarientTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var lblVariantName: UILabel!
+    @IBOutlet weak var lblPrice: UILabel!
+    @IBOutlet weak var imgVwradio: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

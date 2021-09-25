@@ -25,6 +25,7 @@
 		F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */; };
 		F93A75C226EF6D6C009E34BB /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A75C126EF6D6C009E34BB /* FilterViewController.swift */; };
 		F93A75C426EF922F009E34BB /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */; };
+		F9529F3626FF243400434AC7 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9529F3526FF243400434AC7 /* OrderDetailTableViewCell.swift */; };
 		F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A526D4160A007390F7 /* AppDelegate.swift */; };
 		F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A726D4160A007390F7 /* SceneDelegate.swift */; };
 		F95597AA26D4160A007390F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A926D4160A007390F7 /* ViewController.swift */; };
@@ -128,6 +129,7 @@
 		F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F93A75C126EF6D6C009E34BB /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		F9529F3526FF243400434AC7 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F95597A226D4160A007390F7 /* Appurados.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appurados.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95597A526D4160A007390F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F95597A726D4160A007390F7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 				F9AE5FBB26EC8B0100486077 /* FoodCategoryCollectionViewCell.swift */,
 				F9AE5FBD26EC8B6900486077 /* FoodCategoryTableViewCell.swift */,
 				F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */,
+				F9529F3526FF243400434AC7 /* OrderDetailTableViewCell.swift */,
 			);
 			path = CellClasses;
 			sourceTree = "<group>";
@@ -868,6 +871,7 @@
 				F9AE5FBE26EC8B6900486077 /* FoodCategoryTableViewCell.swift in Sources */,
 				F9F3160B26DB9B740015BCDC /* SendPackageTableViewCell.swift in Sources */,
 				F978DE5D26D4DDA2009FA173 /* AppSideMenuTableViewCell.swift in Sources */,
+				F9529F3626FF243400434AC7 /* OrderDetailTableViewCell.swift in Sources */,
 				F9F315FB26DB693E0015BCDC /* AboutUsViewController.swift in Sources */,
 				F978DE3126D4DD56009FA173 /* TableViewExtension.swift in Sources */,
 				F99D5A0926E7F70E00F4C3F4 /* OrdersDetailModel.swift in Sources */,

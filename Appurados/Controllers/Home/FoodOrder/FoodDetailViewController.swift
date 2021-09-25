@@ -212,9 +212,10 @@ extension FoodDetailViewController{
                          "my_favorite":"",
                          "offer_category_id":"",
                          "ios_register_id":""]as [String:Any]
+        print(dicrParam)
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getSubCategory, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
-         //   objWebServiceManager.hideIndicator()
+            objWebServiceManager.hideIndicator()
             
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)
@@ -272,9 +273,10 @@ extension FoodDetailViewController{
                          "my_favorite":"",
                          "offer_category_id":"",
                          "ios_register_id":""]as [String:Any]
+        print(dicrParam)
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getProduct, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
-         //   objWebServiceManager.hideIndicator()
+            objWebServiceManager.hideIndicator()
             
             let status = (response["status"] as? Int)
             let message = (response["message"] as? String)

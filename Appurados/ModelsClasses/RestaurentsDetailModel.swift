@@ -22,6 +22,7 @@ class RestaurentsDetailModel: NSObject {
     var strFreeDelivery:String = ""
     var strRating:String = ""
     var isFavorite:Bool = false
+    var strCategoryID:String  = ""
     
     init(dict : [String:Any]) {
         
@@ -33,6 +34,12 @@ class RestaurentsDetailModel: NSObject {
         
         if let banner_image = dict["user_image"] as? String{
             self.strBannerImage = banner_image
+        }
+        
+        if let category_id = dict["category_id"] as? String{
+            self.strCategoryID = category_id
+        }else if let category_id = dict["category_id"] as? Int{
+            self.strCategoryID = "\(category_id)"
         }
         
         

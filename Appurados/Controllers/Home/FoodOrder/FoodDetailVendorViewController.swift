@@ -115,9 +115,15 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         
         let obj = self.arrProductDetails[indexPath.row]
         
-        cell.lblCategoryHeading.text = obj.strSubCategoryName
-        cell.lblTitls.text = obj.strProductName
-        cell.lblDescription.text = obj.strProduuctDescription
+        cell.lblCategoryHeading.text = obj.strProductName
+        cell.lblTitls.text = obj.strProduuctDescription
+        cell.lblDescription.text = "$" + obj.strPrice
+        
+        let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            if profilePic != "" {
+                let url = URL(string: profilePic!)
+                cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
+            }
         
         let visibleRect = CGRect(origin: self.tblFoodDetails.contentOffset, size: self.tblFoodDetails.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
@@ -140,6 +146,12 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let obj = self.arrProductDetails[indexPath.row]
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController")as! OrderDetailViewController
+        vc.strVendorID = obj.strVendorID
+        vc.strProductID = obj.strProductId
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
 }
