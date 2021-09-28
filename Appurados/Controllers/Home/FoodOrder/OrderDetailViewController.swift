@@ -23,8 +23,6 @@ class OrderDetailViewController: UIViewController {
     @IBOutlet weak var lblDishType: UILabel!
     
     var arrOrderDetail = [OrderDetailModel]()
-    
-    
     var strVendorID:String?
     var strProductID:String?
     
@@ -53,6 +51,7 @@ class OrderDetailViewController: UIViewController {
     @IBAction func btnMinus(_ sender: Any) {
         
     }
+    
     @IBAction func btnPlus(_ sender: Any) {
         
     }

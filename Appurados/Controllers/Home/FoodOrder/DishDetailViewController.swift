@@ -32,6 +32,7 @@ class DishDetailViewController: UIViewController {
         
         self.call_WsGetRestaurants(strCategoryID: self.strCategoryID)
         
+
     }
     @IBAction func btnBackOnHeader(_ sender: Any) {
         onBackPressed()
@@ -149,6 +150,12 @@ extension DishDetailViewController{
                     }
                     
                     self.arrRestauranrtsFiltered = self.arrRestauranrts
+                    
+                    if self.arrRestauranrts.count == 0 {
+                        self.tblRestaurents.displayBackgroundText(text: "No Record Found!!")
+                    }else{
+                        self.tblRestaurents.displayBackgroundText(text: "")
+                    }
                     
                     self.tblRestaurents.reloadData()
                 }else{

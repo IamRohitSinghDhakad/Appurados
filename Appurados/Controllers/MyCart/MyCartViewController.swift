@@ -197,6 +197,7 @@ extension MyCartViewController {
                 }
             } failure: { (Error) in
               //  print(Error)
+                objAlert.showAlert(message: "Failure!!", title: "Alert", controller: self)
                 objWebServiceManager.hideIndicator()
             }
         }

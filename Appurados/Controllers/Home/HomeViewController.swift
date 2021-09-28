@@ -672,6 +672,8 @@ extension HomeViewController{
             }
         } failure: { (Error) in
           //  print(Error)
+            self.call_WsGetRecomendedProduct()
+            self.vwFreeDeliveryCV.isHidden = true
             objWebServiceManager.hideIndicator()
         }
     }
@@ -733,6 +735,8 @@ extension HomeViewController{
             }
         } failure: { (Error) in
           //  print(Error)
+            self.veRecomendedCV.isHidden = true
+            self.call_WsGetPopularProduct()
             objWebServiceManager.hideIndicator()
         }
     }
@@ -792,6 +796,8 @@ extension HomeViewController{
             }
         } failure: { (Error) in
           //  print(Error)
+            self.call_WsGetOfferProduct()
+            self.vwPopularCV.isHidden = true
             objWebServiceManager.hideIndicator()
         }
     }
@@ -854,6 +860,7 @@ extension HomeViewController{
             }
         } failure: { (Error) in
           //  print(Error)
+            self.vwOfferCV.isHidden = true
             objWebServiceManager.hideIndicator()
         }
     }
