@@ -150,6 +150,7 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController")as! OrderDetailViewController
         vc.strVendorID = obj.strVendorID
         vc.strProductID = obj.strProductId
+        vc.objProductDetails = obj
         self.navigationController?.pushViewController(vc, animated: true)
         
     }

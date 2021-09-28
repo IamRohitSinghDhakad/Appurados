@@ -10913,13 +10913,23 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jka-Rh-kcr">
+                                                        <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
+                                                        <connections>
+                                                            <action selector="btnAddToCart:" destination="zhR-Vs-Ug7" eventType="touchUpInside" id="2jt-h5-KAW"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" name="AppColor"/>
                                                 <constraints>
                                                     <constraint firstItem="clN-wh-wSs" firstAttribute="top" secondItem="jSH-70-Qqe" secondAttribute="top" id="4Rr-yV-zXv"/>
                                                     <constraint firstAttribute="trailing" secondItem="clN-wh-wSs" secondAttribute="trailing" constant="10" id="95T-3V-FJY"/>
                                                     <constraint firstItem="clN-wh-wSs" firstAttribute="leading" secondItem="jSH-70-Qqe" secondAttribute="leading" constant="10" id="Aoc-BV-EUl"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jka-Rh-kcr" secondAttribute="trailing" id="Moo-76-OZf"/>
                                                     <constraint firstAttribute="bottom" secondItem="clN-wh-wSs" secondAttribute="bottom" id="XnF-tG-jRh"/>
+                                                    <constraint firstItem="jka-Rh-kcr" firstAttribute="top" secondItem="jSH-70-Qqe" secondAttribute="top" id="Y6a-9S-FWs"/>
+                                                    <constraint firstItem="jka-Rh-kcr" firstAttribute="leading" secondItem="jSH-70-Qqe" secondAttribute="leading" id="gFL-7a-Blu"/>
+                                                    <constraint firstAttribute="bottom" secondItem="jka-Rh-kcr" secondAttribute="bottom" id="kUj-ve-EK6"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

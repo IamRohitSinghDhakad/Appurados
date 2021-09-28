@@ -23,12 +23,18 @@ class OrderDetailViewController: UIViewController {
     @IBOutlet weak var lblDishType: UILabel!
     
     var arrOrderDetail = [OrderDetailModel]()
+    var objProductDetails:ProductModel?
     var strVendorID:String?
     var strProductID:String?
+    var strProductprice:String?
+    var strFinalPrice:String?
+    var strAddonItemsID:String?
+    var strQuantity:Int = 0
+    var strVariantName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.lblStepperQty.text = "\(self.strQuantity)"
         self.vwContainerVarieant.isHidden = true
         
         self.tblvarient.delegate = self
@@ -36,6 +42,9 @@ class OrderDetailViewController: UIViewController {
         
         self.tblAddons.delegate = self
         self.tblAddons.dataSource = self
+        
+        self.strProductprice = self.objProductDetails?.strPrice
+        self.strFinalPrice = self.objProductDetails?.strPrice
         
         self.call_WsGetOrderDetail(strVendorID: self.strVendorID ?? "", strProductID: self.strProductID ?? "")
 
@@ -49,18 +58,28 @@ class OrderDetailViewController: UIViewController {
     }
     
     @IBAction func btnMinus(_ sender: Any) {
+        if self.strQuantity > 0{
+            self.strQuantity = self.strQuantity - 1
+            self.lblStepperQty.text = "\(self.strQuantity)"
+        }else{
+            self.lblStepperQty.text = "0"
+        }
         
     }
     
     @IBAction func btnPlus(_ sender: Any) {
-        
+        self.strQuantity = self.strQuantity + 1
+        self.lblStepperQty.text = "\(self.strQuantity)"
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
         onBackPressed()
     }
     
-
+    @IBAction func btnAddToCart(_ sender: Any) {
+        self.call_WsAddToCart(strVendorID: self.strVendorID ?? "", strProductID: self.strProductID ?? "")
+    }
+    
 }
 
 
@@ -225,4 +244,86 @@ extension OrderDetailViewController{
         }
     }
     
+    
+    //MARK:- Add To cart
+    
+    
+    //MARK:- Free Delivery
+    func call_WsAddToCart(strVendorID:String, strProductID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":strVendorID,
+                         "product_id":strProductID,
+                         "price":self.strProductprice ?? "",
+                         "variant_name":self.strVariantName ?? "",
+                         "addon_items":self.strAddonItemsID ?? "",
+                         "quantity":"\(self.strQuantity)",
+                         "product_price":self.strProductprice ?? ""]as [String:Any]
+        
+        print(dicrParam)
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_AddToCart, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    print(arrData.count)
+                        for data in arrData{
+                            let obj = OrderDetailModel.init(dict: data)
+                            self.arrOrderDetail.append(obj)
+                        }
+                    
+                    if self.arrOrderDetail.count == 0{
+                        
+                    }else{
+                        let obj = self.arrOrderDetail[0]
+                        
+                        self.lblDescription.text = obj.strProduuctDescription
+                        self.lblDishName.text = obj.strProductName
+                        self.lblAmount.text = "$" + obj.strPrice
+                        self.lblDishType.text = obj.strProductType
+                        self.lblAddToCartAmount.text = "$" + obj.strPrice
+                        
+                        let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                            if profilePic != "" {
+                                let url = URL(string: profilePic!)
+                                self.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
+                            }
+                    }
+                    
+                    self.tblvarient.reloadData()
+                    self.tblAddons.reloadData()
+                    
+                    if self.arrOrderDetail[0].arrVariant.count == 0 && self.arrOrderDetail[0].arrAddOnName.count == 0 {
+                        self.vwContainerVarieant.isHidden = true
+                    }else{
+                        self.vwContainerVarieant.isHidden = false
+                    }
+                    self.viewWillLayoutSubviews()
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            objWebServiceManager.hideIndicator()
+        }
+    }
 }

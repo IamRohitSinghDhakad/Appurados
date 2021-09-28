@@ -36,6 +36,7 @@ struct WsUrl{
     static let url_FavUnfav = BASE_URL + "save_in_favorite"
     static let url_AddAddress = BASE_URL + "add_user_address"
     static let url_BuyOffer = BASE_URL + "buy_offer_voucher"
+    static let url_AddToCart = BASE_URL + "add_to_cart"
     
    
 }

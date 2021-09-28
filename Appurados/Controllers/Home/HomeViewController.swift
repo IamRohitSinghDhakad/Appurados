@@ -322,7 +322,6 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      //  self.pushVc(viewConterlerId: "OrderDetailViewController")
         
         if collectionView == self.cvPopularBrand{
             let obj = self.arrPopularItem[indexPath.row]
