@@ -15,7 +15,7 @@ class FoodDetailVendorViewController: UIViewController {
     
     var objVendorDetails: RestaurentsDetailModel?
     var arrSubCategory = [SubCategoryModel]()
-    var arrProductDetails = [ProductModel]()
+    var arrProductDetails = [ProductDetailModel]()
     
     var selectedCategoryID: Int = 0
     let selectedSubCategoryID: Int = 0
@@ -149,7 +149,7 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController")as! OrderDetailViewController
         vc.strVendorID = obj.strVendorID
-        vc.strProductID = obj.strProductId
+        vc.strProductID = obj.strProductID
         vc.objProductDetails = obj
         self.navigationController?.pushViewController(vc, animated: true)
         
@@ -254,7 +254,7 @@ extension FoodDetailVendorViewController {
                 if let arrData = response["result"]as? [[String:Any]]{
                     
                     for data in arrData{
-                        let obj = ProductModel.init(dict: data)
+                        let obj = ProductDetailModel.init(dict: data)
                         self.arrProductDetails.append(obj)
                     }
                     

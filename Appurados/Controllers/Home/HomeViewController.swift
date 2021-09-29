@@ -160,7 +160,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             let obj:CaterogryModel?
             if collectionView == self.cvTopMenu{
                 obj = self.arrTempCategoryData[indexPath.row]
-                if indexPath.row == 3{
+                if obj?.strCategoryName == ""{
                     cell.lblTitle.text = "More"
                     cell.imgVw.image = #imageLiteral(resourceName: "menu-1")
                    // cell.lblTitle.text = "More"
@@ -221,7 +221,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             cell.lblDescription.text = obj.strSpecialties
             
             
-            let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if profilePic != "" {
                     let url = URL(string: profilePic!)
                     cell.imgVwTop.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
@@ -322,6 +322,15 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        
+        if collectionView == self.cvRecommendedProducts{
+            let obj = self.arrRecomendedItem[indexPath.row]
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController")as! OrderDetailViewController
+            vc.objProductDetails = obj
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
         
         if collectionView == self.cvPopularBrand{
             let obj = self.arrPopularItem[indexPath.row]
@@ -593,6 +602,14 @@ extension HomeViewController{
                         print(self.arrTempCategoryData)
                     }else{
                         self.arrTempCategoryData = self.arrCategoryData
+                    }
+                    
+                    if self.arrCategoryData.count >= 4{
+                        let obj = CaterogryModel.init(dict: [:])
+                        self.arrTempCategoryData.insert(obj, at: 4)
+                    }else{
+                        let obj = CaterogryModel.init(dict: [:])
+                        self.arrTempCategoryData.append(obj)
                     }
                     
                     self.cvTopMenu.reloadData()

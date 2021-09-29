@@ -23,18 +23,20 @@ class OrderDetailViewController: UIViewController {
     @IBOutlet weak var lblDishType: UILabel!
     
     var arrOrderDetail = [OrderDetailModel]()
-    var objProductDetails:ProductModel?
+    var objProductDetails:ProductDetailModel?
+    
     var strVendorID:String?
     var strProductID:String?
+    
     var strProductprice:String?
     var strFinalPrice:String?
     var strAddonItemsID:String?
-    var strQuantity:Int = 0
+    var strQuantity:Float = 1
     var strVariantName:String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lblStepperQty.text = "\(self.strQuantity)"
+        self.lblStepperQty.text = "\(Int(self.strQuantity))"
         self.vwContainerVarieant.isHidden = true
         
         self.tblvarient.delegate = self
@@ -46,7 +48,9 @@ class OrderDetailViewController: UIViewController {
         self.strProductprice = self.objProductDetails?.strPrice
         self.strFinalPrice = self.objProductDetails?.strPrice
         
-        self.call_WsGetOrderDetail(strVendorID: self.strVendorID ?? "", strProductID: self.strProductID ?? "")
+        
+      //  self.call_WsGetOrderDetail(strVendorID: self.strVendorID ?? "", strProductID: self.strProductID ?? "")
+        self.call_WsGetOrderDetail(strVendorID: self.objProductDetails?.strVendorID ?? "" , strProductID: self.objProductDetails?.strProductID ?? "")
 
         // Do any additional setup after loading the view.
     }
@@ -60,7 +64,12 @@ class OrderDetailViewController: UIViewController {
     @IBAction func btnMinus(_ sender: Any) {
         if self.strQuantity > 0{
             self.strQuantity = self.strQuantity - 1
-            self.lblStepperQty.text = "\(self.strQuantity)"
+            guard let price = Float(self.strProductprice ?? "0") else { return }
+           // let intPrice = Int(price)
+            let finalPrice = price * strQuantity
+            self.strFinalPrice = "\(finalPrice)"
+            self.lblAddToCartAmount.text = "$ \(finalPrice)"
+            self.lblStepperQty.text = "\(Int(self.strQuantity))"
         }else{
             self.lblStepperQty.text = "0"
         }
@@ -69,7 +78,12 @@ class OrderDetailViewController: UIViewController {
     
     @IBAction func btnPlus(_ sender: Any) {
         self.strQuantity = self.strQuantity + 1
-        self.lblStepperQty.text = "\(self.strQuantity)"
+        guard let price = Float(self.strProductprice ?? "0") else { return }
+        let finalPrice = price * strQuantity
+        print(finalPrice)
+        self.lblAddToCartAmount.text = "$ \(finalPrice)"
+        self.lblStepperQty.text = "\(Int(self.strQuantity))"
+        self.strFinalPrice = "\(finalPrice)"
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
@@ -185,6 +199,7 @@ extension OrderDetailViewController{
                          "my_favorite":"",
                          "offer_category_id":"",
                          "ios_register_id":""]as [String:Any]
+        print(dicrParam)
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getProduct, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()
@@ -259,12 +274,12 @@ extension OrderDetailViewController{
         objWebServiceManager.showIndicator()
         
         let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
-                         "vendor_id":strVendorID,
-                         "product_id":strProductID,
-                         "price":self.strProductprice ?? "",
+                         "vendor_id":self.objProductDetails?.strVendorID ?? "",
+                         "product_id":self.objProductDetails?.strProductID ?? "",
+                         "price":self.strFinalPrice ?? "0.00",
                          "variant_name":self.strVariantName ?? "",
                          "addon_items":self.strAddonItemsID ?? "",
-                         "quantity":"\(self.strQuantity)",
+                         "quantity":"\(Int(self.strQuantity))",
                          "product_price":self.strProductprice ?? ""]as [String:Any]
         
         print(dicrParam)
@@ -277,46 +292,18 @@ extension OrderDetailViewController{
             print(response)
             if status == MessageConstant.k_StatusCode{
 
-                if let arrData = response["result"]as? [[String:Any]]{
-                    print(arrData.count)
-                        for data in arrData{
-                            let obj = OrderDetailModel.init(dict: data)
-                            self.arrOrderDetail.append(obj)
-                        }
+                if let result = response["result"]as? [String:Any]{
+                 
+                    objAlert.showAlert(message: "Order added succsfully in your cart", title: "Success", controller: self)
+
                     
-                    if self.arrOrderDetail.count == 0{
-                        
-                    }else{
-                        let obj = self.arrOrderDetail[0]
-                        
-                        self.lblDescription.text = obj.strProduuctDescription
-                        self.lblDishName.text = obj.strProductName
-                        self.lblAmount.text = "$" + obj.strPrice
-                        self.lblDishType.text = obj.strProductType
-                        self.lblAddToCartAmount.text = "$" + obj.strPrice
-                        
-                        let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                            if profilePic != "" {
-                                let url = URL(string: profilePic!)
-                                self.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
-                            }
-                    }
-                    
-                    self.tblvarient.reloadData()
-                    self.tblAddons.reloadData()
-                    
-                    if self.arrOrderDetail[0].arrVariant.count == 0 && self.arrOrderDetail[0].arrAddOnName.count == 0 {
-                        self.vwContainerVarieant.isHidden = true
-                    }else{
-                        self.vwContainerVarieant.isHidden = false
-                    }
-                    self.viewWillLayoutSubviews()
                 }else{
                     objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
                 }
             }else{
                 objWebServiceManager.hideIndicator()
                 if let msgg = response["result"]as? String{
+                  //  objAlert.showAlert(message: "Order added succsfully in your cart", title: "Success", controller: self)
 
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "", controller: self)

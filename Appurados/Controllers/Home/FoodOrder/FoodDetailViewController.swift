@@ -20,7 +20,7 @@ class FoodDetailViewController: UIViewController {
     
     var objVendorDetails: RestaurentsDetailModel?
     var arrSubCategoryID = [SubCategoryModel]()
-    var arrProductDetails = [ProductModel]()
+    var arrProductDetails = [ProductDetailModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -286,7 +286,7 @@ extension FoodDetailViewController{
                 if let arrData = response["result"]as? [[String:Any]]{
                     
                     for data in arrData{
-                        let obj = ProductModel.init(dict: data)
+                        let obj = ProductDetailModel.init(dict: data)
                         self.arrProductDetails.append(obj)
                     }
 //                    self.call_WsGetRecomendedProduct()
