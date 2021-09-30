@@ -65,9 +65,15 @@ extension DishDetailViewController: UITableViewDelegate,UITableViewDataSource{
         }
         
         if obj.strFreeDelivery == "1"{
-            cell.lblDistance.text = "(Free Delivery)"
+            cell.lblDistance.text = "Free Delivery"
         }else{
-            cell.lblDistance.text = obj.strDistance
+            cell.lblDistance.text = "$" + obj.strDeliverCharge + " (Service Charge)"
+        }
+        
+        if obj.strStatus == "1" && obj.strOpenStatus == "1"{
+            
+        }else{
+            
         }
         
         let profilePic = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -122,17 +128,20 @@ extension DishDetailViewController{
         objWebServiceManager.showIndicator()
         
         
+        
+        
         let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
                          "vendor_id":"",
                          "category_id":strCategoryID,
-                         "lat":"",
-                         "lng":"",
-                         "free_delivery":"1",
+                         "lat":objAppShareData.UserDetail.strlatitude,
+                         "lng":objAppShareData.UserDetail.strlongitude,
+                         "free_delivery":"",
                          "has_offers":"",
                          "popular":"",
                          "my_favorite":"",
                          "offer_category_id":"",
-                         "ios_register_id":objAppShareData.strFirebaseToken]as [String:Any]
+                         "ios_register_id":""]as [String:Any]
+        
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
             objWebServiceManager.hideIndicator()

@@ -293,8 +293,11 @@ extension OrderDetailViewController{
             if status == MessageConstant.k_StatusCode{
 
                 if let result = response["result"]as? [String:Any]{
-                 
-                    objAlert.showAlert(message: "Order added succsfully in your cart", title: "Success", controller: self)
+                    
+                    objAlert.showAlertCallBack(alertLeftBtn: "", alertRightBtn: "OK", title: "Success", message: "Order added on your cart!", controller: self) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                   // objAlert.showAlert(message: "Order added succsfully in your cart", title: "Success", controller: self)
 
                     
                 }else{

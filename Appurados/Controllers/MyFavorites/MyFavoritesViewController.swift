@@ -61,9 +61,9 @@ extension MyFavoritesViewController: UITableViewDelegate,UITableViewDataSource{
         }
         
         if obj.strFreeDelivery == "1"{
-            cell.lblDistance.text = "(Free Delivery)"
+            cell.lblDistance.text = "Free Delivery"
         }else{
-            cell.lblDistance.text = obj.strDistance
+            cell.lblDistance.text = "$" + obj.strDeliverCharge + " (Service Charge)"
         }
         
         let profilePic = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
@@ -86,6 +86,14 @@ extension MyFavoritesViewController: UITableViewDelegate,UITableViewDataSource{
         self.view.endEditing(true)
         let vendorID = self.arrFavListFiltered[button.tag].strVendorID
         self.call_WsFavUnfavorite(strVendorID: vendorID, strIndex: button.tag)
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let obj = self.arrFavListFiltered[indexPath.row]
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+        vc.objVendorDetails = obj
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     

@@ -71,10 +71,17 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         if section == 0 {
             let cell = self.tblFoodDetails.dequeueReusableCell(withIdentifier: "VendorDetailTableViewCell") as! VendorDetailTableViewCell
             
+            
+            if objVendorDetails?.isFavorite == true{
+                cell.imgVwFav.image = #imageLiteral(resourceName: "heart")
+            }else{
+                cell.imgVwFav.image = #imageLiteral(resourceName: "like")
+            }
+            
             cell.lblVendorName.text = objVendorDetails?.strVendorName
             cell.lblSpecilaity.text = objVendorDetails?.strSpecialties
             cell.lblAddress.text = objVendorDetails?.strAddress
-            cell.lblDistance.text = objVendorDetails?.strDistance
+            cell.lblTimeForDeliver.text = "With in " + objVendorDetails!.strDistance + " mins"
             cell.lblDiscount.text = objVendorDetails?.strDiscountLabel
            
              let profilePic = objVendorDetails?.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

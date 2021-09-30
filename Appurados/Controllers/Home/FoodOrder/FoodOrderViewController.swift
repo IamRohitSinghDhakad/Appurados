@@ -138,9 +138,9 @@ extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
         }
         
         if obj.strFreeDelivery == "1"{
-            cell.lblDistance.text = "(Free Delivery)"
+            cell.lblDistance.text = "Free Delivery"
         }else{
-            cell.lblDistance.text = obj.strDistance
+            cell.lblDistance.text = "$" + obj.strDeliverCharge + " (Service Charge)"
         }
         
         let profilePic = obj.strRastaurentImg.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

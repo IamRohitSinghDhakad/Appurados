@@ -331,9 +331,25 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             self.navigationController?.pushViewController(vc, animated: true)
             
         }
+       
+        if collectionView == self.cvFreeDelivery{
+            let obj = self.arrFreeDeliveryItem[indexPath.row]
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+            vc.objVendorDetails = obj
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
         
         if collectionView == self.cvPopularBrand{
             let obj = self.arrPopularItem[indexPath.row]
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+            vc.objVendorDetails = obj
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
+        if collectionView == self.cvOtherOffer{
+            let obj = self.arrOfferItem[indexPath.row]
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
             vc.objVendorDetails = obj
             self.navigationController?.pushViewController(vc, animated: true)
@@ -350,6 +366,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Supermercados":
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "DishDetailViewController")as! DishDetailViewController
+                vc.strtitle = "Supermercados"
                 vc.strCategoryID = obj.strCategoryID
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Mensajeria":

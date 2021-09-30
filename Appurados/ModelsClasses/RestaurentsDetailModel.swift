@@ -23,6 +23,9 @@ class RestaurentsDetailModel: NSObject {
     var strRating:String = ""
     var isFavorite:Bool = false
     var strCategoryID:String  = ""
+    var strStatus:String = ""
+    var strOpenStatus:String = ""
+    var strDeliverCharge:String = ""
     
     init(dict : [String:Any]) {
         
@@ -40,6 +43,29 @@ class RestaurentsDetailModel: NSObject {
             self.strCategoryID = category_id
         }else if let category_id = dict["category_id"] as? Int{
             self.strCategoryID = "\(category_id)"
+        }
+        
+        
+        if let open_status = dict["open_status"] as? String{
+            self.strOpenStatus = open_status
+        }else if let open_status = dict["open_status"] as? Int{
+            self.strOpenStatus = "\(open_status)"
+        }
+        
+        if let cost = dict["cost"] as? String{
+            self.strDeliverCharge = cost
+        }else if let cost = dict["cost"] as? Int{
+            self.strDeliverCharge = "\(cost)"
+        }
+        
+        if let status = dict["status"] as? String{
+            self.strStatus = status
+        }else if let status = dict["status"] as? Int{
+            self.strStatus = "\(status)"
+        }
+        
+        if let display_address = dict["display_address"] as? String{
+            self.strAddress = display_address
         }
         
         

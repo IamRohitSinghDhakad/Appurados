@@ -84,8 +84,8 @@ class MapViewController: UIViewController {
             objAlert.showAlert(message: "Please select location", title: "Alert", controller: self)
         }else{
             
-            objAppShareData.UserDetail.strlatitude = "\(String(describing: self.userSelectedLatitude))"
-            objAppShareData.UserDetail.strlongitude = "\(String(describing: self.userSelectedLongitude))"
+            objAppShareData.UserDetail.strlatitude = "\(self.userSelectedLatitude ?? 0.0)"//"\(String(describing: self.userSelectedLatitude))"
+            objAppShareData.UserDetail.strlongitude = "\(self.userSelectedLongitude ?? 0.0)"
             objAppShareData.UserDetail.strAddress = self.lblCurrentLocation.text ?? "Something went wrong!"
             
             UserDefaults.standard.setValue(objAppShareData.UserDetail.strlatitude, forKey: UserDefaults.KeysDefault.strLatitude)

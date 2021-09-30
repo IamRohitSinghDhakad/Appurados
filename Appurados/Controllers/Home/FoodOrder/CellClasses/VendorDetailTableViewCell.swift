@@ -16,9 +16,11 @@ class VendorDetailTableViewCell: UITableViewCell {
     @IBOutlet var btnFavUnfav: UIButton!
     @IBOutlet var lblRating: UILabel!
     @IBOutlet var lblAddress: UILabel!
-    @IBOutlet var lblDistance: UILabel!
+    @IBOutlet var lblTimeForDeliver: UILabel!
     @IBOutlet var lblFreeDelivery: UILabel!
     @IBOutlet var lblDiscount: UILabel!
+    @IBOutlet var lblReviewCount: UILabel!
+    @IBOutlet var btnGoToAllReview: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

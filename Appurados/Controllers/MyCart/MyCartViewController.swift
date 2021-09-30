@@ -17,28 +17,41 @@ class MyCartViewController: UIViewController {
     @IBOutlet var lblDeliverTo: UILabel!
     @IBOutlet var lblAddress: UILabel!
     @IBOutlet var subVwConfirmation: UIView!
+    @IBOutlet var lblNoOrderInCartMsg: UILabel!
+    @IBOutlet weak var vwNoOrderIncart: UIView!
     
     
     var arrCartItems = [CartItemsModel]()
     var strDistance = ""
     var strWallet = ""
     var strDileveryCharge = ""
+    var arrAddress = [AddressModel]()
+    var strAddressID = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.vwNoOrderIncart.isHidden = true
         
         self.tblOrders.delegate = self
         self.tblOrders.dataSource = self
         
         self.subVwConfirmation.isHidden = true
-        self.call_WsCartDetail()
         
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.call_WsGetAddress()
+       
+    }
+    
     func setUserData(){
-        self.lblDeliveryCharges.text = self.strDileveryCharge
-        self.lblBasketTotal.text = self.strDileveryCharge
+        self.lblDeliveryCharges.text = "$" + self.strDileveryCharge
+        self.lblBasketTotal.text = "$" + self.strDileveryCharge
+       // self.lblTotalAmount.text = "$" +
     }
     
     /// Manage Table vuew hight :----->
@@ -55,14 +68,14 @@ class MyCartViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.lblDeliveryCharges.text = self.strDileveryCharge
+        self.lblDeliveryCharges.text = "$" + self.strDileveryCharge
     }
     
     @IBAction func btnOnChangeAddress(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "ChangeAddressViewController")as! ChangeAddressViewController
         vc.closerForDictAddress = { dict
             in
-            print(dict)
+           
             self.lblDeliverTo.text = "Deliver to \(dict.strAddress_name)"
             self.lblAddress.text = dict.strAddress
         }
@@ -79,7 +92,9 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOnAddItems(_ sender: Any) {
-        
+//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+//        //vc.objVendorDetails = obj
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnOnCheckout(_ sender: Any) {
@@ -120,11 +135,22 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
-        self.lblBasketTotal.text = obj.strProductPrice
+        self.lblBasketTotal.text = "$" + obj.strProductPrice
+        self.lblTotalAmount.text = "$" + obj.strProductPrice
+        
+        let floatValue = Float(obj.strProductPrice)! + Float(self.strDileveryCharge)!
+        self.lblTotalAmount.text = "$\(floatValue)"
         
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let obj = self.arrCartItems[indexPath.row]
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderDetailViewController")as! OrderDetailViewController
+      //  vc.objProductDetails = obj
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
      //   self.viewWillLayoutSubviews()
@@ -146,10 +172,9 @@ extension MyCartViewController {
             objWebServiceManager.showIndicator()
             
             
-            let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
-                             "user_address_id":""]as [String:Any]
+            let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,"user_address_id":self.strAddressID]as [String:Any]
             
-            
+            print(dicrParam)
             objWebServiceManager.requestGet(strURL: WsUrl.url_GetCartDetails, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
                objWebServiceManager.hideIndicator()
                 print(response)
@@ -158,7 +183,7 @@ extension MyCartViewController {
                 if status == MessageConstant.k_StatusCode{
 
                     if let arrData = response["result"]as? [[String:Any]]{
-                        
+                        self.vwNoOrderIncart.isHidden = true
                         if let distance = response["distance"]as? String{
                             self.strDistance = distance
                         }
@@ -173,7 +198,7 @@ extension MyCartViewController {
                             self.strDileveryCharge = "\(delivery_charge)"
                             
                         }
-                        
+                        self.arrCartItems.removeAll()
                         for data in arrData{
                             let obj = CartItemsModel.init(dict: data)
                             self.arrCartItems.append(obj)
@@ -190,7 +215,13 @@ extension MyCartViewController {
                 }else{
                     objWebServiceManager.hideIndicator()
                     if let msgg = response["result"]as? String{
-                       // objAlert.showAlert(message: msgg, title: "", controller: self)
+                        if msgg == "Your Cart is Empty"{
+                            self.vwNoOrderIncart.isHidden = false
+                            self.lblNoOrderInCartMsg.text = msgg
+                        }else
+                        {
+                            objAlert.showAlert(message: msgg, title: "", controller: self)
+                        }
                     }else{
                         objAlert.showAlert(message: message ?? "", title: "", controller: self)
                     }
@@ -203,5 +234,63 @@ extension MyCartViewController {
         }
         
     
+    
+    func call_WsGetAddress(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId]as [String:Any]
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserAddress, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+            
+                self.arrAddress.removeAll()
+                
+                if let result = response["result"]as? [[String:Any]]{
+                    
+                    for data in result{
+                        let obj = AddressModel.init(dict: data)
+                        self.arrAddress.append(obj)
+                    }
+                    if self.arrAddress.count != 0{
+                        self.strAddressID = self.arrAddress[0].strUserAddressID
+                        self.lblDeliverTo.text = "Deliver to " + self.arrAddress[0].strAddress_name
+                        self.lblAddress.text = self.arrAddress[0].strAddress
+                    }else{
+                        self.strAddressID = self.arrAddress[0].strUserAddressID
+                    }
+                    self.call_WsCartDetail()
+
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    objAlert.showAlert(message: msgg, title: "", controller: self)
+                    self.call_WsCartDetail()
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+            
+            
+        } failure: { (Error) in
+          //  print(Error)
+            self.call_WsCartDetail()
+            objWebServiceManager.hideIndicator()
+        }
+        
+        
+    }
     
 }
