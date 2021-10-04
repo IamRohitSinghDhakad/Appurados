@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZxA-If-6ol">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZxA-If-6ol">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -791,7 +790,7 @@
                                                                         </cells>
                                                                     </collectionView>
                                                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="ccP-JE-1Qb">
-                                                                        <rect key="frame" x="112.5" y="235" width="150" height="26"/>
+                                                                        <rect key="frame" x="112.5" y="235" width="150" height="27.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="150" id="5iL-fe-8Ge"/>
                                                                         </constraints>
@@ -2296,7 +2295,7 @@
                                                                 </constraints>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodOrderTableViewCell" id="YfZ-D4-HcH" customClass="FoodOrderTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="100"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="100"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YfZ-D4-HcH" id="Jua-Gg-vUn">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -2771,7 +2770,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodOrderTableViewCell" id="huP-tQ-mVK" customClass="FoodOrderTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="108"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="108"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huP-tQ-mVK" id="WSo-a0-i98">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
@@ -3509,7 +3508,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterTableViewCell" id="72r-7G-t6P" customClass="FilterTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="53"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="53"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="72r-7G-t6P" id="FMM-KB-4X2">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
@@ -4569,7 +4568,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AppSideMenuTableViewCell" rowHeight="55" id="aim-Ay-ZAQ" customClass="AppSideMenuTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="187.5" height="55"/>
+                                                <rect key="frame" x="0.0" y="24.5" width="187.5" height="55"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aim-Ay-ZAQ" id="GGf-K8-z90">
                                                     <rect key="frame" x="0.0" y="0.0" width="187.5" height="55"/>
@@ -5394,7 +5393,7 @@
                                                                 </constraints>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyCartTableViewCell" rowHeight="100" id="hii-mr-evT" customClass="MyCartTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="100"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="100"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hii-mr-evT" id="GLr-w3-eSs">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -6876,7 +6875,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyRewardTableViewCell" rowHeight="100" id="Hyr-fe-Au4" customClass="MyRewardTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="100"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="100"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hyr-fe-Au4" id="EO0-ne-ftS">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -7395,7 +7394,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SendPackageTableViewCell" id="OsQ-KV-ww9" customClass="SendPackageTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="118"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="118"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OsQ-KV-ww9" id="kv3-my-tnl">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
@@ -7637,7 +7636,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PendingOrderListTableViewCell" rowHeight="175" id="XTl-ky-w8T" customClass="PendingOrderListTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="175"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XTl-ky-w8T" id="7K2-iK-1lG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
@@ -7871,7 +7870,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PendingOrderListTableViewCell" rowHeight="175" id="Hez-V0-UhK" customClass="PendingOrderListTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="175"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hez-V0-UhK" id="ArL-f6-Tpd">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
@@ -8099,7 +8098,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PendingOrderListTableViewCell" rowHeight="175" id="X6y-gE-ijA" customClass="PendingOrderListTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="175"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="175"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="X6y-gE-ijA" id="kek-XH-L12">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
@@ -8451,7 +8450,7 @@
                                                                 </constraints>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyOrderDetailTableViewCell" id="roG-IH-32T" customClass="MyOrderDetailTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="108"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="108"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="roG-IH-32T" id="XM2-a5-2qE">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
@@ -9190,7 +9189,7 @@
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <prototypes>
                                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FoodOrderTableViewCell" id="xOD-un-r9o" customClass="FoodOrderTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="108"/>
+                                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="108"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xOD-un-r9o" id="cQK-bz-FOx">
                                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
@@ -10064,7 +10063,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NotificationTableViewCell" id="MOP-Yj-UwW" customClass="NotificationTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="90.5"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="90.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MOP-Yj-UwW" id="KN3-X9-Vu6">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90.5"/>
@@ -10313,7 +10312,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MyOfferTableViewCell" rowHeight="138" id="WZd-gI-Ehc" customClass="MyOfferTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="138"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="138"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WZd-gI-Ehc" id="3dK-3j-dxR">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
@@ -10616,7 +10615,7 @@
                                                                                         </constraints>
                                                                                         <prototypes>
                                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VarientTableViewCell" rowHeight="43.5" id="6Qs-Me-MFO" customClass="VarientTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="44.5" width="315" height="43.5"/>
+                                                                                                <rect key="frame" x="0.0" y="24.5" width="315" height="43.5"/>
                                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Qs-Me-MFO" id="Ty9-0t-kQ8">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="315" height="43.5"/>
@@ -10732,7 +10731,7 @@
                                                                                         </constraints>
                                                                                         <prototypes>
                                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VarientTableViewCell" rowHeight="43.5" id="gsa-5k-I09" customClass="VarientTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                                                                <rect key="frame" x="0.0" y="44.5" width="315" height="43.5"/>
+                                                                                                <rect key="frame" x="0.0" y="24.5" width="315" height="43.5"/>
                                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gsa-5k-I09" id="2dp-Ch-edk">
                                                                                                     <rect key="frame" x="0.0" y="0.0" width="315" height="43.5"/>
@@ -11318,7 +11317,7 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FoodDetailTableViewCell" id="ftx-lZ-Drl" customClass="FoodDetailTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="110.5"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="110.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ftx-lZ-Drl" id="cVH-RX-BaE">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
@@ -11588,7 +11587,7 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ChangeAddressTableViewCell" id="GRi-rs-PsB" customClass="ChangeAddressTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="375" height="71.5"/>
+                                                        <rect key="frame" x="0.0" y="24.5" width="375" height="71.5"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GRi-rs-PsB" id="CL4-7S-bYc">
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -12228,7 +12227,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VendorDetailTableViewCell" id="BiM-5M-ELG" customClass="VendorDetailTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="410"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="375" height="410"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BiM-5M-ELG" id="ENe-K7-xxX">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="410"/>
@@ -12689,7 +12688,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodCategoryTableViewCell" id="a4K-ef-u5C" customClass="FoodCategoryTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="454.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="434.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a4K-ef-u5C" id="yzk-te-Agk">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -12787,7 +12786,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodDetailTableViewCell" id="u28-vv-4tS" customClass="FoodDetailTableViewCell" customModule="Appurados" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="498.5" width="375" height="110"/>
+                                        <rect key="frame" x="0.0" y="478.5" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u28-vv-4tS" id="dS0-NK-RHl">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
@@ -13122,8 +13121,6 @@
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eej-1Q-auS">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain"/>
                                                                                 <connections>
                                                                                     <action selector="btnOpenaddressPicker:" destination="da8-jg-k8n" eventType="touchUpInside" id="h9q-ft-koG"/>
                                                                                 </connections>
@@ -13441,8 +13438,6 @@
                                                                             </imageView>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcC-W4-RAP">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
-                                                                                <state key="normal" title="Button"/>
-                                                                                <buttonConfiguration key="configuration" style="plain"/>
                                                                                 <connections>
                                                                                     <action selector="btnOpenPlacePicker:" destination="fij-WB-mQ4" eventType="touchUpInside" id="IkD-fO-xEC"/>
                                                                                 </connections>
@@ -13583,7 +13578,6 @@
                         <outlet property="lblAddress" destination="Xps-rV-cP5" id="aXL-vE-uLL"/>
                         <outlet property="lblLandmark" destination="UPd-Jk-9Ar" id="ygO-xI-7qm"/>
                         <outlet property="mapVw" destination="ojx-jb-nRP" id="vrb-Ww-uo1"/>
-                        <outlet property="tfLandMark" destination="UPd-Jk-9Ar" id="Ice-ge-qgc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHP-7S-6EQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
