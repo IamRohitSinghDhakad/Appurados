@@ -73,6 +73,8 @@
 		F9A0104526EA95E600D1580A /* OfferCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0104426EA95E600D1580A /* OfferCategoryModel.swift */; };
 		F9A0104726EA9E9700D1580A /* SendPackageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0104626EA9E9700D1580A /* SendPackageModel.swift */; };
 		F9A0104926EAA71A00D1580A /* CartItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A0104826EAA71A00D1580A /* CartItemsModel.swift */; };
+		F9A3D1432709A7D400BFFE9B /* SendPackagePickUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A3D1422709A7D400BFFE9B /* SendPackagePickUpViewController.swift */; };
+		F9A3D1452709A7E200BFFE9B /* SendPackageDropOffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A3D1442709A7E200BFFE9B /* SendPackageDropOffViewController.swift */; };
 		F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */; };
 		F9A7330426D4FBCB0006BE93 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */; };
 		F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A7330526D5002C0006BE93 /* LoginViewController.swift */; };
@@ -183,6 +185,8 @@
 		F9A0104426EA95E600D1580A /* OfferCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCategoryModel.swift; sourceTree = "<group>"; };
 		F9A0104626EA9E9700D1580A /* SendPackageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPackageModel.swift; sourceTree = "<group>"; };
 		F9A0104826EAA71A00D1580A /* CartItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemsModel.swift; sourceTree = "<group>"; };
+		F9A3D1422709A7D400BFFE9B /* SendPackagePickUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPackagePickUpViewController.swift; sourceTree = "<group>"; };
+		F9A3D1442709A7E200BFFE9B /* SendPackageDropOffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPackageDropOffViewController.swift; sourceTree = "<group>"; };
 		F9A7330126D4EBEF0006BE93 /* SignUpModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
 		F9A7330326D4FBCB0006BE93 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		F9A7330526D5002C0006BE93 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -639,6 +643,8 @@
 				F9F3160926DB9B510015BCDC /* CellClasses */,
 				F9F3160726DB69D50015BCDC /* SendPackageViewController.swift */,
 				F9F10D7D26EE950400EFC362 /* SendPackageFormFillViewController.swift */,
+				F9A3D1422709A7D400BFFE9B /* SendPackagePickUpViewController.swift */,
+				F9A3D1442709A7E200BFFE9B /* SendPackageDropOffViewController.swift */,
 			);
 			path = PackageOrders;
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 				F92793D726DE7C19002DA4EF /* VarientTableViewCell.swift in Sources */,
 				F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */,
 				F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */,
+				F9A3D1452709A7E200BFFE9B /* SendPackageDropOffViewController.swift in Sources */,
 				F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */,
 				F90741E126F3763E0031C1EB /* TrackOrderViewController.swift in Sources */,
 				F978DE2E26D4DD56009FA173 /* Extensions.swift in Sources */,
@@ -864,6 +871,7 @@
 				F9A0104726EA9E9700D1580A /* SendPackageModel.swift in Sources */,
 				F93A75C226EF6D6C009E34BB /* FilterViewController.swift in Sources */,
 				F978DE5726D4DD80009FA173 /* SWRevealViewController.m in Sources */,
+				F9A3D1432709A7D400BFFE9B /* SendPackagePickUpViewController.swift in Sources */,
 				F978DE6126D4E7FC009FA173 /* UserDefaultExtension.swift in Sources */,
 				F9F3160126DB69830015BCDC /* NotificationViewController.swift in Sources */,
 				F9F74AA626D82FE600E2822B /* DishesCollectionViewCell.swift in Sources */,

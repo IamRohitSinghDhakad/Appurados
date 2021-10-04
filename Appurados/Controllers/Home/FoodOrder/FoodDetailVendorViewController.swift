@@ -16,6 +16,7 @@ class FoodDetailVendorViewController: UIViewController {
     var objVendorDetails: RestaurentsDetailModel?
     var arrSubCategory = [SubCategoryModel]()
     var arrProductDetails = [ProductDetailModel]()
+  
     
     var selectedCategoryID: Int = 0
     let selectedSubCategoryID: Int = 0
@@ -25,6 +26,7 @@ class FoodDetailVendorViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.call_WsGetSubCategory(strVendorID: objVendorDetails!.strVendorID)
+        
     }
     
     

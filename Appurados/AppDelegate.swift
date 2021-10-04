@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navController: UINavigationController?
-    var googleApiKey = "AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc"
+    var googleApiKey = "AIzaSyAVUyl6uR5uwQpxuGpS5hS6fNneQm1peco"//AIzaSyAkLPzABgs6MROKj2TOsWpPqocmmjUNDvc
     var googleSignInID = "436121379274-pc9ebpo4d8s7etivu8o81vi59qgdbehu.apps.googleusercontent.com"
      
     private static var AppDelegateManager: AppDelegate = {

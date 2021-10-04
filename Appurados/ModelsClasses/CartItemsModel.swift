@@ -16,6 +16,7 @@ class CartItemsModel: NSObject {
     var strProductPrice:String = ""
     var strActualPrice:String = ""
     var strProductName:String = ""
+    var strVendorID:String = ""
  
     
     init(dict : [String:Any]) {
@@ -31,6 +32,14 @@ class CartItemsModel: NSObject {
         }else if let product_price = dict["product_price"] as? Int{
             self.strProductPrice = "\(product_price)"
         }
+        
+        if let vendor_id = dict["vendor_id"] as? String{
+            self.strVendorID = vendor_id
+        }else if let vendor_id = dict["vendor_id"] as? Int{
+            self.strVendorID = "\(vendor_id)"
+        }
+        
+        
         
         if let price = dict["price"] as? String{
             self.strActualPrice = price

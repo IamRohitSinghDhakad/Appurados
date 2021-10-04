@@ -27,6 +27,7 @@ class MyCartViewController: UIViewController {
     var strDileveryCharge = ""
     var arrAddress = [AddressModel]()
     var strAddressID = ""
+    var objVendor:RestaurentsDetailModel?
     
     
     override func viewDidLoad() {
@@ -92,9 +93,9 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOnAddItems(_ sender: Any) {
-//        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
-//        //vc.objVendorDetails = obj
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+        vc.objVendorDetails = self.objVendor
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnOnCheckout(_ sender: Any) {
@@ -124,8 +125,8 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCartTableViewCell")as! MyCartTableViewCell
         let obj = self.arrCartItems[indexPath.row]
         
-        cell.lblFinalPrice.text = obj.strProductPrice//obj.strActualPrice
-        cell.lblPrice.text = obj.strActualPrice
+        cell.lblFinalPrice.text = "$" + obj.strProductPrice
+        cell.lblPrice.text = "$" + obj.strActualPrice
         cell.lblQuantity.text = obj.strQuantity
         cell.lblDishName.text = obj.strProductName
         
@@ -137,10 +138,10 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
         
         self.lblBasketTotal.text = "$" + obj.strProductPrice
         self.lblTotalAmount.text = "$" + obj.strProductPrice
-        
-        let floatValue = Float(obj.strProductPrice)! + Float(self.strDileveryCharge)!
-        self.lblTotalAmount.text = "$\(floatValue)"
-        
+//        if obj.strProductPrice != "" && self.strDileveryCharge != ""{
+//            let floatValue = Float(obj.strProductPrice)! + Float(self.strDileveryCharge)!
+//            self.lblTotalAmount.text = "$\(floatValue)"
+//        }
         return cell
     }
     
@@ -203,7 +204,10 @@ extension MyCartViewController {
                             let obj = CartItemsModel.init(dict: data)
                             self.arrCartItems.append(obj)
                         }
-                        
+                        if self.arrCartItems.count != 0{
+                            self.call_WsMyVendor(strVendorId: self.arrCartItems[0].strVendorID)
+                        }
+                       
                         self.tblOrders.reloadData()
                         self.viewWillLayoutSubviews()
                         self.setUserData()
@@ -291,6 +295,68 @@ extension MyCartViewController {
         }
         
         
+    }
+    
+    
+    //VendorDetails
+    func call_WsMyVendor(strVendorId:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":strVendorId,
+                         "category_id":"",
+                         "lat":"",
+                         "lng":"",
+                         "free_delivery":"",
+                         "has_offers":"",
+                         "popular":"",
+                         "recommended":"",
+                         "my_favorite":"",
+                         "offer_category_id":"",
+                         "ios_register_id":""]as [String:Any]
+      
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+           objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+            if status == MessageConstant.k_StatusCode{
+
+             
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    for data in arrData{
+                        let obj = RestaurentsDetailModel.init(dict: data)
+                        self.objVendor = obj
+                       // self.arrVendor.append(obj)
+                    }
+                    
+                 
+                                        
+                }else{
+                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objWebServiceManager.hideIndicator()
+        }
     }
     
 }

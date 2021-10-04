@@ -923,6 +923,7 @@ extension HomeViewController{
                          "offer_category_id":"",
                          "ios_register_id":""]as [String:Any]
       
+        //restaurent minimum
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
            objWebServiceManager.hideIndicator()
