@@ -15,6 +15,7 @@ class SendPackagePickUpViewController: UIViewController {
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var mapVw: UIView!
     
+    var dictPackageData = [String:Any]()
     
     var userSelectedLatitude : Double?
     var userSelectedLongitude : Double?
@@ -68,10 +69,29 @@ class SendPackagePickUpViewController: UIViewController {
     }
     
     @IBAction func btnOpenPlacePicker(_ sender: Any) {
+        let placePickerController = GMSAutocompleteViewController()
+           placePickerController.delegate = self
+           present(placePickerController, animated: true, completion: nil)
     }
     
     @IBAction func btnNext(_ sender: Any) {
+
+        if self.lblAddress.text!.isEmpty{
+            objAlert.showAlert(message: "Please select address first", title: "Alert", controller: self)
+        }else if lblLandmark.text!.isEmpty{
+            objAlert.showAlert(message: "Please enter landmark", title: "Alert", controller: self)
+        }else{
+            self.dictPackageData["pickLatitude"] = self.userSelectedLatitude
+            self.dictPackageData["pickLongitude"] = self.userSelectedLongitude
+            self.dictPackageData["pickAddress"] = self.lblAddress.text
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmPackageViewController")as! ConfirmPackageViewController
+            vc.dictPackageData = self.dictPackageData
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
+        
+        //        let vc = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmPackageViewController")as! ConfirmPackageViewController
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

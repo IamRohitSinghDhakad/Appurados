@@ -12,6 +12,7 @@ class SendPackageFormFillViewController: UIViewController {
     @IBOutlet var tfFullName: UITextField!
     @IBOutlet var tfPhoneNumber: UITextField!
     
+    var dictPackageData = [String:Any]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,23 @@ class SendPackageFormFillViewController: UIViewController {
         onBackPressed()
     }
     @IBAction func btnOnSend(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackageDropOffViewController")as! SendPackageDropOffViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if self.tfFullName.text!.isEmpty{
+            objAlert.showAlert(message: "Please enter name", title: "Alert", controller: self)
+        }else if self.tfPhoneNumber.text!.isEmpty{
+            objAlert.showAlert(message: "Please enter Number", title: "Alert", controller: self)
+        }else{
+            
+            self.dictPackageData["Name"] = self.tfFullName.text
+            self.dictPackageData["Phone"] = self.tfPhoneNumber.text
+            
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackageDropOffViewController")as! SendPackageDropOffViewController
+            vc.dictPackageData = self.dictPackageData
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
+      
     }
     
    

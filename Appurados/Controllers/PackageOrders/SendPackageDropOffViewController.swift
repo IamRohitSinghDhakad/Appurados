@@ -26,6 +26,8 @@ class SendPackageDropOffViewController: UIViewController {
     var preciseLocationZoomLevel: Float = 15.0
     var approximateLocationZoomLevel: Float = 10.0
     
+    var dictPackageData = [String:Any]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,8 +65,20 @@ class SendPackageDropOffViewController: UIViewController {
     }
     
     @IBAction func btnOnNext(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackagePickUpViewController")as! SendPackagePickUpViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if self.lblAddress.text!.isEmpty{
+            objAlert.showAlert(message: "Please select address first", title: "Alert", controller: self)
+        }else if tfLandMark.text!.isEmpty{
+            objAlert.showAlert(message: "Please enter landmark", title: "Alert", controller: self)
+        }else{
+            self.dictPackageData["receiverLatitude"] = self.userSelectedLatitude
+            self.dictPackageData["receiverLongitude"] = self.userSelectedLongitude
+            self.dictPackageData["receiverAddress"] = self.lblAddress.text
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackagePickUpViewController")as! SendPackagePickUpViewController
+            vc.dictPackageData = self.dictPackageData
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {

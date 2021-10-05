@@ -24,6 +24,7 @@ class MyCartViewController: UIViewController {
     var arrCartItems = [CartItemsModel]()
     var strDistance = ""
     var strWallet = ""
+    var strBasketTotal:Double = 0.0
     var strDileveryCharge = ""
     var arrAddress = [AddressModel]()
     var strAddressID = ""
@@ -59,11 +60,11 @@ class MyCartViewController: UIViewController {
     override func viewWillLayoutSubviews() {
        // super.updateViewConstraints()
        // self.tblHgtConstant?.constant = self.tblOrders.contentSize.height + 50
-        DispatchQueue.main.async {
-            self.tblHgtConstant.constant = CGFloat((self.arrCartItems.count) * 100)//Here 30 is my cell height
-             self.tblOrders.reloadData()
-        }
-        super.updateViewConstraints()
+//        DispatchQueue.main.async {
+//            self.tblHgtConstant.constant = CGFloat((self.arrCartItems.count) * 100)//Here 30 is my cell height
+//             self.tblOrders.reloadData()
+//        }
+//        super.updateViewConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -118,6 +119,7 @@ class MyCartViewController: UIViewController {
 extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.tblHgtConstant.constant = CGFloat((self.arrCartItems.count) * 100)//Here 30 is my cell height
         return self.arrCartItems.count
     }
     
@@ -136,8 +138,18 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
-        self.lblBasketTotal.text = "$" + obj.strProductPrice
+        self.strBasketTotal = self.strBasketTotal + Double(obj.strProductPrice)!
+        
+        self.lblBasketTotal.text = "$" + "\(self.strBasketTotal)"
         self.lblTotalAmount.text = "$" + obj.strProductPrice
+        
+        let productPrice = Double(obj.strProductPrice)!
+        let deliveryCharge = Double(self.strDileveryCharge)!
+        
+        let final = productPrice + deliveryCharge
+        
+        print(final)
+        
 //        if obj.strProductPrice != "" && self.strDileveryCharge != ""{
 //            let floatValue = Float(obj.strProductPrice)! + Float(self.strDileveryCharge)!
 //            self.lblTotalAmount.text = "$\(floatValue)"
@@ -153,9 +165,9 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-     //   self.viewWillLayoutSubviews()
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//     //   self.viewWillLayoutSubviews()
+//    }
     
 }
 
@@ -173,7 +185,7 @@ extension MyCartViewController {
             objWebServiceManager.showIndicator()
             
             
-            let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,"user_address_id":self.strAddressID]as [String:Any]
+            let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,"user_address_id":"0"]as [String:Any]
             
             print(dicrParam)
             objWebServiceManager.requestGet(strURL: WsUrl.url_GetCartDetails, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in

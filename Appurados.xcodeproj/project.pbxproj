@@ -12,6 +12,7 @@
 		F90626FA26DAC0AE009E8736 /* PendingOrderListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */; };
 		F90741DE26F33B440031C1EB /* MyOfferTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90741DD26F33B440031C1EB /* MyOfferTableViewCell.swift */; };
 		F90741E126F3763E0031C1EB /* TrackOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90741E026F3763E0031C1EB /* TrackOrderViewController.swift */; };
+		F9088457270C49CE004FED8D /* ConfirmPackageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9088456270C49CE004FED8D /* ConfirmPackageViewController.swift */; };
 		F910A8CD26E36C82005D529F /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F910A8CC26E36C82005D529F /* MapsViewController.swift */; };
 		F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878026E8E3BE00458BE7 /* RewardModel.swift */; };
 		F914878326E8EC8200458BE7 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F914878226E8EC8200458BE7 /* NotificationModel.swift */; };
@@ -118,6 +119,7 @@
 		F90626F926DAC0AE009E8736 /* PendingOrderListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingOrderListTableViewCell.swift; sourceTree = "<group>"; };
 		F90741DD26F33B440031C1EB /* MyOfferTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOfferTableViewCell.swift; sourceTree = "<group>"; };
 		F90741E026F3763E0031C1EB /* TrackOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackOrderViewController.swift; sourceTree = "<group>"; };
+		F9088456270C49CE004FED8D /* ConfirmPackageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPackageViewController.swift; sourceTree = "<group>"; };
 		F910A8CC26E36C82005D529F /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		F914878026E8E3BE00458BE7 /* RewardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardModel.swift; sourceTree = "<group>"; };
 		F914878226E8EC8200458BE7 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -645,6 +647,7 @@
 				F9F10D7D26EE950400EFC362 /* SendPackageFormFillViewController.swift */,
 				F9A3D1422709A7D400BFFE9B /* SendPackagePickUpViewController.swift */,
 				F9A3D1442709A7E200BFFE9B /* SendPackageDropOffViewController.swift */,
+				F9088456270C49CE004FED8D /* ConfirmPackageViewController.swift */,
 			);
 			path = PackageOrders;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				F97918A726F0D0FA008F3192 /* AddressModel.swift in Sources */,
 				F914878126E8E3BE00458BE7 /* RewardModel.swift in Sources */,
 				F9F315F226DB63C70015BCDC /* MyRewardViewController.swift in Sources */,
+				F9088457270C49CE004FED8D /* ConfirmPackageViewController.swift in Sources */,
 				F9AE5FC026EC8C1A00486077 /* FoodDetailVendorViewController.swift in Sources */,
 				F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */,
 				F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */,
