@@ -84,6 +84,7 @@ class SendPackagePickUpViewController: UIViewController {
             self.dictPackageData["pickLatitude"] = self.userSelectedLatitude
             self.dictPackageData["pickLongitude"] = self.userSelectedLongitude
             self.dictPackageData["pickAddress"] = self.lblAddress.text
+            self.dictPackageData["pickLandmark"] = self.lblLandmark.text
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "ConfirmPackageViewController")as! ConfirmPackageViewController
             vc.dictPackageData = self.dictPackageData
             self.navigationController?.pushViewController(vc, animated: true)

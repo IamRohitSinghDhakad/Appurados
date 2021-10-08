@@ -74,6 +74,7 @@ class SendPackageDropOffViewController: UIViewController {
             self.dictPackageData["receiverLatitude"] = self.userSelectedLatitude
             self.dictPackageData["receiverLongitude"] = self.userSelectedLongitude
             self.dictPackageData["receiverAddress"] = self.lblAddress.text
+            self.dictPackageData["receiverLandmark"] = self.tfLandMark.text
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "SendPackagePickUpViewController")as! SendPackagePickUpViewController
             vc.dictPackageData = self.dictPackageData
             self.navigationController?.pushViewController(vc, animated: true)
