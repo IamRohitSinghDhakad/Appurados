@@ -8,10 +8,10 @@
 import UIKit
 import GoogleMaps
 
-class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate {
+class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
 
     
-    @IBOutlet weak var mapVw: GMSMapView!
+    @IBOutlet weak var mapVw: UIView!
     @IBOutlet weak var lblPrice: UILabel!
     @IBOutlet weak var txtVwSpeciaslInstruction: RDTextView!
     @IBOutlet weak var imgVwCheckOnline: UIImageView!
@@ -27,6 +27,7 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate {
     var approximateLocationZoomLevel: Float = 10.0
     var strPaymentMode = ""
     var dictPackageData = [String:Any]()
+    var locationManager: CLLocationManager!
     
     var pickLatitude:Double = 0.0
     var pickLongitude:Double = 0.0
@@ -48,7 +49,6 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate {
         super.viewDidLoad()
         
         print(self.dictPackageData)
-        self.mapVw.delegate = self
         mapInitilize()
         self.call_WsGetDeliveryCharge()
         self.getUserData()
@@ -75,39 +75,88 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate {
     
     func mapInitilize(){
         
+        // Initialize the location manager.
+        locationManager = CLLocationManager()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.distanceFilter = 50
+        locationManager.startUpdatingLocation()
+        locationManager.delegate = self
         
+        // A default location to use when location permission is not granted.
+        let defaultLocation = CLLocation(latitude: self.pickLatitude, longitude: self.pickLongitude)
+        
+        // Create a map.
+        let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
+        let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
+        mapView = GMSMapView.map(withFrame: self.mapVw.bounds, camera: camera)
+        mapView.settings.myLocationButton = true
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.isMyLocationEnabled = true
+        
+        mapView.delegate = self
+        // Add the map to the view, hide it until we've got a location update.
+        self.mapVw.addSubview(mapView)
+        mapView.isHidden = false
       
     
-
-        self.pickUpmarker.map = nil
-        self.pickUpmarker.position = CLLocationCoordinate2D(latitude: self.pickLatitude, longitude: self.pickLongitude)
-        self.pickUpmarker.title = "Pick location"
-        //  marker.snippet = "Australia"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.addMarker()
+        }
+//
+//        self.pickUpmarker.map = nil
+//        self.pickUpmarker.position = CLLocationCoordinate2D(latitude: self.pickLatitude, longitude: self.pickLongitude)
+//        self.pickUpmarker.title = "Pick location"
+//        //  marker.snippet = "Australia"
+//        self.pickUpmarker.map = self.mapView
+//
+////        let zoomLevel = 15.0
+////        let camera = GMSCameraPosition.camera(withLatitude: pickLatitude,
+////                                              longitude: pickLongitude,
+////                                              zoom: Float(zoomLevel))
+//
+//
+//        self.dropUpMarker.map = nil
+//        self.dropUpMarker.position = CLLocationCoordinate2D(latitude: self.dropLatitude, longitude: self.dropLongitude)
+//        self.dropUpMarker.title = "Drop location"
+//        //  marker.snippet = "Australia"
+//        self.dropUpMarker.map = self.mapView
+//
+////        let zoomLevelp = 15.0
+////        let camera2 = GMSCameraPosition.camera(withLatitude: dropLatitude,
+////                                              longitude: dropLongitude,
+////                                              zoom: Float(zoomLevelp))
+//
+////        let camera = GMSCameraPosition.camera(withLatitude: self.pickLatitude, longitude: self.pickLongitude, zoom: 16)
+////        self.mapView?.camera = camera
+////        self.mapView?.animate(to: camera)
+////
+////        self.mapVw.animate(to: camera)
+//
+    }
+    
+    func addMarker(){
+        
+        
+        pickUpmarker.map = nil
+        pickUpmarker.position = CLLocationCoordinate2D(latitude: pickLatitude, longitude: pickLongitude)
+        self.pickUpmarker.title = "Selected location"
         self.pickUpmarker.map = self.mapView
+     
+        dropUpMarker.map = nil
+        dropUpMarker.position = CLLocationCoordinate2D(latitude: dropLatitude, longitude: dropLongitude)
         
-//        let zoomLevel = 15.0
-//        let camera = GMSCameraPosition.camera(withLatitude: pickLatitude,
-//                                              longitude: pickLongitude,
-//                                              zoom: Float(zoomLevel))
-        
-        
-        self.dropUpMarker.map = nil
-        self.dropUpMarker.position = CLLocationCoordinate2D(latitude: self.dropLatitude, longitude: self.dropLongitude)
-        self.dropUpMarker.title = "Drop location"
-        //  marker.snippet = "Australia"
-        self.dropUpMarker.map = self.mapView
-        
-//        let zoomLevelp = 15.0
-//        let camera2 = GMSCameraPosition.camera(withLatitude: dropLatitude,
-//                                              longitude: dropLongitude,
-//                                              zoom: Float(zoomLevelp))
-        
-        let camera = GMSCameraPosition.camera(withLatitude: self.pickLatitude, longitude: self.pickLongitude, zoom: 16)
-        self.mapView?.camera = camera
-        self.mapView?.animate(to: camera)
-        
-        self.mapVw.animate(to: camera)
-        
+        DispatchQueue.main.async {
+            
+            self.dropUpMarker.title = "Selected location"
+            //  marker.snippet = "Australia"
+            self.dropUpMarker.map = self.mapView
+            let zoomLevel = self.locationManager.accuracyAuthorization == .fullAccuracy ? self.preciseLocationZoomLevel : self.approximateLocationZoomLevel
+            let camera = GMSCameraPosition.camera(withLatitude: self.dropLatitude,
+                                                  longitude: self.dropLongitude,
+                                                  zoom: zoomLevel)
+            self.mapView.animate(to: camera)
+        }
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {

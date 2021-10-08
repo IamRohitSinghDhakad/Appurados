@@ -16,6 +16,7 @@ class FoodDetailVendorViewController: UIViewController {
     var objVendorDetails: RestaurentsDetailModel?
     var arrSubCategory = [SubCategoryModel]()
     var arrProductDetails = [ProductDetailModel]()
+    var arrShowSubCat = [String]()
   
     
     var selectedCategoryID: Int = 0
@@ -47,9 +48,17 @@ extension FoodDetailVendorViewController: UICollectionViewDelegate, UICollection
         let obj = self.arrSubCategory[indexPath.row]
         
         cell.lblFoodCatHeader.text = obj.strSubCategoryName
+        cell.lblFoodCatHeader.textColor = UIColor.init(named: "AppColor")
         let visibleRow = collectionView.indexPathsForVisibleItems.first
-        print("Visible Row Index Path: \(visibleRow), self.selectedCategoryID: \(self.selectedCategoryID), indexpath: \(indexPath.row)")
-        cell.lblFoodCatHeader.textColor = (visibleRow != nil) ? ((self.selectedCategoryID == visibleRow!.row) ? UIColor.black : UIColor.init(named: "AppColor")) : (self.selectedCategoryID == indexPath.row ? UIColor.black : UIColor.init(named: "AppColor"))
+        if visibleRow != nil {
+            print("Visible Row Index Path: \(visibleRow!), self.selectedCategoryID: \(self.selectedCategoryID), indexpath: \(indexPath.row)")
+            cell.lblFoodCatHeader.textColor = (self.selectedCategoryID == visibleRow!.row) ? UIColor.black : UIColor.init(named: "AppColor")
+//            cell.lblFoodCatHeader.textColor = (visibleRow != nil) ? ((self.selectedCategoryID == visibleRow!.row) ? UIColor.black : UIColor.init(named: "AppColor")) : (self.selectedCategoryID == indexPath.row ? UIColor.black : UIColor.init(named: "AppColor"))
+        }
+        
+        
+//        print("self.selectedCategoryID: \(self.selectedCategoryID)")
+//        cell.lblFoodCatHeader.textColor = (self.selectedCategoryID == indexPath.row ? UIColor.black : UIColor.init(named: "AppColor"))
         return cell
     }
     
@@ -124,16 +133,45 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         
         let obj = self.arrProductDetails[indexPath.row]
         
+        let subCat = self.arrShowSubCat[indexPath.row]
+        if subCat.isEmpty {
+            cell.lblSubCat.text = ""
+            cell.vwSubCat.isHidden = true
+        }
+        else {
+            cell.lblSubCat.text = subCat
+            cell.vwSubCat.isHidden = false
+        }
+        
         cell.lblCategoryHeading.text = obj.strProductName
         cell.lblTitls.text = obj.strProduuctDescription
         cell.lblDescription.text = "$" + obj.strPrice
         
         let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-            if profilePic != "" {
-                let url = URL(string: profilePic!)
-                cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
-            }
+        if profilePic != "" {
+            let url = URL(string: profilePic!)
+            cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
+        }
         
+        let indxPathVisibleCells = self.tblFoodDetails.indexPathsForVisibleRows
+        if indxPathVisibleCells != nil {
+            let indxP = indxPathVisibleCells!.first
+            let visibleObjIndexPath = self.arrProductDetails[indxP!.row]
+            let subcat = visibleObjIndexPath.strSubCategoryName
+            if let indexSubcat = self.arrSubCategory.firstIndex(where: {$0.strSubCategoryName == subcat}) {
+                self.selectedCategoryID = indexSubcat
+            }
+            else {
+                self.selectedCategoryID = 0
+            }
+        }
+        else {
+            self.selectedCategoryID = 0
+        }
+        
+        print("Visible Index Path: \(self.selectedCategoryID)")
+        
+        /*
         let visibleRect = CGRect(origin: self.tblFoodDetails.contentOffset, size: self.tblFoodDetails.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         let visibleIndexPath = self.tblFoodDetails.indexPathForRow(at: visiblePoint)
@@ -144,10 +182,13 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
             if let indexSubcat = self.arrSubCategory.firstIndex(where: {$0.strSubCategoryName == subcat}) {
                 self.selectedCategoryID = indexSubcat
             }
-            
         }
+        else {
+            self.selectedCategoryID = 0
+        }
+        */
         let collectionIndexSelected = IndexPath(item: self.selectedCategoryID, section: 0)
-//        self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.reloadData()
+                self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.reloadData()
         self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.scrollToItem(at: collectionIndexSelected, at: .left, animated: true)
         return cell
     }
@@ -265,6 +306,12 @@ extension FoodDetailVendorViewController {
                     for data in arrData{
                         let obj = ProductDetailModel.init(dict: data)
                         self.arrProductDetails.append(obj)
+                        if self.arrShowSubCat.contains(obj.strSubCategoryName) {
+                            self.arrShowSubCat.append("")
+                        }
+                        else {
+                            self.arrShowSubCat.append(obj.strSubCategoryName)
+                        }
                     }
                     
                     self.tblFoodDetails.reloadData()

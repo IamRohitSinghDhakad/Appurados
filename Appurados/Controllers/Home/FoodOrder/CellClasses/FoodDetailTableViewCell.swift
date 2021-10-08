@@ -14,6 +14,10 @@ class FoodDetailTableViewCell: UITableViewCell {
     @IBOutlet var lblDescription: UILabel!
     @IBOutlet var imgVwDish: UIImageView!
     
+    @IBOutlet weak var vwSubCat: UIView!
+    @IBOutlet weak var lblSubCat: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
