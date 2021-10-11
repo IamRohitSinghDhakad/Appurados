@@ -27,6 +27,8 @@
 		F935B01C26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */; };
 		F93A75C226EF6D6C009E34BB /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A75C126EF6D6C009E34BB /* FilterViewController.swift */; };
 		F93A75C426EF922F009E34BB /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */; };
+		F948A9B527146EB30096BD3E /* ding.mpeg in Resources */ = {isa = PBXBuildFile; fileRef = F948A9B427146EB30096BD3E /* ding.mpeg */; };
+		F948A9B727147E650096BD3E /* OrderPlacedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F948A9B627147E650096BD3E /* OrderPlacedViewController.swift */; };
 		F9529F3626FF243400434AC7 /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9529F3526FF243400434AC7 /* OrderDetailTableViewCell.swift */; };
 		F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A526D4160A007390F7 /* AppDelegate.swift */; };
 		F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95597A726D4160A007390F7 /* SceneDelegate.swift */; };
@@ -136,6 +138,8 @@
 		F935B01B26DEBABF00FC86A7 /* FoodDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F93A75C126EF6D6C009E34BB /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		F93A75C326EF922F009E34BB /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		F948A9B427146EB30096BD3E /* ding.mpeg */ = {isa = PBXFileReference; lastKnownFileType = video.mpeg; path = ding.mpeg; sourceTree = "<group>"; };
+		F948A9B627147E650096BD3E /* OrderPlacedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPlacedViewController.swift; sourceTree = "<group>"; };
 		F9529F3526FF243400434AC7 /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		F95597A226D4160A007390F7 /* Appurados.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appurados.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95597A526D4160A007390F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -336,6 +340,7 @@
 				F978DE3226D4DD70009FA173 /* Resorce */,
 				F978DE1B26D4D0CE009FA173 /* Extensions */,
 				F978DE1926D4D0BE009FA173 /* Controllers */,
+				F948A9B427146EB30096BD3E /* ding.mpeg */,
 				F95597A526D4160A007390F7 /* AppDelegate.swift */,
 				F95597A726D4160A007390F7 /* SceneDelegate.swift */,
 				F95597A926D4160A007390F7 /* ViewController.swift */,
@@ -527,6 +532,7 @@
 				F9B1969526EBA2E200182139 /* ChangeAddressViewController.swift */,
 				F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */,
 				F97AE39B27108EC500BEB761 /* CheckOutViewController.swift */,
+				F948A9B627147E650096BD3E /* OrderPlacedViewController.swift */,
 			);
 			path = MyCart;
 			sourceTree = "<group>";
@@ -759,6 +765,7 @@
 			files = (
 				F95597B226D4160C007390F7 /* LaunchScreen.storyboard in Resources */,
 				F95597AF26D4160C007390F7 /* Assets.xcassets in Resources */,
+				F948A9B527146EB30096BD3E /* ding.mpeg in Resources */,
 				F95597AD26D4160A007390F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -863,6 +870,7 @@
 				F978DE4E26D4DD80009FA173 /* Delegate.swift in Sources */,
 				F978DE2C26D4DD56009FA173 /* MessageConstant.swift in Sources */,
 				F9A7330626D5002C0006BE93 /* LoginViewController.swift in Sources */,
+				F948A9B727147E650096BD3E /* OrderPlacedViewController.swift in Sources */,
 				F98787CC26DA629C00FA0DFF /* OngoingViewController.swift in Sources */,
 				F92793D726DE7C19002DA4EF /* VarientTableViewCell.swift in Sources */,
 				F9AB33EA26D8DFA100D1AF78 /* DishDetailViewController.swift in Sources */,

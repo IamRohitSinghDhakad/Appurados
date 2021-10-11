@@ -306,7 +306,7 @@ extension OrderDetailViewController{
             }else{
                 objWebServiceManager.hideIndicator()
                 if let msgg = response["result"]as? String{
-                  //  objAlert.showAlert(message: "Order added succsfully in your cart", title: "Success", controller: self)
+                    objAlert.showAlert(message: msgg, title: "Alert", controller: self)
 
                 }else{
                     objAlert.showAlert(message: message ?? "", title: "", controller: self)

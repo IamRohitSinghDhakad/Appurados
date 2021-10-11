@@ -20,6 +20,7 @@ class MyCartViewController: UIViewController {
     @IBOutlet var lblNoOrderInCartMsg: UILabel!
     @IBOutlet weak var vwNoOrderIncart: UIView!
     @IBOutlet weak var imgVwChekBoxCutlery: UIImageView!
+    @IBOutlet weak var tfInstruction: UITextField!
     
     
     var arrCartItems = [CartItemsModel]()
@@ -109,7 +110,15 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOnCheckout(_ sender: Any) {
+        
+        self.dictCheckoutData["baketTotal"] = self.lblBasketTotal.text
+        self.dictCheckoutData["deliveyCharge"] = self.lblDeliveryCharges.text
+        self.dictCheckoutData["vendorID"] = self.objVendor?.strVendorID
+        self.dictCheckoutData["addressID"] = self.strAddressID
+        self.dictCheckoutData["instractions"] = self.tfInstruction.text
+        self.dictCheckoutData["totalAmount"] = self.lblTotalAmount.text
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "CheckOutViewController")as! CheckOutViewController
+        vc.dictData = self.dictCheckoutData
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
