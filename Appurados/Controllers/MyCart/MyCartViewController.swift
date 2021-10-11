@@ -194,10 +194,9 @@ extension MyCartViewController {
             objWebServiceManager.showIndicator()
             
             
-           // let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,"user_address_id":"0"]as [String:Any]
+            let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,"user_address_id":strUserAddressID]as [String:Any]
             
-           // print(dicrParam)
-        objWebServiceManager.requestGet(strURL: WsUrl.url_GetCartDetails + "user_id=\(objAppShareData.UserDetail.strUserId)," + "user_address_id=\(strUserAddressID)", params: [:], queryParams: [:], strCustomValidation: "") { (response) in
+        objWebServiceManager.requestPost(strURL: WsUrl.url_GetCartDetails, queryParams: [:], params: dicrParam, strCustomValidation: "", showIndicator: false){ (response) in
                objWebServiceManager.hideIndicator()
                 print(response)
                 let status = (response["status"] as? Int)

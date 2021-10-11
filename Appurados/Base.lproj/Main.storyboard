@@ -9099,7 +9099,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lblEstimateTime" destination="nGz-Jh-atI" id="rqP-bZ-zr2"/>
                         <outlet property="mapVw" destination="o1T-Ob-7cg" id="XyN-uz-j2w"/>
+                        <outlet property="vwFive" destination="vKA-h9-Dfg" id="ilb-Q7-8Js"/>
+                        <outlet property="vwFour" destination="hzw-Dv-c8i" id="nnc-vI-TGE"/>
+                        <outlet property="vwOne" destination="fmh-Gb-mXK" id="r5D-6x-vhL"/>
+                        <outlet property="vwSix" destination="ihe-IG-4MW" id="4ca-aJ-Sip"/>
+                        <outlet property="vwThree" destination="HfM-5M-oM2" id="seb-Xl-1da"/>
+                        <outlet property="vwTwo" destination="ctN-ML-jox" id="SjI-lI-XMb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OqE-pN-XCd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

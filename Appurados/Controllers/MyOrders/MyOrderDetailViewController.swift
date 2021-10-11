@@ -33,7 +33,10 @@ class MyOrderDetailViewController: UIViewController {
         
     }
     @IBAction func btnOnTrackOrder(_ sender: Any) {
-        self.pushVc(viewConterlerId: "TrackOrderViewController")
+       // self.pushVc(viewConterlerId: "TrackOrderViewController")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TrackOrderViewController")as! TrackOrderViewController
+        vc.strOrderID = self.strOrderID
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

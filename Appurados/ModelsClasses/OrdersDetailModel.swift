@@ -20,6 +20,16 @@ class OrdersDetailModel: NSObject {
     var strSubTotal:String = ""
     var strOrderID:String = ""
     
+    var pickLat:Double = 0.0
+    var pickLong:Double = 0.0
+    var dropLat:Double = 0.0
+    var dropLong:Double = 0.0
+    var driverLat:Double = 0.0
+    var driveLong:Double = 0.0
+    
+    var status:String = ""
+    var strEstimateTime = ""
+    
     var arrCart = [OrdersCartDetailModel]()
     
     init(dict : [String:Any]) {
@@ -37,6 +47,55 @@ class OrdersDetailModel: NSObject {
         }
         
         
+        if let pick_lat = dict["pick_lat"] as? String{
+            self.pickLat  = Double(pick_lat) ?? 0.0
+        }else if let pick_lat = dict["pick_lat"] as? Int{
+            self.pickLat = Double(pick_lat)
+        }else if let pick_lat = dict["pick_lat"] as? Double{
+            self.pickLat = pick_lat
+        }
+        
+        if let pick_lng = dict["pick_lng"] as? String{
+            self.pickLong  = Double(pick_lng) ?? 0.0
+        }else if let pick_lng = dict["pick_lng"] as? Int{
+            self.pickLong = Double(pick_lng)
+        }else if let pick_lng = dict["pick_lng"] as? Double{
+            self.pickLong = pick_lng
+        }
+        
+        if let drop_lat = dict["drop_lat"] as? String{
+            self.dropLat  = Double(drop_lat) ?? 0.0
+        }else if let drop_lat = dict["drop_lat"] as? Int{
+            self.dropLat = Double(drop_lat)
+        }else if let drop_lat = dict["drop_lat"] as? Double{
+            self.dropLat = drop_lat
+        }
+        
+        
+        if let drop_lng = dict["drop_lng"] as? String{
+            self.dropLong  = Double(drop_lng) ?? 0.0
+        }else if let drop_lng = dict["drop_lng"] as? Int{
+            self.dropLong = Double(drop_lng)
+        }else if let drop_lng = dict["drop_lng"] as? Double{
+            self.dropLong = drop_lng
+        }
+        
+        if let driver_lat = dict["driver_lat"] as? String{
+            self.driverLat  = Double(driver_lat) ?? 0.0
+        }else if let driver_lat = dict["driver_lat"] as? Int{
+            self.driverLat = Double(driver_lat)
+        }else if let driver_lat = dict["driver_lat"] as? Double{
+            self.driverLat = driver_lat
+        }
+        
+        if let driver_lng = dict["driver_lng"] as? String{
+            self.driveLong  = Double(driver_lng) ?? 0.0
+        }else if let driver_lng = dict["driver_lng"] as? Int{
+            self.driveLong = Double(driver_lng)
+        }else if let driver_lng = dict["driver_lng"] as? Double{
+            self.driveLong = driver_lng
+        }
+        
         
         if let banner_image = dict["user_image"] as? String{
             self.strBannerImage = banner_image
@@ -45,6 +104,10 @@ class OrdersDetailModel: NSObject {
         
         if let logo = dict["vendor_image"] as? String{
             self.strRastaurentImg = logo
+        }
+        
+        if let status = dict["status"] as? String{
+            self.status = status
         }
         
         if let discount = dict["discount"] as? String{
@@ -69,6 +132,10 @@ class OrdersDetailModel: NSObject {
         
         if let time_ago = dict["time_ago"] as? String{
             self.strTimeAgo = time_ago
+        }
+        
+        if let time = dict["time"] as? String{
+            self.strEstimateTime = time
         }
         
         if let arrCatrItems = dict["cart"] as? [[String:Any]]{
