@@ -28,7 +28,6 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate, CLLoca
     var strPaymentMode = ""
     var dictPackageData = [String:Any]()
     var locationManager: CLLocationManager!
-    
     var pickLatitude:Double = 0.0
     var pickLongitude:Double = 0.0
     var dropLatitude:Double = 0.0
@@ -50,8 +49,8 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate, CLLoca
         
         print(self.dictPackageData)
         mapInitilize()
-        self.call_WsGetDeliveryCharge()
         self.getUserData()
+       
         
         
         // Do any additional setup after loading the view.
@@ -63,7 +62,7 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate, CLLoca
         self.strPickAddress = self.dictPackageData["pickAddress"] as? String ?? ""
         self.strDropAddress = self.dictPackageData["receiverAddress"]as? String ?? ""
         self.strPickLandmark = self.dictPackageData["pickLandmark"]as? String ?? ""
-        self.strDropLandmark = self.dictPackageData["dropLandmark"]as? String ?? ""
+        self.strDropLandmark = self.dictPackageData["receiverLandmark"]as? String ?? ""
         self.strReceivernNumber = self.dictPackageData["Phone"] as? String ?? ""
         strReceiverName = self.dictPackageData["Name"] as? String ?? ""
         self.strDate = Date().shortDate
@@ -71,6 +70,12 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate, CLLoca
         self.pickLongitude = Double(self.dictPackageData["pickLongitude"]as? Double ?? 0.0)
         self.dropLatitude = Double(self.dictPackageData["receiverLatitude"]as? Double ?? 0.0)
         self.dropLongitude = Double(self.dictPackageData["receiverLongitude"]as? Double ?? 0.0)
+        
+        self.call_WsGetDeliveryCharge()
+        
+        //"drop_landmark": ""
+        //amount
+        //estimated_time
     }
     
     func mapInitilize(){
@@ -136,7 +141,6 @@ class ConfirmPackageViewController: UIViewController, GMSMapViewDelegate, CLLoca
     }
     
     func addMarker(){
-        
         
         pickUpmarker.map = nil
         pickUpmarker.position = CLLocationCoordinate2D(latitude: pickLatitude, longitude: pickLongitude)
@@ -206,7 +210,7 @@ extension ConfirmPackageViewController{
                          "drop_lng":"\(self.dropLongitude)"]as [String:Any]
         
 
-        
+       
         objWebServiceManager.requestGet(strURL: WsUrl.url_EstimateDeliveryCost, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
            objWebServiceManager.hideIndicator()
             print(response)
@@ -219,8 +223,10 @@ extension ConfirmPackageViewController{
                   
                     if let cost = dictData["cost"]as? String{
                         self.lblPrice.text = "$" + cost
+                        self.strAmount = cost
                     }else if let cost = dictData["cost"]as? Int{
                         self.lblPrice.text = "$\(cost)"
+                        self.strAmount = "\(cost)"
                     }
                     
                     if let distance = dictData["distance"]as? String{
@@ -293,16 +299,14 @@ extension ConfirmPackageViewController{
 
                 if let dictData = response["result"]as? [String:Any]{
                     
-                  
-                    if let cost = dictData["cost"]as? String{
-                        self.lblPrice.text = "$" + cost
-                    }else if let cost = dictData["cost"]as? Int{
-                        self.lblPrice.text = "$\(cost)"
-                    }
+                    let obj = SendPackageModel.init(dict: dictData)
+                    print(obj)
+                    let vc  = self.storyboard?.instantiateViewController(withIdentifier: "TrackSendPackageViewController")as! TrackSendPackageViewController
+                    vc.objPackageDetails = obj
+                    self.navigationController?.pushViewController(vc, animated: true)
                     
                 }else{
-                    //self.btnAllRestaurents.setTitle("All Restaurents ", for: .normal)
-                    objAlert.showAlert(message: "Banner Data not found", title: "Alert", controller: self)
+           
                 }
             }else{
                 objWebServiceManager.hideIndicator()

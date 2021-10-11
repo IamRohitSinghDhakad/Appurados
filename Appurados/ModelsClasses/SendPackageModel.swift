@@ -17,6 +17,8 @@ class SendPackageModel: NSObject {
     var strStatus:String = ""
     var strDrop_address:String = ""
     var strPick_address:String = ""
+    var strEstimateTime:String = ""
+    var strDistance:String = ""
     
     init(dict : [String:Any]) {
         
@@ -54,6 +56,14 @@ class SendPackageModel: NSObject {
         
         if let time_ago = dict["time_ago"] as? String{
             self.strTime_ago = time_ago
+        }
+        
+        if let estimated_time = dict["estimated_time"] as? String{
+            self.strEstimateTime = estimated_time
+        }
+        
+        if let distance = dict["distance"] as? String{
+            self.strDistance = distance
         }
     }
     

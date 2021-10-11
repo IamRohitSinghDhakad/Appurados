@@ -18,12 +18,16 @@ class SendPackageViewController: UIViewController {
         
         self.tblSendPackageList.delegate = self
         self.tblSendPackageList.dataSource = self
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.call_WsSendPackage()
     }
     
     @IBAction func btnOpenSideMenu(_ sender: Any) {
         self.sideMenuController?.revealMenu()
+       
     }
     
 }
@@ -71,7 +75,7 @@ extension SendPackageViewController {
             
             
             let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
-                             "status":"complete"]as [String:Any]
+                             "status":""]as [String:Any]
             
             
             objWebServiceManager.requestGet(strURL: WsUrl.url_GetPackageDelivery, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
