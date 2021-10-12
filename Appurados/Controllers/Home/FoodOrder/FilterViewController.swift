@@ -39,7 +39,6 @@ class FilterViewController: UIViewController {
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
         self.dismiss(animated: true) {
-            print("Send Data Back")
         }
     }
     

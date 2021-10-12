@@ -17,10 +17,16 @@ class FoodOrderViewController: UIViewController {
     
     var arrAllRestaurants = [RestaurentsDetailModel]()
     var arrOfferCategory = [OfferCategoryModel]()
-    
     var strCategoryIDForSearch = ""
     
+    var strFree_delivery:String = ""
+    var strHas_offers:String = ""
+    var strPopular:String = ""
+    var strRecommended:String = ""
+    var strMy_favorite:String = ""
+    var strOffer_category_id:String = ""
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.vwSearchBar.isHidden = true
@@ -31,6 +37,7 @@ class FoodOrderViewController: UIViewController {
         self.tblRestaurents.delegate = self
         self.tblRestaurents.dataSource = self
 
+        self.call_WsGetVendorList()
         self.call_WsGetOfferCategory()
         
         
@@ -48,10 +55,10 @@ class FoodOrderViewController: UIViewController {
     }
     
 
-    override func viewDidLayoutSubviews() {
-        tblRestaurents.heightAnchor.constraint(equalToConstant:
-        tblRestaurents.contentSize.height).isActive = true
-    }
+//    override func viewDidLayoutSubviews() {
+//        tblRestaurents.heightAnchor.constraint(equalToConstant:
+//        tblRestaurents.contentSize.height).isActive = true
+//    }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
         onBackPressed()
@@ -68,6 +75,27 @@ class FoodOrderViewController: UIViewController {
             print(dict)
             if dict.count != 0{
                 print(dict)
+                let str = dict["selectedValues"]as? String
+                
+                if str!.contains("RESTAURANTS WITHOUT MINIMUM ORDER"){
+                    print("RESTAURANTS WITHOUT MINIMUM ORDER")
+                }
+                if str!.contains("NEW RESTAURANTS"){
+                    print("NEW RESTAURANTS")
+                }
+                if str!.contains("RECOMMENDED RESTAURANTS"){
+                    print("RECOMMENDED RESTAURANTS")
+                }
+                if str!.contains("BEST RATED RESTAURANTS"){
+                    print("BEST RATED RESTAURANTS")
+                }
+                if str!.contains("RESTAURANT FAVORITES"){
+                    print("RESTAURANT FAVORITES")
+                }
+                if str!.contains("FREE DELIVERY"){
+                    print("FREE DELIVERY")
+                }
+                
             }
         }
         if #available(iOS 13.0, *) {
@@ -115,6 +143,8 @@ class FoodOrderViewController: UIViewController {
 /// ============================== ##### UITableView Delegates And Datasources ##### ==================================//
 
 extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
+    
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.tblHgtConstants.constant = CGFloat((self.arrAllRestaurants.count) * 100)
@@ -168,10 +198,7 @@ extension FoodOrderViewController: UITableViewDelegate,UITableViewDataSource{
         vc.objVendorDetails = self.arrAllRestaurants[indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       // self.viewWillLayoutSubviews()
-    }
+
     
 }
 
@@ -326,6 +353,68 @@ extension FoodOrderViewController{
             }
         } failure: { (Error) in
             print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+    
+    //MARK:- Vendor Count Product
+    func call_WsGetVendorList(){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
+                         "vendor_id":"",
+                         "category_id":"",
+                         "lat":"",
+                         "lng":"",
+                         "free_delivery":self.strFree_delivery,
+                         "has_offers":self.strHas_offers,
+                         "popular":self.strPopular,
+                         "recommended":self.strRecommended,
+                         "my_favorite":self.strMy_favorite,
+                         "offer_category_id":self.strOffer_category_id,
+                         "ios_register_id":""]as [String:Any]
+      
+        //restaurent minimum
+        
+        objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+           objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+          //  print(response)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    
+                    for data in arrData{
+                        let obj = RestaurentsDetailModel.init(dict: data)
+                        self.arrAllRestaurants.append(obj)
+                    }
+                   
+                    self.tblRestaurents.reloadData()
+                    
+                }else{
+                  
+                    objAlert.showAlert(message: "Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                   // objAlert.showAlert(message: msgg, title: "", controller: self)
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
             objWebServiceManager.hideIndicator()
         }
     }

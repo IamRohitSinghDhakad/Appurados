@@ -361,7 +361,7 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             switch obj.strCategoryName {
             case "Restaurantes":
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodOrderViewController")as! FoodOrderViewController
-                vc.arrAllRestaurants = arrTotalRestaurents
+               // vc.arrAllRestaurants = arrTotalRestaurents
                 vc.strCategoryIDForSearch = obj.strCategoryID
                 self.navigationController?.pushViewController(vc, animated: true)
             case "Supermercados":
