@@ -91,6 +91,23 @@ class OrderDetailViewController: UIViewController {
     }
     
     @IBAction func btnAddToCart(_ sender: Any) {
+        
+        let filterdValue = self.arrOrderDetail[0].arrVariant[0].arrTypes.filter({$0.isSelected == true})
+        if filterdValue.count == 0{
+      
+            self.strVariantName = ""
+            
+        }else{
+            var arrFilterd = [String]()
+            for data in filterdValue{
+                arrFilterd.append(data.strType)
+            }
+            let values = arrFilterd.joined(separator: ",")
+            var dictFilterSelectedOption = [String:Any]()
+            dictFilterSelectedOption["selectedValues"] = values
+         print(dictFilterSelectedOption)
+        }
+        
         self.call_WsAddToCart(strVendorID: self.strVendorID ?? "", strProductID: self.strProductID ?? "")
     }
     
@@ -150,6 +167,12 @@ extension OrderDetailViewController: UITableViewDelegate,UITableViewDataSource{
             cell.lblVariantName.text = objVariant.strType
             cell.lblPrice.text = objVariant.strPrice
             
+            if objVariant.isSelected == true{
+                cell.imgVwradio.image = #imageLiteral(resourceName: "red")
+            }else{
+                cell.imgVwradio.image = #imageLiteral(resourceName: "radio")
+            }
+            
             return cell
         }
         if tableView == self.tblAddons{
@@ -166,6 +189,21 @@ extension OrderDetailViewController: UITableViewDelegate,UITableViewDataSource{
             
             return UITableViewCell()
             
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == self.tblvarient{
+        let objVariant = self.arrOrderDetail[0].arrVariant[indexPath.section].arrTypes[indexPath.row]
+        
+        if objVariant.isSelected == true{
+            objVariant.isSelected = false
+        }else{
+            objVariant.isSelected = true
+        }
+            self.tblvarient.reloadData()
+        }else  if tableView == self.tblAddons{
+           // let objName = self.arrOrderDetail[0].arrAddOnName[indexPath.row]
         }
     }
     

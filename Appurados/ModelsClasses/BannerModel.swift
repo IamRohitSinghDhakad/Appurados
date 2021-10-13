@@ -178,6 +178,7 @@ class OrderDetailVariantModel {
     var arrTypes: [OrderDetailVariantTypeModel] = [OrderDetailVariantTypeModel]()
     var strVariant: String = ""
     var strVariantQty: String = ""
+    var isSelected:Bool?
     
     init(dict : [String:Any]) {
         
@@ -210,6 +211,7 @@ class OrderDetailVariantModel {
 class OrderDetailVariantTypeModel: NSObject {
     var strPrice: String = ""
     var strType: String = ""
+    var isSelected:Bool?
 
     init(dict : [String:Any]) {
         

@@ -25,6 +25,9 @@ class FoodOrderViewController: UIViewController {
     var strRecommended:String = ""
     var strMy_favorite:String = ""
     var strOffer_category_id:String = ""
+    var strMin_order_amount:String = ""
+    var strNew_vendors:String = ""
+    var strBest_rated = ""
     
 
     override func viewDidLoad() {
@@ -75,26 +78,44 @@ class FoodOrderViewController: UIViewController {
             print(dict)
             if dict.count != 0{
                 print(dict)
-                let str = dict["selectedValues"]as? String
                 
-                if str!.contains("RESTAURANTS WITHOUT MINIMUM ORDER"){
-                    print("RESTAURANTS WITHOUT MINIMUM ORDER")
+                self.strNew_vendors = ""
+                self.strNew_vendors = ""
+                self.strPopular = ""
+                self.strBest_rated = ""
+                self.strMy_favorite = ""
+                self.strFree_delivery = ""
+                
+                let str = dict["selectedValues"]as? String
+                if str != nil{
+                    if str!.contains("RESTAURANTS WITHOUT MINIMUM ORDER"){
+                        print("RESTAURANTS WITHOUT MINIMUM ORDER")
+                        self.strMin_order_amount = "0"
+                    }
+                    if str!.contains("NEW RESTAURANTS"){
+                        print("NEW RESTAURANTS")
+                        self.strNew_vendors = "1"
+                    }
+                    if str!.contains("RECOMMENDED RESTAURANTS"){
+                        print("RECOMMENDED RESTAURANTS")
+                        self.strPopular = "1"
+                    }
+                    if str!.contains("BEST RATED RESTAURANTS"){
+                        print("BEST RATED RESTAURANTS")
+                        self.strBest_rated = "1"
+                    }
+                    if str!.contains("RESTAURANT FAVORITES"){
+                        print("RESTAURANT FAVORITES")
+                        self.strMy_favorite = "1"
+                    }
+                    if str!.contains("FREE DELIVERY"){
+                        print("FREE DELIVERY")
+                        self.strFree_delivery = "1"
+                    }
                 }
-                if str!.contains("NEW RESTAURANTS"){
-                    print("NEW RESTAURANTS")
-                }
-                if str!.contains("RECOMMENDED RESTAURANTS"){
-                    print("RECOMMENDED RESTAURANTS")
-                }
-                if str!.contains("BEST RATED RESTAURANTS"){
-                    print("BEST RATED RESTAURANTS")
-                }
-                if str!.contains("RESTAURANT FAVORITES"){
-                    print("RESTAURANT FAVORITES")
-                }
-                if str!.contains("FREE DELIVERY"){
-                    print("FREE DELIVERY")
-                }
+               
+                
+                self.call_WsGetVendorList()
                 
             }
         }
@@ -112,11 +133,13 @@ class FoodOrderViewController: UIViewController {
         vc.strTitle = "Cuisines"
         vc.isFromFilter = false
         vc.arrSubCategory = self.arrOfferCategory
-        vc.closerForDictFilter = { dict
+        vc.closerForDictOfferCategory = { dict
             in
-            print(dict)
             if dict.count != 0{
                 print(dict)
+                self.strOffer_category_id = dict["selectedID"]as? String ?? ""
+                print(self.strOffer_category_id)
+                self.call_WsGetVendorList()
             }
         }
         if #available(iOS 13.0, *) {
@@ -372,17 +395,19 @@ extension FoodOrderViewController{
         let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
                          "vendor_id":"",
                          "category_id":"",
-                         "lat":"",
-                         "lng":"",
+                         "lat":objAppShareData.UserDetail.strlatitude,
+                         "lng":objAppShareData.UserDetail.strlongitude,
+                         "min_order_amount":self.strMin_order_amount,
+                         "new_vendors":self.strNew_vendors,
+                         "best_rated":self.strBest_rated,
                          "free_delivery":self.strFree_delivery,
                          "has_offers":self.strHas_offers,
                          "popular":self.strPopular,
-                         "recommended":self.strRecommended,
                          "my_favorite":self.strMy_favorite,
                          "offer_category_id":self.strOffer_category_id,
                          "ios_register_id":""]as [String:Any]
       
-        //restaurent minimum
+        print(dicrParam)
         
         objWebServiceManager.requestGet(strURL: WsUrl.url_getVendor, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
            objWebServiceManager.hideIndicator()
@@ -393,7 +418,7 @@ extension FoodOrderViewController{
             if status == MessageConstant.k_StatusCode{
 
                 if let arrData = response["result"]as? [[String:Any]]{
-                    
+                    self.arrAllRestaurants.removeAll()
                     for data in arrData{
                         let obj = RestaurentsDetailModel.init(dict: data)
                         self.arrAllRestaurants.append(obj)

@@ -103,7 +103,9 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
              let profilePic = objVendorDetails?.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                  if profilePic != "" {
                      let url = URL(string: profilePic!)
-                    cell.imgVwVendor.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
+                    cell.imgVwVendor.sd_setImage(with: url, placeholderImage: nil)
+                 }else{
+                    cell.imgVwVendor.image = nil
                  }
              
             
@@ -155,7 +157,9 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         if profilePic != "" {
             let url = URL(string: profilePic!)
-            cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
+            cell.imgVwDish.sd_setImage(with: url, placeholderImage: nil)
+        }else{
+            cell.imgVwDish.image = nil
         }
         
 //        let indxPathVisibleCells = self.tblFoodDetails.indexPathsForVisibleRows

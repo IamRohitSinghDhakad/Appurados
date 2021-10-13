@@ -47,7 +47,11 @@ class FilterViewController: UIViewController {
         if isFromFilter!{
             let filterdValue = self.arrFilterOption.filter({$0.strIsSelected == true})
             if filterdValue.count == 0{
-                objAlert.showAlert(message: "Please select option first", title: "Alert", controller: self)
+                var dictFilterSelectedOption = [String:Any]()
+                dictFilterSelectedOption["selectedValues"] = [:]
+                self.closerForDictFilter?(dictFilterSelectedOption)
+                self.dismiss(animated: true, completion: nil)
+               // objAlert.showAlert(message: "Please select option first", title: "Alert", controller: self)
             }else{
                 var arrFilterd = [String]()
                 for data in filterdValue{
@@ -64,8 +68,11 @@ class FilterViewController: UIViewController {
         }else{
             let filterdValue = self.arrSubCategory.filter({$0.isSelected == true})
             if filterdValue.count == 0{
-                
-                objAlert.showAlert(message: "Please select option first", title: "Alert", controller: self)
+                var dictOfferCategorySelected = [String:Any]()
+                dictOfferCategorySelected["selectedID"] = [:]
+                self.closerForDictOfferCategory?(dictOfferCategorySelected)
+                self.dismiss(animated: true, completion: nil)
+              //  objAlert.showAlert(message: "Please select option first", title: "Alert", controller: self)
                 
             }else{
                 var arrFilterd = [String]()
