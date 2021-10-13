@@ -52,13 +52,18 @@ extension FoodDetailVendorViewController: UICollectionViewDelegate, UICollection
         let visibleRow = collectionView.indexPathsForVisibleItems.first
         if visibleRow != nil {
             print("Visible Row Index Path: \(visibleRow!), self.selectedCategoryID: \(self.selectedCategoryID), indexpath: \(indexPath.row)")
-            cell.lblFoodCatHeader.textColor = (self.selectedCategoryID == visibleRow!.row) ? UIColor.black : UIColor.init(named: "AppColor")
+//            cell.lblFoodCatHeader.textColor = (self.selectedCategoryID == visibleRow!.row) ? UIColor.black : UIColor.init(named: "AppColor")
 //            cell.lblFoodCatHeader.textColor = (visibleRow != nil) ? ((self.selectedCategoryID == visibleRow!.row) ? UIColor.black : UIColor.init(named: "AppColor")) : (self.selectedCategoryID == indexPath.row ? UIColor.black : UIColor.init(named: "AppColor"))
         }
-        
+        cell.lblFoodCatHeader.textColor = UIColor.init(named: "AppColor")
+        if self.selectedCategoryID == indexPath.row{
+            cell.lblFoodCatHeader.textColor = UIColor.black
+        }else{
+            cell.lblFoodCatHeader.textColor = UIColor.init(named: "AppColor")
+        }
         
 //        print("self.selectedCategoryID: \(self.selectedCategoryID)")
-//        cell.lblFoodCatHeader.textColor = (self.selectedCategoryID == indexPath.row ? UIColor.black : UIColor.init(named: "AppColor"))
+     //   cell.lblFoodCatHeader.textColor = (self.selectedCategoryID == indexPath.row ? UIColor.black : UIColor.init(named: "AppColor"))
         return cell
     }
     
@@ -153,23 +158,23 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
             cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
         }
         
-        let indxPathVisibleCells = self.tblFoodDetails.indexPathsForVisibleRows
-        if indxPathVisibleCells != nil {
-            let indxP = indxPathVisibleCells!.first
-            let visibleObjIndexPath = self.arrProductDetails[indxP!.row]
-            let subcat = visibleObjIndexPath.strSubCategoryName
-            if let indexSubcat = self.arrSubCategory.firstIndex(where: {$0.strSubCategoryName == subcat}) {
-                self.selectedCategoryID = indexSubcat
-            }
-            else {
-                self.selectedCategoryID = 0
-            }
-        }
-        else {
-            self.selectedCategoryID = 0
-        }
-        
-        print("Visible Index Path: \(self.selectedCategoryID)")
+//        let indxPathVisibleCells = self.tblFoodDetails.indexPathsForVisibleRows
+//        if indxPathVisibleCells != nil {
+//            let indxP = indxPathVisibleCells!.first
+//            let visibleObjIndexPath = self.arrProductDetails[indxP!.row]
+//            let subcat = visibleObjIndexPath.strSubCategoryName
+//            if let indexSubcat = self.arrSubCategory.firstIndex(where: {$0.strSubCategoryName == subcat}) {
+//                self.selectedCategoryID = indexSubcat
+//            }
+//            else {
+//                self.selectedCategoryID = 0
+//            }
+//        }
+//        else {
+//            self.selectedCategoryID = 0
+//        }
+//
+//        print("Visible Index Path: \(self.selectedCategoryID)")
         
         /*
         let visibleRect = CGRect(origin: self.tblFoodDetails.contentOffset, size: self.tblFoodDetails.bounds.size)
@@ -188,7 +193,9 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         }
         */
         let collectionIndexSelected = IndexPath(item: self.selectedCategoryID, section: 0)
-                self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.reloadData()
+        print("collectionIndexSelected---->", self.selectedCategoryID)
+        self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.reloadItems(at: [collectionIndexSelected])
+        //self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.reloadData()
         self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.scrollToItem(at: collectionIndexSelected, at: .left, animated: true)
         return cell
     }
@@ -203,6 +210,38 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
         vc.objProductDetails = obj
         self.navigationController?.pushViewController(vc, animated: true)
         
+    }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == tblFoodDetails{
+            
+            let indxPathVisibleCells = self.tblFoodDetails.indexPathsForVisibleRows
+            if indxPathVisibleCells != nil {
+                if indxPathVisibleCells!.count > 0 {
+                    let indxP = indxPathVisibleCells!.first
+                    let visibleObjIndexPath = self.arrProductDetails[indxP!.row]
+                    let subcat = visibleObjIndexPath.strSubCategoryName
+                    if let indexSubcat = self.arrSubCategory.firstIndex(where: {$0.strSubCategoryName == subcat}) {
+                        self.selectedCategoryID = indexSubcat
+                    }
+                    else {
+                        self.selectedCategoryID = 0
+                    }
+                }
+                else {
+                    self.selectedCategoryID = 0
+                }
+            }
+            else {
+                self.selectedCategoryID = 0
+            }
+            
+            print("Visible Index Path: \(self.selectedCategoryID)")
+            let collectionIndexSelected = IndexPath(item: self.selectedCategoryID, section: 0)
+       //     self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.reloadData()
+        //    self.cell_FoodCategoryTableViewCell?.collectionFoodCategory.scrollToItem(at: collectionIndexSelected, at: .left, animated: true)
+        }
     }
     
 }
