@@ -33,6 +33,7 @@ class OrderDetailViewController: UIViewController {
     var strAddonItemsID:String?
     var strQuantity:Float = 1
     var strVariantName:String?
+    var strSelectedIndexAddOns = [Int]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,21 +93,48 @@ class OrderDetailViewController: UIViewController {
     
     @IBAction func btnAddToCart(_ sender: Any) {
         
-        let filterdValue = self.arrOrderDetail[0].arrVariant[0].arrTypes.filter({$0.isSelected == true})
+        var dictFilterSelectedOption = [String:Any]()
+        var arrFilterd = [String]()
+        
+        for data in self.arrOrderDetail[0].arrVariant{
+            
+            let filterdValue = data.arrTypes.filter({$0.isSelected == true})
+            if filterdValue.count == 0{
+          
+                self.strVariantName = ""
+                
+            }else{
+               
+                for data in filterdValue{
+                    arrFilterd.append(data.strType)
+                }
+                let values = arrFilterd.joined(separator: ",")
+             
+                dictFilterSelectedOption["selectedValues"] = values
+            
+            }
+        }
+        
+        let filterdValue = self.arrOrderDetail[0].arrAddonVariantName.filter({$0.isSelected == true})
         if filterdValue.count == 0{
       
             self.strVariantName = ""
             
         }else{
-            var arrFilterd = [String]()
+            var dictFilterSelectedOptionAddon = [String:Any]()
+            var arrFilterdAddon = [String]()
+            
             for data in filterdValue{
-                arrFilterd.append(data.strType)
+                arrFilterdAddon.append(data.strAddOnName)
             }
-            let values = arrFilterd.joined(separator: ",")
-            var dictFilterSelectedOption = [String:Any]()
-            dictFilterSelectedOption["selectedValues"] = values
-         print(dictFilterSelectedOption)
+            let values = arrFilterdAddon.joined(separator: ",")
+            dictFilterSelectedOptionAddon["selectedValues"] = values
+            self.strAddonItemsID = dictFilterSelectedOptionAddon["selectedValues"]as? String ?? ""
         }
+        
+        self.strVariantName = dictFilterSelectedOption["selectedValues"]as? String ?? ""
+      //  self.strAddonItemsID =
+        
         
         self.call_WsAddToCart(strVendorID: self.strVendorID ?? "", strProductID: self.strProductID ?? "")
     }
@@ -178,11 +206,18 @@ extension OrderDetailViewController: UITableViewDelegate,UITableViewDataSource{
         if tableView == self.tblAddons{
             let cell = self.tblAddons.dequeueReusableCell(withIdentifier: "VarientTableViewCell")as! VarientTableViewCell
             
-            let objName = self.arrOrderDetail[0].arrAddOnName[indexPath.row]
+           // let objName = self.arrOrderDetail[0].arrAddOnName[indexPath.row]
+            let objName = self.arrOrderDetail[0].arrAddonVariantName[indexPath.row]
             let objPrice = self.arrOrderDetail[0].arrAddOnPrice[indexPath.row]
             
-            cell.lblVariantName.text = objName
+            cell.lblVariantName.text = objName.strAddOnName
             cell.lblPrice.text = "$" + objPrice
+            
+            if objName.isSelected == true{
+                cell.imgVwradio.image = #imageLiteral(resourceName: "red")
+            }else{
+                cell.imgVwradio.image = #imageLiteral(resourceName: "radio")
+            }
             
             return cell
         }else{
@@ -203,7 +238,16 @@ extension OrderDetailViewController: UITableViewDelegate,UITableViewDataSource{
         }
             self.tblvarient.reloadData()
         }else  if tableView == self.tblAddons{
-           // let objName = self.arrOrderDetail[0].arrAddOnName[indexPath.row]
+            
+            let obj = self.arrOrderDetail[0].arrAddonVariantName[indexPath.row]
+            
+            if obj.isSelected == true{
+                obj.isSelected = false
+            }else{
+                obj.isSelected = true
+            }
+            
+            self.tblAddons.reloadData()
         }
     }
     

@@ -28,6 +28,7 @@ class FoodOrderViewController: UIViewController {
     var strMin_order_amount:String = ""
     var strNew_vendors:String = ""
     var strBest_rated = ""
+    var strSelectedFilterValues = ""
     
 
     override func viewDidLoad() {
@@ -73,6 +74,7 @@ class FoodOrderViewController: UIViewController {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "FilterViewController")as! FilterViewController
         vc.strTitle = "Filter"
         vc.isFromFilter = true
+        vc.selectedValues = self.strSelectedFilterValues
         vc.closerForDictFilter = { dict
             in
             print(dict)
@@ -87,6 +89,7 @@ class FoodOrderViewController: UIViewController {
                 self.strFree_delivery = ""
                 
                 let str = dict["selectedValues"]as? String
+                self.strSelectedFilterValues = str ?? ""
                 if str != nil{
                     if str!.contains("RESTAURANTS WITHOUT MINIMUM ORDER"){
                         print("RESTAURANTS WITHOUT MINIMUM ORDER")

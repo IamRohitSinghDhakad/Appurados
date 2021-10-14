@@ -20,6 +20,7 @@ class FilterViewController: UIViewController {
     
     var closerForDictFilter: (( _ strDict:[String:Any]) ->())?
     var closerForDictOfferCategory: (( _ strDict:[String:Any]) ->())?
+    var selectedValues = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,22 @@ class FilterViewController: UIViewController {
         self.lblTitle.text = strTitle
         // Do any additional setup after loading the view.
         
+       
+        
         if isFromFilter!{
             self.arrFilterOption = [FilterModel(filterString: "RESTAURANTS WITHOUT MINIMUM ORDER", isSelectedFilter: false), FilterModel(filterString: "NEW RESTAURANTS", isSelectedFilter: false), FilterModel(filterString: "RECOMMENDED RESTAURANTS", isSelectedFilter: false), FilterModel(filterString: "BEST RATED RESTAURANTS", isSelectedFilter: false), FilterModel(filterString: "RESTAURANT FAVORITES", isSelectedFilter: false), FilterModel(filterString: "FREE DELIVERY", isSelectedFilter: false)]
+            
+            if self.selectedValues != ""{
+                
+                let arryOfSelectedValues = self.selectedValues.split(separator: ",")
+                for data in arryOfSelectedValues{
+                    let index = arrFilterOption.firstIndex{$0.strFilterData == data}
+                    self.arrFilterOption[index ?? 0].strIsSelected = true
+                }
+                
+            }else{
+                
+            }
         }else{
            // self.call_WsGetSubCategory()
         }
@@ -98,7 +113,8 @@ class FilterViewController: UIViewController {
         }else{
             self.arrSubCategory.forEach() { $0.isSelected = false}
         }
-      self.tblFilter.reloadData()
+        self.tblFilter.reloadData()
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

@@ -241,6 +241,7 @@ class OrderDetailModel : NSObject{
     var arrAddOnName:[String] = [String]()
     var strAddOnPrice:String = ""
     var arrAddOnPrice:[String] = [String]()
+    var arrAddonVariantName:[OrderVariantAddons] = [OrderVariantAddons]()
     var arrVariant: [OrderDetailVariantModel] = [OrderDetailVariantModel]()
     
     init(dict : [String:Any]) {
@@ -275,6 +276,11 @@ class OrderDetailModel : NSObject{
         
         if self.strAddOnName != ""{
             self.arrAddOnName = self.strAddOnName.components(separatedBy: ",")
+            for name in self.arrAddOnName{
+                let objVar = OrderVariantAddons.init(strAddOnName: name, isSelected: false)
+                self.arrAddonVariantName.append(objVar)
+            }
+            
         }
         
         if let addon_item_price = dict["addon_item_price"] as? String{
@@ -303,6 +309,18 @@ class OrderDetailModel : NSObject{
         }
     }
     
+}
+
+class OrderVariantAddons : NSObject{
+    
+    var strAddOnName:String = ""
+    var isSelected:Bool?
+    
+    init(strAddOnName: String, isSelected: Bool) {
+ 
+        self.strAddOnName = strAddOnName
+        self.isSelected = isSelected
+       }
 }
 
 
