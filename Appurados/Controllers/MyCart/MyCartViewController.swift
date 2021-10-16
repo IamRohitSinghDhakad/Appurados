@@ -149,7 +149,30 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
         cell.lblFinalPrice.text = "$" + obj.strProductPrice
         cell.lblPrice.text = "$" + obj.strActualPrice
         cell.lblQuantity.text = obj.strQuantity
-        cell.lblDishName.text = obj.strProductName
+        
+        if obj.strAddonItem != ""{
+            cell.vwAddons.isHidden = false
+            cell.lblAddons.text = "Addons:- " + obj.strAddonItem
+    
+            if obj.strVariantName != ""{
+                cell.lblDishName.text = obj.strProductName + " \(obj.strVariantName)"
+            }else{
+                cell.lblDishName.text =  obj.strProductName
+            }
+            
+        }else{
+            cell.vwAddons.isHidden = true
+            
+            cell.lblDishName.text = obj.strProductName
+            
+            if obj.strVariantName != ""{
+                cell.lblDishName.text = obj.strProductName + "\(obj.strVariantName)"
+            }else{
+                cell.lblDishName.text = obj.strProductName
+            }
+        }
+        
+        
         
         let profilePic = obj.strProductImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
             if profilePic != "" {
@@ -224,10 +247,12 @@ extension MyCartViewController {
                         self.lblTotalAmount.text = "\(Double(self.strBasketTotal) + Double(self.strDileveryCharge)!)"
                         
                         self.arrCartItems.removeAll()
+                        
                         for data in arrData{
                             let obj = CartItemsModel.init(dict: data)
                             self.arrCartItems.append(obj)
                         }
+                        
                         if self.arrCartItems.count != 0{
                             self.call_WsMyVendor(strVendorId: self.arrCartItems[0].strVendorID)
                         }

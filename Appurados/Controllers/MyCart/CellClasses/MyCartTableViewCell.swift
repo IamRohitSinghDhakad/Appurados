@@ -16,6 +16,9 @@ class MyCartTableViewCell: UITableViewCell {
     @IBOutlet var btnMinus: UIButton!
     @IBOutlet var lblQuantity: UILabel!
     @IBOutlet var btnPlus: UIButton!
+    @IBOutlet weak var lblAddons: UILabel!
+    @IBOutlet var vwAddons: UIView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
