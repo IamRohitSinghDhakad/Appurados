@@ -247,51 +247,57 @@ extension CheckOutViewController{
             print(response)
             if status == MessageConstant.k_StatusCode{
 
-                if let dictData = response["result"]as? [String:Any]{
+                if let arrDictData = response["result"]as? [[String:Any]]{
                     
-                    var discountType = ""
-                    var main_discount:Double = 0.0
-                    
-                    if let type = dictData["discount_type"]as? String{
-                        discountType = type
-                    }
-                    
-                    if let discountAmount = dictData["discount_value"]as? String{
-                        main_discount = Double(discountAmount) ?? 0.0
-                    }else if let discountAmount = dictData["discount_value"]as? Int{
-                        main_discount = Double(discountAmount)
-                    }else if let discountAmount = dictData["discount_value"]as? Double{
-                        main_discount = discountAmount
-                    }
-                    
-                    if let min_bill_amt = dictData["min_bill_amt"]as? String{
-                        self.min_amount = Double(min_bill_amt) ?? 0.0
-                    }else if let min_bill_amt = dictData["min_bill_amt"]as? Int{
-                        self.min_amount = Double(min_bill_amt)
-                    }else if let min_bill_amt = dictData["min_bill_amt"]as? Double{
-                        self.min_amount = min_bill_amt
-                    }
-                    
-                  
-                    
-                    var subTotal:Double = 0.0
-                   
-                    
-                    if self.min_amount >= self.main_amount{
-                        if discountType == "Fixed"{
-                            self.lblDiscount.text = "\(self.main_amount - self.min_amount)"
-                            subTotal = (self.main_amount - main_discount) + Double(self.lblDeliveryCharge.text!)!
-                            self.lblDiscount.text = "$" + "\(main_discount)"
-                        }else{
-                            let newDiscount:Double = ((self.main_amount * main_discount) / 100)
-                            self.lblDiscount.text = "$\(newDiscount)"
-                            subTotal = (self.main_amount - newDiscount) + Double(self.lblDeliveryCharge.text!)!
-                            self.lblDiscount.text = "$" + "\(main_discount)"
-                            self.strDiscountAmount = "\(main_discount)"
+                    if arrDictData.count != 0{
+                        let dictData = arrDictData[0]
+                        
+                        var discountType = ""
+                        var main_discount:Double = 0.0
+                        
+                        if let type = dictData["discount_type"]as? String{
+                            discountType = type
                         }
-                    }else{
-                        objAlert.showAlert(message: "Your amount is must bigger than minimum amount", title: "Alert", controller: self)
+                        
+                        if let discountAmount = dictData["discount_value"]as? String{
+                            main_discount = Double(discountAmount) ?? 0.0
+                        }else if let discountAmount = dictData["discount_value"]as? Int{
+                            main_discount = Double(discountAmount)
+                        }else if let discountAmount = dictData["discount_value"]as? Double{
+                            main_discount = discountAmount
+                        }
+                        
+                        if let min_bill_amt = dictData["min_bill_amt"]as? String{
+                            self.min_amount = Double(min_bill_amt) ?? 0.0
+                        }else if let min_bill_amt = dictData["min_bill_amt"]as? Int{
+                            self.min_amount = Double(min_bill_amt)
+                        }else if let min_bill_amt = dictData["min_bill_amt"]as? Double{
+                            self.min_amount = min_bill_amt
+                        }
+                        
+                        var subTotal:Double = 0.0
+                        let strDeliveryCharge = self.deliveryCharge.removeFormatAmount()
+                        
+                        if self.min_amount >= self.main_amount{
+                            if discountType == "Fixed"{
+                                self.lblDiscount.text = "\(self.main_amount - self.min_amount)"
+                                subTotal = (self.main_amount - main_discount) + strDeliveryCharge
+                                print(subTotal)
+                                self.lblDiscount.text = "$" + "\(main_discount)"
+                            }else{
+                                let newDiscount:Double = ((self.main_amount * main_discount) / 100)
+                                self.lblDiscount.text = "$\(newDiscount)"
+                                subTotal = (self.main_amount - newDiscount) + strDeliveryCharge
+                                print(subTotal)
+                                self.lblDiscount.text = "$" + "\(main_discount)"
+                                self.strDiscountAmount = "\(main_discount)"
+                            }
+                        }else{
+                            objAlert.showAlert(message: "Your amount is must bigger than minimum amount", title: "Alert", controller: self)
+                        }
                     }
+                    
+                   
                     
 //                    if (min_amount >= main_amount) {
 //                        if (data.getDiscountType().equalsIgnoreCase("Fixed")) {
@@ -329,3 +335,15 @@ extension CheckOutViewController{
 }
 
 
+
+
+extension String {
+       public func removeFormatAmount() -> Double {
+           let formatter = NumberFormatter()
+           formatter.locale = Locale.current
+           formatter.numberStyle = .currency
+           formatter.currencySymbol = Locale.current.currencySymbol
+           formatter.decimalSeparator = Locale.current.groupingSeparator
+           return formatter.number(from: self)?.doubleValue ?? 0.00
+       }
+   }
