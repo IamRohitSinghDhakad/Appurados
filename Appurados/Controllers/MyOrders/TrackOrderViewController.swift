@@ -67,7 +67,11 @@ class TrackOrderViewController: UIViewController,CLLocationManagerDelegate,GMSMa
     }
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
-        onBackPressed()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let vc = (self.mainStoryboard.instantiateViewController(withIdentifier: "SideMenuController") as? SideMenuController)!
+        let navController = UINavigationController(rootViewController: vc)
+        navController.isNavigationBarHidden = true
+        appDelegate.window?.rootViewController = navController
     }
 
 }
@@ -226,7 +230,7 @@ extension TrackOrderViewController {
                             
                             self.resetStatus()
                             switch obj.status {
-                            case "Pending":
+                            case "pending":
                                 self.vwOne.backgroundColor = UIColor.init(named: "AppColor")
                             case "accept":
                                 self.vwTwo.backgroundColor = UIColor.init(named: "AppColor")

@@ -12,6 +12,7 @@ import AVFoundation
 class OrderPlacedViewController: UIViewController {
 
     var audioPlayer = AVAudioPlayer()
+    var orderID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,12 @@ class OrderPlacedViewController: UIViewController {
     }
     
 
+    @IBAction func btnOnBackTOHome(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TrackOrderViewController")as! TrackOrderViewController
+        vc.strOrderID = self.orderID
+        self.navigationController?.pushViewController(vc, animated: true)
+      // pushVc(viewConterlerId: "TrackOrderViewController")
+    }
     /*
     // MARK: - Navigation
 

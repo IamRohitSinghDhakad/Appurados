@@ -37,6 +37,7 @@
 		F95597AF26D4160C007390F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F95597AE26D4160C007390F7 /* Assets.xcassets */; };
 		F95597B226D4160C007390F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95597B026D4160C007390F7 /* LaunchScreen.storyboard */; };
 		F95F541126E527CD0047D1A7 /* RestaurentsDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */; };
+		F964A2DA2723F512005BC0F2 /* ChatDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F964A2D92723F512005BC0F2 /* ChatDetailModel.swift */; };
 		F969BE2526EBEA7200A732FE /* ChangeAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F969BE2426EBEA7200A732FE /* ChangeAddressTableViewCell.swift */; };
 		F978DE2226D4D155009FA173 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2126D4D155009FA173 /* HomeViewController.swift */; };
 		F978DE2426D4DBAE009FA173 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F978DE2326D4DBAE009FA173 /* MapViewController.swift */; };
@@ -150,6 +151,7 @@
 		F95597B126D4160C007390F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F95597B326D4160C007390F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F95F541026E527CD0047D1A7 /* RestaurentsDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurentsDetailModel.swift; sourceTree = "<group>"; };
+		F964A2D92723F512005BC0F2 /* ChatDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatDetailModel.swift; sourceTree = "<group>"; };
 		F969BE2426EBEA7200A732FE /* ChangeAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAddressTableViewCell.swift; sourceTree = "<group>"; };
 		F978DE2126D4D155009FA173 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F978DE2326D4DBAE009FA173 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -593,6 +595,7 @@
 				F9A0104826EAA71A00D1580A /* CartItemsModel.swift */,
 				F9F10D7B26EE83C600EFC362 /* PromocodeModel.swift */,
 				F97918A626F0D0FA008F3192 /* AddressModel.swift */,
+				F964A2D92723F512005BC0F2 /* ChatDetailModel.swift */,
 			);
 			path = ModelsClasses;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				F99D5A0926E7F70E00F4C3F4 /* OrdersDetailModel.swift in Sources */,
 				F978DE5626D4DD80009FA173 /* SWRevealViewController+Extensions.swift in Sources */,
 				F9A0104926EAA71A00D1580A /* CartItemsModel.swift in Sources */,
+				F964A2DA2723F512005BC0F2 /* ChatDetailModel.swift in Sources */,
 				6A63E9C926D67D5A00CD93DC /* HomeTopMenuCollectionViewCell.swift in Sources */,
 				F97AE39C27108EC500BEB761 /* CheckOutViewController.swift in Sources */,
 				F978DE4C26D4DD80009FA173 /* StatusBar.swift in Sources */,

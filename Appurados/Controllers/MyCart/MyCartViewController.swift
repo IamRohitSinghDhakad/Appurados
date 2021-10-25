@@ -31,6 +31,7 @@ class MyCartViewController: UIViewController {
     var arrAddress = [AddressModel]()
     var strAddressID = ""
     var objVendor:RestaurentsDetailModel?
+    var strHoldActualPrice:Double = 0.0
     var dictCheckoutData = [String:Any]()
     
     
@@ -180,10 +181,11 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
-        self.strBasketTotal = self.strBasketTotal + Double(obj.strProductPrice)!
-        
+        self.strBasketTotal = self.strBasketTotal + Double(obj.strActualPrice)!
         self.lblBasketTotal.text = "$" + "\(self.strBasketTotal)"
-        self.lblTotalAmount.text = "$" + "\(Double(self.strBasketTotal) + Double(self.strDileveryCharge)!)"
+        //"\(self.strBasketTotal)"
+        self.strHoldActualPrice = self.strHoldActualPrice + (Double(obj.strActualPrice) ?? 0.0 + Double(self.strDileveryCharge)!)
+        self.lblTotalAmount.text = "$" +  "\(self.strHoldActualPrice)"
         
 
         return cell

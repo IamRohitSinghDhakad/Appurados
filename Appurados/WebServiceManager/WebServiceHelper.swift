@@ -40,6 +40,8 @@ struct WsUrl{
     static let url_EstimateDeliveryCost = BASE_URL + "estimated_delivery_cost"
     static let url_PackageDelivery = BASE_URL + "package_delivery"
     static let url_PlaceAnOrder = BASE_URL + "place_an_order"
+    static let url_getChatMessage = BASE_URL + "get_messages"
+    static let url_sendMessage = BASE_URL + "insert_messages"
    
 }
 
