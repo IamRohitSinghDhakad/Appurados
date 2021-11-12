@@ -46,7 +46,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func btnFacebookLogin(_ sender: Any) {
-        
+        objAppShareData.isDemoMode = false
         if !objWebServiceManager.isNetworkAvailable(){
             objWebServiceManager.hideIndicator()
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
@@ -81,13 +81,14 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func btnGoogle(_ sender: Any) {
-        
+        objAppShareData.isDemoMode = false
         GIDSignIn.sharedInstance().presentingViewController = self
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().signIn()
         
     }
     @IBAction func btnapple(_ sender: Any) {
+        objAppShareData.isDemoMode = false
         if #available(iOS 13.0, *) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             let request = appleIDProvider.createRequest()
@@ -105,6 +106,7 @@ class WelcomeViewController: UIViewController {
     }
     
     @IBAction func btnOtherWay(_ sender: Any) {
+        objAppShareData.isDemoMode = false
         pushVc(viewConterlerId: "LoginViewController")
     }
 }

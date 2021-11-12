@@ -10,6 +10,9 @@ import UIKit
 class FoodDetailVendorViewController: UIViewController {
     
     @IBOutlet var tblFoodDetails: UITableView!
+    @IBOutlet weak var vwBtn: UIView!
+    @IBOutlet weak var lblItem: UILabel!
+    @IBOutlet var vwCartDetails: UIView!
     
     var cell_FoodCategoryTableViewCell: FoodCategoryTableViewCell?
     
@@ -17,22 +20,38 @@ class FoodDetailVendorViewController: UIViewController {
     var arrSubCategory = [SubCategoryModel]()
     var arrProductDetails = [ProductDetailModel]()
     var arrShowSubCat = [String]()
-  
+    var arrAddress = [AddressModel]()
     
     var selectedCategoryID: Int = 0
     let selectedSubCategoryID: Int = 0
     
+    var strCartCount = ""
+    var strProductPrice = ""
+    
     //MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         self.call_WsGetSubCategory(strVendorID: objVendorDetails!.strVendorID)
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.vwCartDetails.isHidden = true
+        self.call_WsGetAddress()
+    }
+    
     
     @IBAction func actionBack(_ sender: Any) {
         self.onBackPressed()
+    }
+    
+    @IBAction func btnContinue(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "MyCartViewController")as! MyCartViewController
+        vc.isComingFrom = "Detail"
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -99,6 +118,8 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
             cell.lblAddress.text = objVendorDetails?.strAddress
             cell.lblTimeForDeliver.text = "With in " + objVendorDetails!.strDistance + " mins"
             cell.lblDiscount.text = objVendorDetails?.strDiscountLabel
+            
+            cell.btnFavUnfav.addTarget(self, action: #selector(btnFavUn(button:)), for: .touchUpInside)
            
              let profilePic = objVendorDetails?.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                  if profilePic != "" {
@@ -115,6 +136,11 @@ extension FoodDetailVendorViewController: UITableViewDelegate, UITableViewDataSo
             self.cell_FoodCategoryTableViewCell = self.tblFoodDetails.dequeueReusableCell(withIdentifier: "FoodCategoryTableViewCell") as! FoodCategoryTableViewCell
             return self.cell_FoodCategoryTableViewCell
         }
+    }
+    
+    @objc func btnFavUn(button: UIButton){
+        guard let vendorID = objVendorDetails?.strVendorID else { return }
+        self.call_WsFavUnfavorite(strVendorID: vendorID)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -382,4 +408,192 @@ extension FoodDetailVendorViewController {
         }
     }
     
+    
+    
+    func call_WsFavUnfavorite(strVendorID:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        
+        objWebServiceManager.showIndicator()
+        
+        let dict = ["user_id":objAppShareData.UserDetail.strUserId,
+                    "id":strVendorID]as [String:Any]
+        
+        objWebServiceManager.requestPost(strURL: WsUrl.url_FavUnfav, queryParams: [:], params: dict, strCustomValidation: "", showIndicator: false) { response in
+
+       // objWebServiceManager.requestGet(strURL: WsUrl.url_FavUnfav, params: dict, queryParams: [:], strCustomValidation: "") { (response) in
+            objWebServiceManager.hideIndicator()
+            
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            print(response)
+           
+            
+            if status == MessageConstant.k_StatusCode{
+
+                if let result = response["result"]as? [String:Any]{
+                    self.objVendorDetails?.isFavorite = true
+                }
+                self.tblFoodDetails.reloadData()
+                
+                
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    self.objVendorDetails?.isFavorite = false
+
+                    self.tblFoodDetails.reloadData()
+                   // self.call_WsMyFavList()
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "Alert", controller: self)
+                }
+            }
+        } failure: { (Error) in
+            print(Error)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+}
+
+
+//Cart Detail
+extension FoodDetailVendorViewController{
+    //MARK:- Send Package
+func call_WsCartDetail(strUserAddressID:String, strLat:String, strLong:String){
+        
+        if !objWebServiceManager.isNetworkAvailable(){
+            objWebServiceManager.hideIndicator()
+            objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+            return
+        }
+        objWebServiceManager.showIndicator()
+        
+        
+        let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,"user_address_id":strUserAddressID]as [String:Any]
+        
+    objWebServiceManager.requestPost(strURL: WsUrl.url_GetCartDetails, queryParams: [:], params: dicrParam, strCustomValidation: "", showIndicator: false){ (response) in
+           objWebServiceManager.hideIndicator()
+            print(response)
+            let status = (response["status"] as? Int)
+            let message = (response["message"] as? String)
+            if status == MessageConstant.k_StatusCode{
+
+                if let arrData = response["result"]as? [[String:Any]]{
+                    if arrData.count == 0{
+                        self.vwCartDetails.isHidden = true
+                    }else{
+                        self.vwCartDetails.isHidden = false
+                    }
+                    self.strCartCount = "\(arrData.count)"
+                    var finalproductPrice = Double()
+                    
+                    for data in arrData{
+                        let productPrice = data["product_price"]as? String
+                        let priceInDouble = Double(productPrice ?? "0.0")
+                        finalproductPrice = finalproductPrice + priceInDouble!
+                    }
+                    
+                    self.lblItem.text = self.strCartCount + " items $ \(finalproductPrice)"
+                    
+                }else{
+                    if self.strCartCount == ""{
+                        self.vwCartDetails.isHidden = true
+                    }else{
+                        self.vwCartDetails.isHidden = false
+                    }
+                    //self.btnAllRestaurents.setTitle("All Restaurents ", for: .normal)
+                    objAlert.showAlert(message: "Data not found", title: "Alert", controller: self)
+                }
+            }else{
+                objWebServiceManager.hideIndicator()
+                if let msgg = response["result"]as? String{
+                    if msgg == "Your Cart is Empty"{
+                      
+                    }else
+                    {
+                        objAlert.showAlert(message: msgg, title: "", controller: self)
+                    }
+                }else{
+                    objAlert.showAlert(message: message ?? "", title: "", controller: self)
+                }
+            }
+        } failure: { (Error) in
+          //  print(Error)
+            objAlert.showAlert(message: "Failure!!", title: "Alert", controller: self)
+            objWebServiceManager.hideIndicator()
+        }
+    }
+    
+
+
+func call_WsGetAddress(){
+    
+    if !objWebServiceManager.isNetworkAvailable(){
+        objWebServiceManager.hideIndicator()
+        objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
+        return
+    }
+    
+    objWebServiceManager.showIndicator()
+    
+    let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId]as [String:Any]
+    
+    objWebServiceManager.requestGet(strURL: WsUrl.url_GetUserAddress, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+        objWebServiceManager.hideIndicator()
+        
+        let status = (response["status"] as? Int)
+        let message = (response["message"] as? String)
+        print(response)
+        if status == MessageConstant.k_StatusCode{
+        
+            self.arrAddress.removeAll()
+           
+            
+            if let result = response["result"]as? [[String:Any]]{
+                
+                for data in result{
+                    let obj = AddressModel.init(dict: data)
+                    self.arrAddress.append(obj)
+                }
+                var strAddressID = ""
+                var lat = ""
+                var long = ""
+                
+                if self.arrAddress.count != 0{
+                    strAddressID = self.arrAddress[0].strUserAddressID
+//                    self.lblDeliverTo.text = "Deliver to " + self.arrAddress[0].strAddress_name
+//                    self.lblAddress.text = self.arrAddress[0].strAddress
+                    lat = self.arrAddress[0].strLatitude
+                    long = self.arrAddress[0].strLongitude
+                }else{
+                    strAddressID = self.arrAddress[0].strUserAddressID
+                }
+                self.call_WsCartDetail(strUserAddressID: strAddressID,strLat: lat,strLong: long)
+              
+               
+
+            }
+        }else{
+            objWebServiceManager.hideIndicator()
+            if let msgg = response["result"]as? String{
+                objAlert.showAlert(message: msgg, title: "", controller: self)
+                self.call_WsCartDetail(strUserAddressID: "0",strLat: "",strLong: "")
+            }else{
+                objAlert.showAlert(message: message ?? "", title: "", controller: self)
+            }
+        }
+        
+        
+    } failure: { (Error) in
+      //  print(Error)
+        self.call_WsCartDetail(strUserAddressID: "0",strLat: "",strLong: "")
+        objWebServiceManager.hideIndicator()
+    }
+    
+    
+}
 }

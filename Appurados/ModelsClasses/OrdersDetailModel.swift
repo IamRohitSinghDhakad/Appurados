@@ -28,7 +28,10 @@ class OrdersDetailModel: NSObject {
     var driveLong:Double = 0.0
     
     var status:String = ""
-    var strEstimateTime = ""
+    var strEstimateTime:String = ""
+    
+    var strEstimateTimeForTrack:String = ""
+    var strDistanceForTrack:String = ""
     
     var arrCart = [OrdersCartDetailModel]()
     
@@ -136,6 +139,14 @@ class OrdersDetailModel: NSObject {
         
         if let time = dict["time"] as? String{
             self.strEstimateTime = time
+        }
+        
+        if let estimated_time = dict["estimated_time"] as? String{
+            self.strEstimateTimeForTrack = estimated_time
+        }
+        
+        if let distance = dict["distance"] as? String{
+            self.strDistanceForTrack = distance
         }
         
         if let arrCatrItems = dict["cart"] as? [[String:Any]]{

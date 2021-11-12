@@ -81,5 +81,10 @@
 	<string>$(Appurados)&quot;We need access to your Gallery so you can save images on your device.</string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+          <true/>
+    </dict>
 </dict>
 </plist>

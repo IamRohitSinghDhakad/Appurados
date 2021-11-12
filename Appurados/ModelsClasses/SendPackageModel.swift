@@ -19,6 +19,8 @@ class SendPackageModel: NSObject {
     var strPick_address:String = ""
     var strEstimateTime:String = ""
     var strDistance:String = ""
+    var strPackageDeliveryID:String = ""
+    
     
     init(dict : [String:Any]) {
         
@@ -27,6 +29,14 @@ class SendPackageModel: NSObject {
         }else if let offer_category_id = dict["offer_category_id"] as? Int{
             self.strOffer_category_id = "\(offer_category_id)"
         }
+        
+        if let offer_category_id = dict["package_delivery_id"] as? String{
+            self.strPackageDeliveryID = offer_category_id
+        }else if let offer_category_id = dict["package_delivery_id"] as? Int{
+            self.strPackageDeliveryID = "\(offer_category_id)"
+        }
+        
+        
         
         if let amount = dict["amount"] as? String{
             self.strAmount = amount

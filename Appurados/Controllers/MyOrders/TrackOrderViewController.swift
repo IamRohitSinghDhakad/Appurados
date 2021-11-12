@@ -18,11 +18,12 @@ class TrackOrderViewController: UIViewController,CLLocationManagerDelegate,GMSMa
     @IBOutlet weak var vwFour: UIView!
     @IBOutlet weak var vwFive: UIView!
     @IBOutlet weak var vwSix: UIView!
+    @IBOutlet var lblOrderStatus: UILabel!
     
     var pickUpMarker = GMSMarker()
     var dropUpMarker = GMSMarker()
     var driverMarker = GMSMarker()
-    
+    var timer: Timer?
     var mapView: GMSMapView!
     var locationManager: CLLocationManager!
     var currentLocation: CLLocation?
@@ -39,6 +40,12 @@ class TrackOrderViewController: UIViewController,CLLocationManagerDelegate,GMSMa
 
         self.call_WsGetOrderID(strOrderID: strOrderID)
         
+        if self.timer == nil{
+            self.timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        }else{
+
+        }
+        
         // Do any additional setup after loading the view.
         // Initialize the location manager.
         locationManager = CLLocationManager()
@@ -51,7 +58,7 @@ class TrackOrderViewController: UIViewController,CLLocationManagerDelegate,GMSMa
         
         // A default location to use when location permission is not granted.
         let defaultLocation = CLLocation(latitude: -33.869405, longitude: 151.199)
-
+        
         // Create a map.
         let zoomLevel = locationManager.accuracyAuthorization == .fullAccuracy ? preciseLocationZoomLevel : approximateLocationZoomLevel
         let camera = GMSCameraPosition.camera(withLatitude: defaultLocation.coordinate.latitude, longitude: defaultLocation.coordinate.longitude, zoom: zoomLevel)
@@ -65,6 +72,12 @@ class TrackOrderViewController: UIViewController,CLLocationManagerDelegate,GMSMa
         self.mapVw.addSubview(mapView)
         mapView.isHidden = false
     }
+    
+    @objc func updateTimer() {
+        //example functionality
+        self.call_WsGetOrderID(strOrderID: strOrderID)
+    }
+    
     
     @IBAction func btnBackOnHeader(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -142,12 +155,12 @@ extension TrackOrderViewController {
   }
     
     func resetStatus(){
-        self.vwOne.backgroundColor = UIColor.white
-        self.vwTwo.backgroundColor = UIColor.white
-        self.vwThree.backgroundColor = UIColor.white
-        self.vwFour.backgroundColor = UIColor.white
-        self.vwFive.backgroundColor = UIColor.white
-        self.vwSix.backgroundColor = UIColor.white
+        self.vwOne.backgroundColor = UIColor.lightGray
+        self.vwTwo.backgroundColor = UIColor.lightGray
+        self.vwThree.backgroundColor = UIColor.lightGray
+        self.vwFour.backgroundColor = UIColor.lightGray
+        self.vwFive.backgroundColor = UIColor.lightGray
+        self.vwSix.backgroundColor = UIColor.lightGray
     }
 }
 
@@ -163,7 +176,10 @@ extension TrackOrderViewController {
             objAlert.showAlert(message: "No Internet Connection", title: "Alert", controller: self)
             return
         }
-        objWebServiceManager.showIndicator()
+        if self.isRunFirstTime == false{
+            objWebServiceManager.showIndicator()
+        }
+       
         
         
         let dicrParam = ["user_id":objAppShareData.UserDetail.strUserId,
@@ -171,7 +187,11 @@ extension TrackOrderViewController {
         
         print(dicrParam)
         
-        objWebServiceManager.requestGet(strURL: WsUrl.url_GetOrders, params: dicrParam, queryParams: [:], strCustomValidation: "") { (response) in
+      //  let url = WsUrl.url_GetOrders + "?user_id=\(objAppShareData.UserDetail.strUserId)&order_id=\(strOrderID)"
+        
+        objWebServiceManager.requestPost(strURL: WsUrl.url_GetOrders, queryParams: [:], params: dicrParam, strCustomValidation: "", showIndicator: false) { response in
+        
+      //  objWebServiceManager.requestGet(strURL: url, params: [:], queryParams: [:], strCustomValidation: "") { (response) in
            objWebServiceManager.hideIndicator()
             
             let status = (response["status"] as? Int)
@@ -210,16 +230,16 @@ extension TrackOrderViewController {
                             
                             
                         }else{
-                            print(obj.driverLat)
                             if obj.driverLat != 0.0{
                                 self.driverMarker.map = nil
-                                self.driverMarker.position = CLLocationCoordinate2D(latitude: obj.dropLat, longitude: obj.dropLong)
+                                self.driverMarker.position = CLLocationCoordinate2D(latitude: obj.driverLat, longitude: obj.driveLong)
                                 self.driverMarker.title = "driver Location"
                                 self.driverMarker.map = self.mapView
+                                self.driverMarker.icon = UIImage.init(named: "bike_ride_new")
                                 
                                 let camera = GMSCameraPosition.camera(withLatitude: obj.driverLat,
                                                                       longitude: obj.driveLong,
-                                                                      zoom: self.preciseLocationZoomLevel)
+                                                                      zoom: 18)
                                 
                                 self.mapView.camera = camera
                                 self.mapView.animate(to: camera)
@@ -232,16 +252,24 @@ extension TrackOrderViewController {
                             switch obj.status {
                             case "pending":
                                 self.vwOne.backgroundColor = UIColor.init(named: "AppColor")
+                                self.lblOrderStatus.text = "Order is pending"
                             case "accept":
                                 self.vwTwo.backgroundColor = UIColor.init(named: "AppColor")
+                                self.lblOrderStatus.text = "Order is accept"
                             case "shipped":
                                 self.vwThree.backgroundColor = UIColor.init(named: "AppColor")
+                                self.lblOrderStatus.text = "Order is shipped"
                             case "accepted":
                                 self.vwFour.backgroundColor = UIColor.init(named: "AppColor")
+                                self.lblOrderStatus.text = "Order is accepted"
                             case "picked":
                                 self.vwFive.backgroundColor = UIColor.init(named: "AppColor")
+                                self.lblOrderStatus.text = "Order is picked"
                             default:
                                 self.resetStatus()
+                                self.lblOrderStatus.text = "Order is complete"
+                                let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderBillViewController")as! OrderBillViewController
+                                self.navigationController?.pushViewController(vc, animated: true)
                                 self.vwSix.backgroundColor = UIColor.init(named: "AppColor")
                             }
                         }

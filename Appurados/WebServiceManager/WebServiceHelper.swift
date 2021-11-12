@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 
-let BASE_URL = "https://ambitious.in.net/Arun/appurados/index.php/api/"//Live
-
+//let BASE_URL = "https://ambitious.in.net/Arun/appurados/index.php/api/"//Live
+let BASE_URL = "http://appurados.com/admin/index.php/api/"
 struct WsUrl{
     
     static let url_SignUp  = BASE_URL + "signup"
@@ -42,6 +42,7 @@ struct WsUrl{
     static let url_PlaceAnOrder = BASE_URL + "place_an_order"
     static let url_getChatMessage = BASE_URL + "get_messages"
     static let url_sendMessage = BASE_URL + "insert_messages"
+    static let url_GiveRating = BASE_URL + "rating"
    
 }
 

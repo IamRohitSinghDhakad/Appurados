@@ -11,7 +11,6 @@ class CompleteViewController: UIViewController {
 
     @IBOutlet var tblCompleteOrderList: UITableView!
     
-    
     var arrCompleteOrder = [OrdersDetailModel]()
     
     override func viewDidLoad() {
@@ -50,6 +49,12 @@ extension CompleteViewController: UITableViewDelegate,UITableViewDataSource{
         
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OrderBillViewController")as! OrderBillViewController
+        vc.objOrderDetailModel = self.arrCompleteOrder[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

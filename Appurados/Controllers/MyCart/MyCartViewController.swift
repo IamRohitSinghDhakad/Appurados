@@ -20,6 +20,7 @@ class MyCartViewController: UIViewController {
     @IBOutlet var lblNoOrderInCartMsg: UILabel!
     @IBOutlet weak var vwNoOrderIncart: UIView!
     @IBOutlet weak var imgVwChekBoxCutlery: UIImageView!
+    @IBOutlet var btnBackOnHeader: UIButton!
     @IBOutlet weak var tfInstruction: UITextField!
     
     
@@ -33,7 +34,7 @@ class MyCartViewController: UIViewController {
     var objVendor:RestaurentsDetailModel?
     var strHoldActualPrice:Double = 0.0
     var dictCheckoutData = [String:Any]()
-    
+    var isComingFrom = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,12 @@ class MyCartViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if isComingFrom == "Detail"{
+            self.btnBackOnHeader.setImage(UIImage.init(named: "back"), for: .normal)
+        }else{
+            self.btnBackOnHeader.setImage(UIImage.init(named: "menu"), for: .normal)
+        }
         self.dictCheckoutData = [:]
         self.strBasketTotal = 0.0
         self.strDileveryCharge = ""
@@ -76,7 +83,6 @@ class MyCartViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         self.lblDeliveryCharges.text = "$" + self.strDileveryCharge
     }
     
@@ -93,7 +99,13 @@ class MyCartViewController: UIViewController {
     }
     
     @IBAction func btnOpenSideMenu(_ sender: Any) {
-        self.sideMenuController?.revealMenu()
+        if isComingFrom == "Detail"{
+            self.isComingFrom = ""
+            self.navigationController?.popViewController(animated: true)
+        }else{
+            self.sideMenuController?.revealMenu()
+        }
+       
         //self.subVwConfirmation.isHidden = false
     }
     @IBAction func btnOnCheckUncheckSpclReq(_ sender: Any) {
@@ -181,11 +193,11 @@ extension MyCartViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.imgVwDish.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "placeholderImage"))
             }
         
-        self.strBasketTotal = self.strBasketTotal + Double(obj.strActualPrice)!
+        self.strBasketTotal = self.strBasketTotal + Double(obj.strProductPrice)!
         self.lblBasketTotal.text = "$" + "\(self.strBasketTotal)"
-        //"\(self.strBasketTotal)"
-        self.strHoldActualPrice = self.strHoldActualPrice + (Double(obj.strActualPrice) ?? 0.0 + Double(self.strDileveryCharge)!)
-        self.lblTotalAmount.text = "$" +  "\(self.strHoldActualPrice)"
+//        //"\(self.strBasketTotal)"
+//        self.strHoldActualPrice = self.strHoldActualPrice + (Double(obj.strProductPrice) ?? 0.0 + Double(self.strDileveryCharge)!)
+//        self.lblTotalAmount.text = "$" +  "\(self.strHoldActualPrice)"
         
 
         return cell
@@ -249,11 +261,20 @@ extension MyCartViewController {
                         self.lblTotalAmount.text = "\(Double(self.strBasketTotal) + Double(self.strDileveryCharge)!)"
                         
                         self.arrCartItems.removeAll()
-                        
+                        var finalProductPrice = Double()
                         for data in arrData{
                             let obj = CartItemsModel.init(dict: data)
+                            let productPrice = obj.strProductPrice
+                            let priceInDouble = Double(productPrice)
+                            finalProductPrice = finalProductPrice + priceInDouble!
                             self.arrCartItems.append(obj)
                         }
+                        
+                        self.lblTotalAmount.text = "$" + "\(finalProductPrice + Double(self.strDileveryCharge)!)"
+                        
+                        //"\(self.strBasketTotal)"
+                       //        self.strHoldActualPrice = self.strHoldActualPrice + (Double(obj.strProductPrice) ?? 0.0 + Double(self.strDileveryCharge)!)
+                       //        self.lblTotalAmount.text = "$" +  "\(self.strHoldActualPrice)"
                         
                         if self.arrCartItems.count != 0{
                             self.call_WsMyVendor(strVendorId: self.arrCartItems[0].strVendorID)

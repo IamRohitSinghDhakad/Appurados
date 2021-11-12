@@ -17,8 +17,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tfEmail.text = "arun@gmail.com"
-        self.tfPassword.text = "12345"
+      //  self.tfEmail.text = "arun@gmail.com"
+      //  self.tfPassword.text = "12345"
 
         // Do any additional setup after loading the view.
     }

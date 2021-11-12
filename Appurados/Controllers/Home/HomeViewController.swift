@@ -253,7 +253,9 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             }else{
                 cell.vwOffPercentange.isHidden = true
             }
-            
+            cell.vwRating.isUserInteractionEnabled = false
+            cell.vwRating.editable = false
+            cell.vwRating.rating = Double(obj.strRating) ?? 0.0
             
             let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if profilePic != "" {
@@ -300,6 +302,8 @@ extension HomeViewController: UICollectionViewDelegate,UICollectionViewDataSourc
             cell.lblPrice.text = obj.strMinimumOrderAmount + "$"
             cell.lblDishes.text = obj.strSpecialties
             cell.vwRating.rating = Double(obj.strRating) ?? 0.0
+            cell.vwRating.isUserInteractionEnabled = false
+            cell.vwRating.editable = false
             
             let profilePic = obj.strBannerImage.trim().addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
                 if profilePic != "" {

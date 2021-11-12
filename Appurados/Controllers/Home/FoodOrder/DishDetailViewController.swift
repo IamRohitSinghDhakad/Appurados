@@ -85,6 +85,12 @@ extension DishDetailViewController: UITableViewDelegate,UITableViewDataSource{
         return cell
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "FoodDetailVendorViewController")as! FoodDetailVendorViewController
+        vc.objVendorDetails = self.arrRestauranrtsFiltered[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //MARK:- Searching

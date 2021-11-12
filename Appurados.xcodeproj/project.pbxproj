@@ -95,6 +95,8 @@
 		F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */; };
 		F9BDFEEF26E6A5A300672CD3 /* ProductDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */; };
 		F9DA4E2626E3F7FB00A3D3A0 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */; };
+		F9E886DA273D0D5D00CBDBF6 /* OrderBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E886D9273D0D5D00CBDBF6 /* OrderBillViewController.swift */; };
+		F9E886DC273D4DF600CBDBF6 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E886DB273D4DF600CBDBF6 /* RatingViewController.swift */; };
 		F9ED45C426D803080053404C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ED45C326D803080053404C /* MapKit.framework */; };
 		F9F10D7826EE7A1800EFC362 /* RedeemRewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F10D7726EE7A1800EFC362 /* RedeemRewardViewController.swift */; };
 		F9F10D7A26EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F10D7926EE7A3400EFC362 /* RedeemRewardCollectionViewCell.swift */; };
@@ -213,6 +215,8 @@
 		F9B1969726EBA2F200182139 /* AddNewAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewAddressViewController.swift; sourceTree = "<group>"; };
 		F9BDFEEE26E6A5A300672CD3 /* ProductDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailModel.swift; sourceTree = "<group>"; };
 		F9DA4E2526E3F7FB00A3D3A0 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
+		F9E886D9273D0D5D00CBDBF6 /* OrderBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBillViewController.swift; sourceTree = "<group>"; };
+		F9E886DB273D4DF600CBDBF6 /* RatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		F9ED45C326D803080053404C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F9ED45C526D803180053404C /* Appurados.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Appurados.entitlements; sourceTree = "<group>"; };
 		F9F10D7726EE7A1800EFC362 /* RedeemRewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedeemRewardViewController.swift; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 				F9FF647626F1D76B00F75CF5 /* MyOrderDetailTableViewCell.swift */,
 				F9FF647526F1D76B00F75CF5 /* MyOrderDetailViewController.swift */,
 				F90741E026F3763E0031C1EB /* TrackOrderViewController.swift */,
+				F9E886D9273D0D5D00CBDBF6 /* OrderBillViewController.swift */,
+				F9E886DB273D4DF600CBDBF6 /* RatingViewController.swift */,
 			);
 			path = MyOrders;
 			sourceTree = "<group>";
@@ -911,6 +917,7 @@
 				F978DE4C26D4DD80009FA173 /* StatusBar.swift in Sources */,
 				F978DE4B26D4DD80009FA173 /* UIViewController+SideMenu.swift in Sources */,
 				F9F315FE26DB69560015BCDC /* SupportViewController.swift in Sources */,
+				F9E886DC273D4DF600CBDBF6 /* RatingViewController.swift in Sources */,
 				F9F10D7C26EE83C600EFC362 /* PromocodeModel.swift in Sources */,
 				F9010252271198AF005FAFA9 /* TrackSendPackageViewController.swift in Sources */,
 				F9F3160826DB69D50015BCDC /* SendPackageViewController.swift in Sources */,
@@ -929,6 +936,7 @@
 				F9AE5FC026EC8C1A00486077 /* FoodDetailVendorViewController.swift in Sources */,
 				F95597A626D4160A007390F7 /* AppDelegate.swift in Sources */,
 				F9B1969826EBA2F200182139 /* AddNewAddressViewController.swift in Sources */,
+				F9E886DA273D0D5D00CBDBF6 /* OrderBillViewController.swift in Sources */,
 				F978DE5426D4DD80009FA173 /* BasicTransitionAnimator.swift in Sources */,
 				F95597A826D4160A007390F7 /* SceneDelegate.swift in Sources */,
 				F9A7330226D4EBEF0006BE93 /* SignUpModel.swift in Sources */,

@@ -59,6 +59,12 @@ extension SendPackageViewController: UITableViewDelegate,UITableViewDataSource{
         return cell
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TrackSendPackageViewController")as! TrackSendPackageViewController
+        vc.objPackageDetails = self.arrSendPackage[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension SendPackageViewController {
